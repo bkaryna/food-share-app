@@ -11,6 +11,7 @@ Application features will include the following:
   <li> Offer search with filters </li>
   <li> Apple maps integration </li>
   <li> Chat </li>
+  <li> Notifications (e.g. notifying that the buyer is ready to pick up the product)</li>
 </ul>
 
 Technologies:
