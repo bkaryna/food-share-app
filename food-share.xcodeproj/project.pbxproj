@@ -3,12 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0299BF30A7261F7FE5EF0C69 /* Pods_food_share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 998C80951DE1B334B9339A17 /* Pods_food_share.framework */; };
 		5B2D97341B88FCF6B9C14BF2 /* Pods_food_share_food_shareUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F9CCC5E5C6AB92207B90A8 /* Pods_food_share_food_shareUITests.framework */; };
+		820A67AE272C796400E9918C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 820A67AD272C796400E9918C /* GoogleService-Info.plist */; };
+		820A67AF272C796400E9918C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 820A67AD272C796400E9918C /* GoogleService-Info.plist */; };
+		820A67B0272C796400E9918C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 820A67AD272C796400E9918C /* GoogleService-Info.plist */; };
 		829E31E52726C15A00CBC0C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31E42726C15A00CBC0C8 /* AppDelegate.swift */; };
 		829E31E72726C15A00CBC0C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31E62726C15A00CBC0C8 /* SceneDelegate.swift */; };
 		829E31E92726C15A00CBC0C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31E82726C15A00CBC0C8 /* ViewController.swift */; };
@@ -17,9 +20,6 @@
 		829E31F12726C15C00CBC0C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 829E31EF2726C15C00CBC0C8 /* LaunchScreen.storyboard */; };
 		829E31FC2726C15C00CBC0C8 /* food_shareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31FB2726C15C00CBC0C8 /* food_shareTests.swift */; };
 		829E32072726C15C00CBC0C8 /* food_shareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E32062726C15C00CBC0C8 /* food_shareUITests.swift */; };
-		82AB7130272C3F7E008E4F5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82AB712F272C3F7E008E4F5D /* GoogleService-Info.plist */; };
-		82AB7131272C3F7E008E4F5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82AB712F272C3F7E008E4F5D /* GoogleService-Info.plist */; };
-		82AB7132272C3F7E008E4F5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82AB712F272C3F7E008E4F5D /* GoogleService-Info.plist */; };
 		F8438A3370A714C223F1D51C /* Pods_food_shareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 419B27B17A411A2CA4BCEE2B /* Pods_food_shareTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +45,7 @@
 		419B27B17A411A2CA4BCEE2B /* Pods_food_shareTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_food_shareTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58CE15DEF284FDF59357AF5D /* Pods-food-share-food-shareUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-share-food-shareUITests.debug.xcconfig"; path = "Target Support Files/Pods-food-share-food-shareUITests/Pods-food-share-food-shareUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		778D297AFB6B588B939166A5 /* Pods-food-shareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-shareTests.release.xcconfig"; path = "Target Support Files/Pods-food-shareTests/Pods-food-shareTests.release.xcconfig"; sourceTree = "<group>"; };
+		820A67AD272C796400E9918C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		829E31E12726C15A00CBC0C8 /* food-share.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "food-share.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		829E31E42726C15A00CBC0C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		829E31E62726C15A00CBC0C8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,7 +60,6 @@
 		829E32022726C15C00CBC0C8 /* food-shareUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "food-shareUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		829E32062726C15C00CBC0C8 /* food_shareUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = food_shareUITests.swift; sourceTree = "<group>"; };
 		829E32082726C15C00CBC0C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		82AB712F272C3F7E008E4F5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		998C80951DE1B334B9339A17 /* Pods_food_share.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_food_share.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD87D06B622A82C06474D9A /* Pods-food-share.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-share.debug.xcconfig"; path = "Target Support Files/Pods-food-share/Pods-food-share.debug.xcconfig"; sourceTree = "<group>"; };
 		D6402A08BDD27F523B017B08 /* Pods-food-shareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-shareTests.debug.xcconfig"; path = "Target Support Files/Pods-food-shareTests/Pods-food-shareTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 		829E31D82726C15900CBC0C8 = {
 			isa = PBXGroup;
 			children = (
-				82AB712F272C3F7E008E4F5D /* GoogleService-Info.plist */,
+				820A67AD272C796400E9918C /* GoogleService-Info.plist */,
 				829E31E32726C15A00CBC0C8 /* food-share */,
 				829E31FA2726C15C00CBC0C8 /* food-shareTests */,
 				829E32052726C15C00CBC0C8 /* food-shareUITests */,
@@ -170,7 +170,6 @@
 				D6402A08BDD27F523B017B08 /* Pods-food-shareTests.debug.xcconfig */,
 				778D297AFB6B588B939166A5 /* Pods-food-shareTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -283,7 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				829E31F12726C15C00CBC0C8 /* LaunchScreen.storyboard in Resources */,
-				82AB7130272C3F7E008E4F5D /* GoogleService-Info.plist in Resources */,
+				820A67AE272C796400E9918C /* GoogleService-Info.plist in Resources */,
 				829E31EE2726C15C00CBC0C8 /* Assets.xcassets in Resources */,
 				829E31EC2726C15A00CBC0C8 /* Main.storyboard in Resources */,
 			);
@@ -293,7 +292,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82AB7131272C3F7E008E4F5D /* GoogleService-Info.plist in Resources */,
+				820A67AF272C796400E9918C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82AB7132272C3F7E008E4F5D /* GoogleService-Info.plist in Resources */,
+				820A67B0272C796400E9918C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
