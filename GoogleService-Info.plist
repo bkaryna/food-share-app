@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>217675376759-kqi35jtqp5plmm2vmiot07jmfkicrqal.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.217675376759-kqi35jtqp5plmm2vmiot07jmfkicrqal</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDSv014IRVnH-i2ytgf2lRWNzRxQKt28zM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>217675376759</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>bkaryna.food-share</string>
+	<key>PROJECT_ID</key>
+	<string>food-share-b1f45</string>
+	<key>STORAGE_BUCKET</key>
+	<string>food-share-b1f45.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:217675376759:ios:3478d28496ab4d9bd0be72</string>
+</dict>
+</plist>
