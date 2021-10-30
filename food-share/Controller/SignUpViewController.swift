@@ -11,26 +11,26 @@ import Firebase
 
 class SignUpViewController: UIViewController {
 
-    @IBOutlet weak var FirstNameTextField: UITextField!
-    @IBOutlet weak var LastNameTextField: UITextField!
-    @IBOutlet weak var EmailTextField: UITextField!
-    @IBOutlet weak var PasswordTextField: UITextField!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var SignUpButton: UIButton!
-    @IBOutlet weak var ErrorLabel: UILabel!
+    @IBOutlet weak var signUpButtonAction: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
     
     
     //check the fields and validate the data; return nil or error message
     func validateFields() -> String? {
         //check if all fields are filled in
-        if FirstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || LastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            EmailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            PasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+        if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             return "Please fill in all he required data"
         }
         
         //check password security
-        let cleanedPassword = PasswordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let cleanedPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         if Validation.passwordValid(cleanedPassword) == false {
             return "Please make sure your password meets the requirements"
         }
@@ -48,10 +48,10 @@ class SignUpViewController: UIViewController {
 //            showError(error!)
 //        }
         
-        let firstName = FirstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let lastName = LastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let email = EmailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let password = PasswordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         //user creation
         Auth.auth().createUser(withEmail: email, password: password) { result, err in
             if err != nil {
@@ -74,7 +74,6 @@ class SignUpViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     
@@ -90,8 +89,8 @@ class SignUpViewController: UIViewController {
     */
     
     func showError(_ error: String) {
-        ErrorLabel.text=error;
-        ErrorLabel.alpha=1
+        errorLabel.text=error;
+        errorLabel.alpha=1
     }
     
     func transitionToHome() {

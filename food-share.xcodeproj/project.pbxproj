@@ -27,6 +27,9 @@
 		825090D0272D6A5F004E5C9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 825090CF272D6A5F004E5C9A /* GoogleService-Info.plist */; };
 		825090D1272D6A5F004E5C9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 825090CF272D6A5F004E5C9A /* GoogleService-Info.plist */; };
 		825090D2272D6A5F004E5C9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 825090CF272D6A5F004E5C9A /* GoogleService-Info.plist */; };
+		825090D8272DEAB6004E5C9A /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825090D7272DEAB6004E5C9A /* Styling.swift */; };
+		825090D9272DEAB6004E5C9A /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825090D7272DEAB6004E5C9A /* Styling.swift */; };
+		825090DA272DEAB6004E5C9A /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825090D7272DEAB6004E5C9A /* Styling.swift */; };
 		829E31E52726C15A00CBC0C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31E42726C15A00CBC0C8 /* AppDelegate.swift */; };
 		829E31E72726C15A00CBC0C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31E62726C15A00CBC0C8 /* SceneDelegate.swift */; };
 		829E31E92726C15A00CBC0C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31E82726C15A00CBC0C8 /* ViewController.swift */; };
@@ -66,6 +69,7 @@
 		820A67C1272C998D00E9918C /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		820A67C5272CA37A00E9918C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		825090CF272D6A5F004E5C9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		825090D7272DEAB6004E5C9A /* Styling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styling.swift; sourceTree = "<group>"; };
 		829E31E12726C15A00CBC0C8 /* food-share.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "food-share.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		829E31E42726C15A00CBC0C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		829E31E62726C15A00CBC0C8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 		820A67C0272C902000E9918C /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				825090D7272DEAB6004E5C9A /* Styling.swift */,
 				820A67C1272C998D00E9918C /* Validation.swift */,
 				820A67C5272CA37A00E9918C /* Constants.swift */,
 			);
@@ -471,6 +476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				825090D8272DEAB6004E5C9A /* Styling.swift in Sources */,
 				829E31E92726C15A00CBC0C8 /* ViewController.swift in Sources */,
 				829E31E52726C15A00CBC0C8 /* AppDelegate.swift in Sources */,
 				820A67B2272C861700E9918C /* SignUpViewController.swift in Sources */,
@@ -488,6 +494,7 @@
 			files = (
 				820A67B3272C861700E9918C /* SignUpViewController.swift in Sources */,
 				829E31FC2726C15C00CBC0C8 /* food_shareTests.swift in Sources */,
+				825090D9272DEAB6004E5C9A /* Styling.swift in Sources */,
 				820A67B7272C863100E9918C /* LogInViewController.swift in Sources */,
 				820A67C3272C998D00E9918C /* Validation.swift in Sources */,
 				820A67BB272C864900E9918C /* HomeViewController.swift in Sources */,
@@ -501,6 +508,7 @@
 			files = (
 				820A67B4272C861700E9918C /* SignUpViewController.swift in Sources */,
 				829E32072726C15C00CBC0C8 /* food_shareUITests.swift in Sources */,
+				825090DA272DEAB6004E5C9A /* Styling.swift in Sources */,
 				820A67B8272C863100E9918C /* LogInViewController.swift in Sources */,
 				820A67C4272C998D00E9918C /* Validation.swift in Sources */,
 				820A67BC272C864900E9918C /* HomeViewController.swift in Sources */,
