@@ -13,6 +13,4 @@ class Styling {
         button.layer.cornerRadius = 20
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
     }
-    
-    
 }

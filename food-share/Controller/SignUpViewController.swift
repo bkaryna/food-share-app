@@ -23,9 +23,9 @@ class SignUpViewController: UIViewController {
     //check the fields and validate the data; return nil or error message
     func validateFields() -> String? {
         //check if all fields are filled in
-        if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+        if Validation.stringEmpty(firstNameTextField.text!) || Validation.stringEmpty(lastNameTextField.text!) ||
+            Validation.stringEmpty(emailTextField.text!) ||
+            Validation.stringEmpty(passwordTextField.text!) {
             return "Please fill in all he required data"
         }
         
@@ -41,37 +41,37 @@ class SignUpViewController: UIViewController {
     
     
     @IBAction func SignUpTapped(_ sender: Any) {
-//        fields validation
-//        let error = validateFields()
-//
-//        if error != nil{
-//            showError(error!)
-//        }
+        //fields validation
+        let error = validateFields()
+
+        if error != nil{
+            Validation.showError(self.errorLabel, error!)
+        }
         
         let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
         //user creation
         Auth.auth().createUser(withEmail: email, password: password) { result, err in
             if err != nil {
-                self.showError("Error creating user")
+                Validation.showError(self.errorLabel, "Error creating user")
             } else {
                 let db = Firestore.firestore()
                 db.collection("Users").document(result!.user.uid).setData([ "FirstName": firstName, "LastName": lastName ]) {(error) in
                     if error != nil {
                     // Show error message
-                        self.showError("Error saving user data")
+                        Validation.showError(self.errorLabel, "Error saving user's data")
+                    } else {
+                        // Transition to the home screen
+                        self.transitionToHome()
                     }
                 }
-                
-                // Transition to the home screen
-                self.transitionToHome()
             }
         }
-        
-        //go to home screen
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view
@@ -87,11 +87,6 @@ class SignUpViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    func showError(_ error: String) {
-        errorLabel.text=error;
-        errorLabel.alpha=1
-    }
     
     func transitionToHome() {
         //storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController)
