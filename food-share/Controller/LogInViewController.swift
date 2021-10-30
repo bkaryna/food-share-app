@@ -9,13 +9,14 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
-    @IBOutlet weak var EmailTextField: UITextField!
-    @IBOutlet weak var PasswordTextField: UITextField!
-    @IBOutlet weak var LogInButton: UIButton!
-    @IBOutlet weak var ErrorLabel: UILabel!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var logInButton: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
     
-    @IBAction func LogInButtonTapped(_ sender: Any) {
+    @IBAction func logInButtonTapped(_ sender: Any) {
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
