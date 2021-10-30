@@ -71,6 +71,7 @@
                     <navigationItem key="navigationItem" id="iHk-cR-hVD"/>
                     <connections>
                         <outlet property="logInButton" destination="Jvx-7j-Kyx" id="4mR-AS-BfE"/>
+                        <outlet property="logoImageView" destination="cRI-sV-qF3" id="7Ib-PQ-wcg"/>
                         <outlet property="signUpButton" destination="LXK-b9-vaR" id="2AX-KE-EQH"/>
                     </connections>
                 </viewController>
@@ -268,7 +269,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="512" height="512"/>
+        <image name="logo" width="500" height="500"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
