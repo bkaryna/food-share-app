@@ -21,7 +21,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LXK-b9-vaR">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="60"/>
-                                        <color key="backgroundColor" red="0.13034055180000001" green="0.61203869609999995" blue="0.4904069486" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" red="0.019607843137254902" green="0.66274509803921566" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="DhM-Sp-hkn"/>
                                         </constraints>
@@ -50,13 +50,22 @@
                                     <constraint firstItem="LXK-b9-vaR" firstAttribute="height" secondItem="Jvx-7j-Kyx" secondAttribute="height" id="dhB-hm-dBW"/>
                                 </constraints>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="cRI-sV-qF3">
+                                <rect key="frame" x="40" y="187" width="310" height="294"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="294" id="L60-gf-ScN"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="T4j-jD-CMW" secondAttribute="trailing" constant="40" id="06u-4y-suj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="T4j-jD-CMW" secondAttribute="bottom" constant="40" id="9xs-B5-zrV"/>
+                            <constraint firstItem="cRI-sV-qF3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="143" id="a9C-ch-C1g"/>
                             <constraint firstItem="T4j-jD-CMW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="flq-kD-fh6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cRI-sV-qF3" secondAttribute="trailing" constant="40" id="ghr-oA-dIh"/>
+                            <constraint firstItem="cRI-sV-qF3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="mKI-yF-l2j"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iHk-cR-hVD"/>
@@ -254,6 +263,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="logo" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

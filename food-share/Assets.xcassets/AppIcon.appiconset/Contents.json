@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "50.png",
+      "filename" : "40 copy.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
@@ -13,13 +13,13 @@
       "size" : "20x20"
     },
     {
-      "filename" : "29.png",
+      "filename" : "29 copy.png",
       "idiom" : "iphone",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "58.png",
+      "filename" : "58 copy.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
@@ -55,7 +55,7 @@
       "size" : "57x57"
     },
     {
-      "filename" : "144.png",
+      "filename" : "120 copy.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
@@ -73,31 +73,31 @@
       "size" : "20x20"
     },
     {
-      "filename" : "40 copy.png",
+      "filename" : "40.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "29 copy.png",
+      "filename" : "29.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "58 copy.png",
+      "filename" : "58.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "40.png",
+      "filename" : "40 copy 2.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
-      "filename" : "100.png",
+      "filename" : "80 copy.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
