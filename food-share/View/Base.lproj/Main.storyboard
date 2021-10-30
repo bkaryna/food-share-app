@@ -51,7 +51,7 @@
                                 </constraints>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="cRI-sV-qF3">
-                                <rect key="frame" x="40" y="187" width="310" height="294"/>
+                                <rect key="frame" x="40" y="231" width="310" height="294"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="294" id="L60-gf-ScN"/>
                                 </constraints>
@@ -69,6 +69,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iHk-cR-hVD"/>
+                    <connections>
+                        <outlet property="logInButton" destination="Jvx-7j-Kyx" id="4mR-AS-BfE"/>
+                        <outlet property="signUpButton" destination="LXK-b9-vaR" id="2AX-KE-EQH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -83,7 +87,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5hN-St-7dY">
-                                <rect key="frame" x="40" y="84" width="310" height="320.33333333333331"/>
+                                <rect key="frame" x="40" y="127.99999999999997" width="310" height="320.33333333333326"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jKv-Gq-UlT">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="40"/>
@@ -140,12 +144,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="e0r-J6-Cag"/>
                     <connections>
-                        <outlet property="EmailTextField" destination="Eq5-Kj-Ejl" id="SYP-wP-e04"/>
-                        <outlet property="ErrorLabel" destination="HGu-fE-yjG" id="dIB-aw-cRY"/>
-                        <outlet property="FirstNameTextField" destination="jKv-Gq-UlT" id="Y2x-8S-mSb"/>
-                        <outlet property="LastNameTextField" destination="rIL-jR-7kE" id="MEz-SZ-hdM"/>
-                        <outlet property="PasswordTextField" destination="Kxw-Vc-dYk" id="uEB-hj-AmU"/>
-                        <outlet property="SignUpButton" destination="7WH-a8-4ST" id="AfE-VD-FWG"/>
+                        <outlet property="emailTextField" destination="Eq5-Kj-Ejl" id="SYP-wP-e04"/>
+                        <outlet property="errorLabel" destination="HGu-fE-yjG" id="dIB-aw-cRY"/>
+                        <outlet property="firstNameTextField" destination="jKv-Gq-UlT" id="Y2x-8S-mSb"/>
+                        <outlet property="lastNameTextField" destination="rIL-jR-7kE" id="MEz-SZ-hdM"/>
+                        <outlet property="passwordTextField" destination="Kxw-Vc-dYk" id="uEB-hj-AmU"/>
+                        <outlet property="signUpButtonAction" destination="7WH-a8-4ST" id="AfE-VD-FWG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JqI-w3-8zV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -189,7 +193,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="htz-mE-nai">
-                                <rect key="frame" x="40" y="84.000000000000014" width="310" height="200.33333333333337"/>
+                                <rect key="frame" x="40" y="128" width="310" height="200.33333333333337"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-Jc-YE2">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="40"/>
@@ -208,7 +212,7 @@
                                         <rect key="frame" x="0.0" y="120" width="310" height="40"/>
                                         <state key="normal" title="Log in"/>
                                         <connections>
-                                            <action selector="LogInButtonTapped:" destination="2CB-Ld-xxZ" eventType="touchUpInside" id="feM-q5-iHj"/>
+                                            <action selector="logInButtonTapped:" destination="2CB-Ld-xxZ" eventType="touchUpInside" id="feM-q5-iHj"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zke-T8-2kf">
@@ -234,10 +238,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="BDv-CG-UCZ"/>
                     <connections>
-                        <outlet property="EmailTextField" destination="oWw-Jc-YE2" id="ksB-i1-80Z"/>
-                        <outlet property="ErrorLabel" destination="zke-T8-2kf" id="m4V-iU-Tk4"/>
-                        <outlet property="LogInButton" destination="Jzd-9J-wvT" id="zvg-Qy-DIs"/>
-                        <outlet property="PasswordTextField" destination="HkZ-7v-tVV" id="VO8-X6-gvQ"/>
+                        <outlet property="emailTextField" destination="oWw-Jc-YE2" id="ksB-i1-80Z"/>
+                        <outlet property="errorLabel" destination="zke-T8-2kf" id="m4V-iU-Tk4"/>
+                        <outlet property="logInButton" destination="Jzd-9J-wvT" id="zvg-Qy-DIs"/>
+                        <outlet property="passwordTextField" destination="HkZ-7v-tVV" id="VO8-X6-gvQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iTa-Lz-VAR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -247,9 +251,10 @@
         <!--Navigation Controller-->
         <scene sceneID="Vd5-gg-Qzj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="4xE-RN-pNm" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4xE-RN-pNm" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DoG-w3-yNI">
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
