@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LogInViewController: UIViewController {
 
@@ -15,6 +16,19 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBAction func logInButtonTapped(_ sender: Any) {
+        
+        //validate fields
+        
+        //sign in
+        Auth.auth().signIn(withEmail: Validation.clearWhitespacesAndNewLines(emailTextField.text!), password: Validation.clearWhitespacesAndNewLines(passwordTextField.text!)) { (authResult, error) in
+            
+            if error != nil {
+                Validation.showError(self.errorLabel, "Failed to sign in")
+            } else {
+                self.transitionToHome()
+            }
+          
+        }
     }
 
     override func viewDidLoad() {
@@ -24,6 +38,13 @@ class LogInViewController: UIViewController {
     }
     
 
+    func transitionToHome() {
+        //storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController)
+        let homeViewController = storyboard?.instantiateViewController(identifier: "HomeVC") as? HomeViewController
+        
+        view.window?.rootViewController = homeViewController
+        view.window?.makeKeyAndVisible()
+    }
     /*
     // MARK: - Navigation
 
