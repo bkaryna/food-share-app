@@ -252,6 +252,7 @@
                         <outlet property="emailTextField" destination="oWw-Jc-YE2" id="ksB-i1-80Z"/>
                         <outlet property="errorLabel" destination="zke-T8-2kf" id="m4V-iU-Tk4"/>
                         <outlet property="logInButton" destination="Jzd-9J-wvT" id="zvg-Qy-DIs"/>
+                        <outlet property="logInStackView" destination="htz-mE-nai" id="nvv-nl-8lf"/>
                         <outlet property="passwordTextField" destination="HkZ-7v-tVV" id="VO8-X6-gvQ"/>
                     </connections>
                 </viewController>
