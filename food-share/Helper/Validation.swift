@@ -16,8 +16,14 @@ class Validation {
         return passwordTest.evaluate(with: password)
     }
     
+    static func clearWhitespacesAndNewLines(_ string: String) -> String {
+        return string.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
     static func stringEmpty(_ string: String) -> Bool {
-        if string.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+        let clearedString = clearWhitespacesAndNewLines(string)
+        
+        if clearedString == "" {
             return true
         }
         return false
