@@ -5,6 +5,7 @@ platform :ios, ‘14.5’
 # For example, to use Firebase Authentication and Cloud Firestore
 pod 'Firebase/Auth'
 pod 'Firebase/Firestore'
+pod 'GoogleSignIn'
 
 
 target 'food-share' do
