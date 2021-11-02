@@ -10,7 +10,7 @@ Application features will include the following:
   <li> User authentication (Email, Google, for consideration: Apple ID) </li>
   <li> Offer item search with filters </li>
   <li> Apple maps integration (for consideration: Google maps)</li>
-  <li> Chat </li>
+  <li> Chat - communication between the seller and the buyer </li>
   <li> (Optional) Notifications (e.g. notifying that someone if interested in the offer/the buyer is ready to pick up the product, etc.)</li>
 </ul>
 
