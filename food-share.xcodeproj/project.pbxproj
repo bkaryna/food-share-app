@@ -7,62 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0299BF30A7261F7FE5EF0C69 /* Pods_food_share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 998C80951DE1B334B9339A17 /* Pods_food_share.framework */; };
-		5B2D97341B88FCF6B9C14BF2 /* Pods_food_share_food_shareUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F9CCC5E5C6AB92207B90A8 /* Pods_food_share_food_shareUITests.framework */; };
 		820A67B2272C861700E9918C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67B1272C861700E9918C /* SignUpViewController.swift */; };
-		820A67B3272C861700E9918C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67B1272C861700E9918C /* SignUpViewController.swift */; };
-		820A67B4272C861700E9918C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67B1272C861700E9918C /* SignUpViewController.swift */; };
 		820A67B6272C863100E9918C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67B5272C863100E9918C /* LogInViewController.swift */; };
-		820A67B7272C863100E9918C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67B5272C863100E9918C /* LogInViewController.swift */; };
-		820A67B8272C863100E9918C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67B5272C863100E9918C /* LogInViewController.swift */; };
 		820A67BA272C864900E9918C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67B9272C864900E9918C /* HomeViewController.swift */; };
-		820A67BB272C864900E9918C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67B9272C864900E9918C /* HomeViewController.swift */; };
-		820A67BC272C864900E9918C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67B9272C864900E9918C /* HomeViewController.swift */; };
 		820A67C2272C998D00E9918C /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67C1272C998D00E9918C /* Validation.swift */; };
-		820A67C3272C998D00E9918C /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67C1272C998D00E9918C /* Validation.swift */; };
-		820A67C4272C998D00E9918C /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67C1272C998D00E9918C /* Validation.swift */; };
 		820A67C6272CA37A00E9918C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67C5272CA37A00E9918C /* Constants.swift */; };
-		820A67C7272CA37A00E9918C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67C5272CA37A00E9918C /* Constants.swift */; };
-		820A67C8272CA37A00E9918C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67C5272CA37A00E9918C /* Constants.swift */; };
 		825090D8272DEAB6004E5C9A /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825090D7272DEAB6004E5C9A /* Styling.swift */; };
-		825090D9272DEAB6004E5C9A /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825090D7272DEAB6004E5C9A /* Styling.swift */; };
-		825090DA272DEAB6004E5C9A /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825090D7272DEAB6004E5C9A /* Styling.swift */; };
 		829E31E52726C15A00CBC0C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31E42726C15A00CBC0C8 /* AppDelegate.swift */; };
 		829E31E72726C15A00CBC0C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31E62726C15A00CBC0C8 /* SceneDelegate.swift */; };
 		829E31E92726C15A00CBC0C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31E82726C15A00CBC0C8 /* ViewController.swift */; };
 		829E31EC2726C15A00CBC0C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 829E31EA2726C15A00CBC0C8 /* Main.storyboard */; };
 		829E31EE2726C15C00CBC0C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 829E31ED2726C15C00CBC0C8 /* Assets.xcassets */; };
 		829E31F12726C15C00CBC0C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 829E31EF2726C15C00CBC0C8 /* LaunchScreen.storyboard */; };
-		829E31FC2726C15C00CBC0C8 /* food_shareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31FB2726C15C00CBC0C8 /* food_shareTests.swift */; };
-		829E32072726C15C00CBC0C8 /* food_shareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E32062726C15C00CBC0C8 /* food_shareUITests.swift */; };
 		82C83E142731C77500733D54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82C83E132731C77500733D54 /* GoogleService-Info.plist */; };
-		82C83E152731C77500733D54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82C83E132731C77500733D54 /* GoogleService-Info.plist */; };
-		82C83E162731C77500733D54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82C83E132731C77500733D54 /* GoogleService-Info.plist */; };
-		F8438A3370A714C223F1D51C /* Pods_food_shareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 419B27B17A411A2CA4BCEE2B /* Pods_food_shareTests.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		829E31F82726C15C00CBC0C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 829E31D92726C15900CBC0C8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 829E31E02726C15900CBC0C8;
-			remoteInfo = "food-share";
-		};
-		829E32032726C15C00CBC0C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 829E31D92726C15900CBC0C8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 829E31E02726C15900CBC0C8;
-			remoteInfo = "food-share";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		36F9CCC5E5C6AB92207B90A8 /* Pods_food_share_food_shareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_food_share_food_shareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		419B27B17A411A2CA4BCEE2B /* Pods_food_shareTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_food_shareTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58CE15DEF284FDF59357AF5D /* Pods-food-share-food-shareUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-share-food-shareUITests.debug.xcconfig"; path = "Target Support Files/Pods-food-share-food-shareUITests/Pods-food-share-food-shareUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		778D297AFB6B588B939166A5 /* Pods-food-shareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-shareTests.release.xcconfig"; path = "Target Support Files/Pods-food-shareTests/Pods-food-shareTests.release.xcconfig"; sourceTree = "<group>"; };
 		820A67B1272C861700E9918C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		820A67B5272C863100E9918C /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		820A67B9272C864900E9918C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -77,16 +38,8 @@
 		829E31ED2726C15C00CBC0C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		829E31F02726C15C00CBC0C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		829E31F22726C15C00CBC0C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		829E31F72726C15C00CBC0C8 /* food-shareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "food-shareTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		829E31FB2726C15C00CBC0C8 /* food_shareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = food_shareTests.swift; sourceTree = "<group>"; };
-		829E31FD2726C15C00CBC0C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		829E32022726C15C00CBC0C8 /* food-shareUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "food-shareUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		829E32062726C15C00CBC0C8 /* food_shareUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = food_shareUITests.swift; sourceTree = "<group>"; };
-		829E32082726C15C00CBC0C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82C83E132731C77500733D54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		998C80951DE1B334B9339A17 /* Pods_food_share.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_food_share.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD87D06B622A82C06474D9A /* Pods-food-share.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-share.debug.xcconfig"; path = "Target Support Files/Pods-food-share/Pods-food-share.debug.xcconfig"; sourceTree = "<group>"; };
-		D6402A08BDD27F523B017B08 /* Pods-food-shareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-shareTests.debug.xcconfig"; path = "Target Support Files/Pods-food-shareTests/Pods-food-shareTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E5224670AEC24F9A57F95DC7 /* Pods-food-share-food-shareUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-share-food-shareUITests.release.xcconfig"; path = "Target Support Files/Pods-food-share-food-shareUITests/Pods-food-share-food-shareUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FE0EC75515FAA7DF743FD8CB /* Pods-food-share.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-share.release.xcconfig"; path = "Target Support Files/Pods-food-share/Pods-food-share.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,23 +49,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0299BF30A7261F7FE5EF0C69 /* Pods_food_share.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		829E31F42726C15C00CBC0C8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F8438A3370A714C223F1D51C /* Pods_food_shareTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		829E31FF2726C15C00CBC0C8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5B2D97341B88FCF6B9C14BF2 /* Pods_food_share_food_shareUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,9 +58,6 @@
 		15EBD0E651231A68047045C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				998C80951DE1B334B9339A17 /* Pods_food_share.framework */,
-				36F9CCC5E5C6AB92207B90A8 /* Pods_food_share_food_shareUITests.framework */,
-				419B27B17A411A2CA4BCEE2B /* Pods_food_shareTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -170,8 +103,6 @@
 			children = (
 				82C83E132731C77500733D54 /* GoogleService-Info.plist */,
 				829E31E32726C15A00CBC0C8 /* food-share */,
-				829E31FA2726C15C00CBC0C8 /* food-shareTests */,
-				829E32052726C15C00CBC0C8 /* food-shareUITests */,
 				829E31E22726C15A00CBC0C8 /* Products */,
 				EF0FB99E7DB0C3E486A752AE /* Pods */,
 				15EBD0E651231A68047045C7 /* Frameworks */,
@@ -182,8 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				829E31E12726C15A00CBC0C8 /* food-share.app */,
-				829E31F72726C15C00CBC0C8 /* food-shareTests.xctest */,
-				829E32022726C15C00CBC0C8 /* food-shareUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -204,24 +133,6 @@
 			path = "food-share";
 			sourceTree = "<group>";
 		};
-		829E31FA2726C15C00CBC0C8 /* food-shareTests */ = {
-			isa = PBXGroup;
-			children = (
-				829E31FB2726C15C00CBC0C8 /* food_shareTests.swift */,
-				829E31FD2726C15C00CBC0C8 /* Info.plist */,
-			);
-			path = "food-shareTests";
-			sourceTree = "<group>";
-		};
-		829E32052726C15C00CBC0C8 /* food-shareUITests */ = {
-			isa = PBXGroup;
-			children = (
-				829E32062726C15C00CBC0C8 /* food_shareUITests.swift */,
-				829E32082726C15C00CBC0C8 /* Info.plist */,
-			);
-			path = "food-shareUITests";
-			sourceTree = "<group>";
-		};
 		EF0FB99E7DB0C3E486A752AE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,8 +140,6 @@
 				FE0EC75515FAA7DF743FD8CB /* Pods-food-share.release.xcconfig */,
 				58CE15DEF284FDF59357AF5D /* Pods-food-share-food-shareUITests.debug.xcconfig */,
 				E5224670AEC24F9A57F95DC7 /* Pods-food-share-food-shareUITests.release.xcconfig */,
-				D6402A08BDD27F523B017B08 /* Pods-food-shareTests.debug.xcconfig */,
-				778D297AFB6B588B939166A5 /* Pods-food-shareTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -257,45 +166,6 @@
 			productReference = 829E31E12726C15A00CBC0C8 /* food-share.app */;
 			productType = "com.apple.product-type.application";
 		};
-		829E31F62726C15C00CBC0C8 /* food-shareTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 829E320E2726C15C00CBC0C8 /* Build configuration list for PBXNativeTarget "food-shareTests" */;
-			buildPhases = (
-				3B9D540DEE2B3C379ED9B584 /* [CP] Check Pods Manifest.lock */,
-				829E31F32726C15C00CBC0C8 /* Sources */,
-				829E31F42726C15C00CBC0C8 /* Frameworks */,
-				829E31F52726C15C00CBC0C8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				829E31F92726C15C00CBC0C8 /* PBXTargetDependency */,
-			);
-			name = "food-shareTests";
-			productName = "food-shareTests";
-			productReference = 829E31F72726C15C00CBC0C8 /* food-shareTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		829E32012726C15C00CBC0C8 /* food-shareUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 829E32112726C15C00CBC0C8 /* Build configuration list for PBXNativeTarget "food-shareUITests" */;
-			buildPhases = (
-				7155D499AFE3A5B1C0CF063B /* [CP] Check Pods Manifest.lock */,
-				829E31FE2726C15C00CBC0C8 /* Sources */,
-				829E31FF2726C15C00CBC0C8 /* Frameworks */,
-				829E32002726C15C00CBC0C8 /* Resources */,
-				A08B4217D97A5C4D67C8FDF6 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				829E32042726C15C00CBC0C8 /* PBXTargetDependency */,
-			);
-			name = "food-shareUITests";
-			productName = "food-shareUITests";
-			productReference = 829E32022726C15C00CBC0C8 /* food-shareUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -307,14 +177,6 @@
 				TargetAttributes = {
 					829E31E02726C15900CBC0C8 = {
 						CreatedOnToolsVersion = 12.5.1;
-					};
-					829E31F62726C15C00CBC0C8 = {
-						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = 829E31E02726C15900CBC0C8;
-					};
-					829E32012726C15C00CBC0C8 = {
-						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = 829E31E02726C15900CBC0C8;
 					};
 				};
 			};
@@ -332,8 +194,6 @@
 			projectRoot = "";
 			targets = (
 				829E31E02726C15900CBC0C8 /* food-share */,
-				829E31F62726C15C00CBC0C8 /* food-shareTests */,
-				829E32012726C15C00CBC0C8 /* food-shareUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -350,47 +210,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		829E31F52726C15C00CBC0C8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				82C83E152731C77500733D54 /* GoogleService-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		829E32002726C15C00CBC0C8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				82C83E162731C77500733D54 /* GoogleService-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3B9D540DEE2B3C379ED9B584 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-food-shareTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		46E956ED8C3922034856E164 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -407,28 +229,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-food-share-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7155D499AFE3A5B1C0CF063B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-food-share-food-shareUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -452,23 +252,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-food-share/Pods-food-share-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A08B4217D97A5C4D67C8FDF6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-food-share-food-shareUITests/Pods-food-share-food-shareUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-food-share-food-shareUITests/Pods-food-share-food-shareUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-food-share-food-shareUITests/Pods-food-share-food-shareUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -488,48 +271,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		829E31F32726C15C00CBC0C8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				820A67B3272C861700E9918C /* SignUpViewController.swift in Sources */,
-				829E31FC2726C15C00CBC0C8 /* food_shareTests.swift in Sources */,
-				825090D9272DEAB6004E5C9A /* Styling.swift in Sources */,
-				820A67B7272C863100E9918C /* LogInViewController.swift in Sources */,
-				820A67C3272C998D00E9918C /* Validation.swift in Sources */,
-				820A67BB272C864900E9918C /* HomeViewController.swift in Sources */,
-				820A67C7272CA37A00E9918C /* Constants.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		829E31FE2726C15C00CBC0C8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				820A67B4272C861700E9918C /* SignUpViewController.swift in Sources */,
-				829E32072726C15C00CBC0C8 /* food_shareUITests.swift in Sources */,
-				825090DA272DEAB6004E5C9A /* Styling.swift in Sources */,
-				820A67B8272C863100E9918C /* LogInViewController.swift in Sources */,
-				820A67C4272C998D00E9918C /* Validation.swift in Sources */,
-				820A67BC272C864900E9918C /* HomeViewController.swift in Sources */,
-				820A67C8272CA37A00E9918C /* Constants.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		829E31F92726C15C00CBC0C8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 829E31E02726C15900CBC0C8 /* food-share */;
-			targetProxy = 829E31F82726C15C00CBC0C8 /* PBXContainerItemProxy */;
-		};
-		829E32042726C15C00CBC0C8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 829E31E02726C15900CBC0C8 /* food-share */;
-			targetProxy = 829E32032726C15C00CBC0C8 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		829E31EA2726C15A00CBC0C8 /* Main.storyboard */ = {
@@ -707,90 +449,6 @@
 			};
 			name = Release;
 		};
-		829E320F2726C15C00CBC0C8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6402A08BDD27F523B017B08 /* Pods-food-shareTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "food-shareTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "bkaryna.food-shareTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/food-share.app/food-share";
-			};
-			name = Debug;
-		};
-		829E32102726C15C00CBC0C8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 778D297AFB6B588B939166A5 /* Pods-food-shareTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "food-shareTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "bkaryna.food-shareTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/food-share.app/food-share";
-			};
-			name = Release;
-		};
-		829E32122726C15C00CBC0C8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58CE15DEF284FDF59357AF5D /* Pods-food-share-food-shareUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "food-shareUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "bkaryna.food-shareUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "food-share";
-			};
-			name = Debug;
-		};
-		829E32132726C15C00CBC0C8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5224670AEC24F9A57F95DC7 /* Pods-food-share-food-shareUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "food-shareUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "bkaryna.food-shareUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "food-share";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -808,24 +466,6 @@
 			buildConfigurations = (
 				829E320C2726C15C00CBC0C8 /* Debug */,
 				829E320D2726C15C00CBC0C8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		829E320E2726C15C00CBC0C8 /* Build configuration list for PBXNativeTarget "food-shareTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				829E320F2726C15C00CBC0C8 /* Debug */,
-				829E32102726C15C00CBC0C8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		829E32112726C15C00CBC0C8 /* Build configuration list for PBXNativeTarget "food-shareUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				829E32122726C15C00CBC0C8 /* Debug */,
-				829E32132726C15C00CBC0C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
