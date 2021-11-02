@@ -146,7 +146,7 @@ class LogInViewController: UIViewController {
         
         
         // TODO: allign the button properly
-        logInStackView.addSubview(googleButton)
+        logInStackView.addArrangedSubview(googleButton)
 
         // Do any additional setup after loading the view.
     }
