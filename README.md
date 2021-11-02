@@ -3,7 +3,7 @@
 
 The app is inspired by the <a href ="https://toogoodtogo.org/en/movement"> Too good to go </a> movement. The aim of this app is not only to demonstrate and enhance my software development skills, but also to make a step forward towards reducing food waste. 
 
-The idea is to share food leftovers/excess amounts of products with short expiration dates with the community. Users will be able to put an offer at the specific location, specify the amount of money/goods they would expect for the item. The app will offer viewing available offers on the map. Users interested in the offers would be able to contact the advertisers via chat. 
+The idea is to share food leftovers/excess amounts of products with short expiration dates with the community. Users will be able to put an offer at the specific location, specify the amount of money/goods they would expect for the item. The app will offer viewing available offers on the map. Users interested in the offers will be able to contact the advertisers via chat. 
 
 ## Features
 Application features will include the following:
