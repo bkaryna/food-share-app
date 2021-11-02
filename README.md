@@ -5,6 +5,14 @@ The app is inspired by the <a href ="https://toogoodtogo.org/en/movement"> Too g
 
 The idea is to share food leftovers/excess amounts of products with short expiration dates with the community. Users will be able to put an offer at the specific location, specify the amount of money/goods they would expect for the item. The app will offer viewing available offers on the map. Users interested in the offers will be able to contact the advertisers via chat. 
 
+## App logo
+<p align="center">
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/61482996/139962802-8e78ffcc-becc-4b61-b81e-9f583df0a30d.png">
+</p>
+The application logo has been designed by me using <a href ="https://www.canva.com/"> Canva </a> tool.
+
+
+
 ## Features
 Application features will include the following:
 <ul>
