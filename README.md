@@ -5,6 +5,7 @@ The app is inspired by the <a href ="https://toogoodtogo.org/en/movement"> Too g
 
 The idea is to share food leftovers/excess amounts of products with short expiration dates with the community. Users will be able to put an offer at the specific location, specify the amount of money/goods they would expect for the item. The app will offer viewing available offers on the map. Users interested in the offers would be able to contact the advertisers via chat. 
 
+## Features
 Application features will include the following:
 <ul>
   <li> User authentication (Email, Google, for consideration: Apple ID) </li>
@@ -14,7 +15,7 @@ Application features will include the following:
   <li> (Optional) Notifications (e.g. notifying that someone if interested in the offer/the buyer is ready to pick up the product, etc.)</li>
 </ul>
 
-Technologies:
+## Technologies
 <ul>
   <li> Swift </li>
   <li> CocoaPods </li>
