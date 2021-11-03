@@ -29,9 +29,13 @@ class Validation {
         return false
     }
     
-    static func showError(_ label: UILabel, _ message: String) {
+    static func showAndHideError(_ label: UILabel, _ message: String) {
         label.text=message
         label.alpha=1
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            label.alpha=0
+        }
     }
 }
 
