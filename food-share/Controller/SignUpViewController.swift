@@ -75,6 +75,9 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view
+        
+        //disable auto fill for password field https://developer.apple.com/forums/thread/108085
+        passwordTextField.textContentType = .oneTimeCode
     }
     
 

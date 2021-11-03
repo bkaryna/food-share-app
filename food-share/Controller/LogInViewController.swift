@@ -91,6 +91,8 @@ class LogInViewController: UIViewController {
         googleButton.addTarget(self,action: #selector(LogInWithGoogleTapped(_:)),for: .touchUpInside)
         
         logInStackView.addArrangedSubview(googleButton)
+        //disable auto fill for password field https://developer.apple.com/forums/thread/108085
+        passwordTextField.textContentType = .oneTimeCode
         
         // Do any additional setup after loading the view.
     }
