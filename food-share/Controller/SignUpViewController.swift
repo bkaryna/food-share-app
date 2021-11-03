@@ -45,7 +45,7 @@ class SignUpViewController: UIViewController {
         let error = validateFields()
 
         if error != nil{
-            Validation.showError(self.errorLabel, error!)
+            Validation.showAndHideError(self.errorLabel, error!)
         }
         
         let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -56,13 +56,13 @@ class SignUpViewController: UIViewController {
         //user creation
         Auth.auth().createUser(withEmail: email, password: password) { result, err in
             if err != nil {
-                Validation.showError(self.errorLabel, "Error creating user")
+                Validation.showAndHideError(self.errorLabel, "Error creating user")
             } else {
                 let db = Firestore.firestore()
                 db.collection("Users").document(result!.user.uid).setData([ "FirstName": firstName, "LastName": lastName ]) {(error) in
                     if error != nil {
                     // Show error message
-                        Validation.showError(self.errorLabel, "Error saving user's data")
+                        Validation.showAndHideError(self.errorLabel, "Error saving user's data")
                     } else {
                         // Transition to the home screen
                         self.transitionToHome()
