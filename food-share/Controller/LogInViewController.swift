@@ -99,9 +99,8 @@ class LogInViewController: UIViewController {
     
     
     func transitionToHome() {
-        let homeViewController = storyboard?.instantiateViewController(identifier: "HomeVC") as? HomeViewController
-        
-        view.window?.rootViewController = homeViewController
+        let homeTabsViewController = storyboard?.instantiateViewController(identifier: "HomeTabsVC") as! UITabBarController
+        view.window?.rootViewController = homeTabsViewController
         view.window?.makeKeyAndVisible()
     }
     /*
