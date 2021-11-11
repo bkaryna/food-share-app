@@ -173,34 +173,6 @@
             </objects>
             <point key="canvasLocation" x="592" y="829"/>
         </scene>
-        <!--Home View Controller-->
-        <scene sceneID="fZx-MR-QIL">
-            <objects>
-                <viewController storyboardIdentifier="HomeVC" id="Vqc-E3-AAx" customClass="HomeViewController" customModule="food_share" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="njk-Bg-SSq">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Home Page" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEw-dI-itj">
-                                <rect key="frame" x="40" y="412" width="310" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="E24-Lk-odM"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="oEw-dI-itj" firstAttribute="top" secondItem="E24-Lk-odM" secondAttribute="top" constant="368" id="dvw-98-PeG"/>
-                            <constraint firstItem="oEw-dI-itj" firstAttribute="leading" secondItem="E24-Lk-odM" secondAttribute="leading" constant="40" id="qnR-Gx-oLH"/>
-                            <constraint firstItem="E24-Lk-odM" firstAttribute="trailing" secondItem="oEw-dI-itj" secondAttribute="trailing" constant="40" id="uQZ-8g-YaP"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LIq-mk-pU5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3380" y="-949"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mL0-jM-BIx">
             <objects>
@@ -420,7 +392,7 @@
         <image name="message.fill" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <namedColor name="AccentColor">
-            <color red="0.086274504661560059" green="0.65098041296005249" blue="0.48235297203063965" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.085999995470046997" green="0.65100002288818359" blue="0.48199999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="BackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
