@@ -17,14 +17,20 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        // TODO: hide navigation bar
+        // TODO: hide navigation bar for this view only
         // self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         //set up custom button style
         Styling.buttonStyle(signUpButton)
         Styling.buttonStyle(logInButton)
+
     }
 
+    func transitionToHome() {
+        let homeTabsViewController = storyboard?.instantiateViewController(identifier: "HomeTabsVC") as! UITabBarController
+        super.view.window?.rootViewController = homeTabsViewController
+        super.view.window?.makeKeyAndVisible()
+    }
 
 }
 
