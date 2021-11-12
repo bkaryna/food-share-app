@@ -12,15 +12,6 @@ class HomeViewController: UIViewController {
     //testing purposes - will be deleted
     @IBOutlet weak var justLabel: UILabel!
     
-    @IBAction func signOutAction(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-        } catch _ {
-            justLabel.text = "Error signing out"
-        }
-        authenticateUserAndLoadHome()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,7 +22,11 @@ class HomeViewController: UIViewController {
         }
         
         justLabel.text = Auth.auth().currentUser?.uid
+        
         // Do any additional setup after loading the view.
+        
+        //set up navigation bar
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign out", style: .plain, target: self, action: #selector(signOutAlert))
     }
     
     func authenticateUserAndLoadHome() {
@@ -40,6 +35,22 @@ class HomeViewController: UIViewController {
         DispatchQueue.main.async {
             self.present(authNavigation, animated: true, completion: nil)
         }
+    }
+    
+    @objc func signOutAlert() {
+        let signOutAlert = UIAlertController(title: "Sign out", message: "Are you sure you want to sign out?", preferredStyle: .alert)
+        signOutAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: signOut))
+        signOutAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(signOutAlert, animated: true)
+    }
+    
+    func signOut(alert: UIAlertAction!) {
+        do {
+            try Auth.auth().signOut()
+        } catch _ {
+            justLabel.text = "Error signing out"
+        }
+        authenticateUserAndLoadHome()
     }
 }
 
