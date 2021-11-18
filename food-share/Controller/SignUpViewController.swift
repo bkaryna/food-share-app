@@ -30,10 +30,10 @@ class SignUpViewController: UIViewController {
         }
         
         //check password security
-        let cleanedPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        if Validation.passwordValid(cleanedPassword) == false {
-            return "Please make sure your password meets the requirements"
-        }
+//        let cleanedPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//        if Validation.passwordValid(cleanedPassword) == false {
+//            return "Please make sure your password meets the requirements"
+//        }
         
         return nil
     }
@@ -92,9 +92,7 @@ class SignUpViewController: UIViewController {
     */
     
     func transitionToHome() {
-        //storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController)
-        let homeTabsViewController = storyboard?.instantiateViewController(identifier: "HomeTabsVC") as? HomeTabsViewController
-        
+        let homeTabsViewController = storyboard?.instantiateViewController(identifier: "HomeTabsVC") as! UITabBarController
         view.window?.rootViewController = homeTabsViewController
         view.window?.makeKeyAndVisible()
     }
