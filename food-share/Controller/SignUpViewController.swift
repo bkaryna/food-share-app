@@ -12,7 +12,6 @@ import Firebase
 class SignUpViewController: UIViewController {
 
     @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -23,7 +22,7 @@ class SignUpViewController: UIViewController {
     //check the fields and validate the data; return nil or error message
     func validateFields() -> String? {
         //check if all fields are filled in
-        if Validation.stringEmpty(firstNameTextField.text!) || Validation.stringEmpty(lastNameTextField.text!) ||
+        if Validation.stringEmpty(firstNameTextField.text!) ||
             Validation.stringEmpty(emailTextField.text!) ||
             Validation.stringEmpty(passwordTextField.text!) {
             return "Please fill in all he required data"
@@ -48,8 +47,7 @@ class SignUpViewController: UIViewController {
             Validation.showAndHideError(self.errorLabel, error!)
         }
         
-        let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let name = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -59,7 +57,7 @@ class SignUpViewController: UIViewController {
                 Validation.showAndHideError(self.errorLabel, "Error creating user")
             } else {
                 let db = Firestore.firestore()
-                db.collection("Users").document(result!.user.uid).setData([ "FirstName": firstName, "LastName": lastName ]) {(error) in
+                db.collection("Users").document(result!.user.uid).setData([ "Name": name, "Email": email ]) {(error) in
                     if error != nil {
                     // Show error message
                         Validation.showAndHideError(self.errorLabel, "Error saving user's data")

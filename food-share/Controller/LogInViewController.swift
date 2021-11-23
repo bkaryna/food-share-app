@@ -82,15 +82,7 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let googleButton = GIDSignInButton(frame: CGRect(x: 100,
-                                                         y: 100,
-                                                         width: 200,
-                                                         height: 60))
-        
-        googleButton.addTarget(self,action: #selector(LogInWithGoogleTapped(_:)),for: .touchUpInside)
-        
-        logInStackView.addArrangedSubview(googleButton)
+
         //disable auto fill for password field https://developer.apple.com/forums/thread/108085
         passwordTextField.textContentType = .oneTimeCode
         
