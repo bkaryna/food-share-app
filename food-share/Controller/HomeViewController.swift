@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
         if ((Auth.auth().currentUser) != nil){
             setUpUserLabels()
         }
-        Styling.buttonStyle(<#T##button: UIButton##UIButton#>)
+        Styling.buttonStyle(addItemButton)
         super.viewWillAppear(animated)
     }
     

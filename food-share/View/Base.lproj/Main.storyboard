@@ -410,10 +410,10 @@
             </objects>
             <point key="canvasLocation" x="2498.5507246376815" y="1557.5892857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Item View Controller-->
         <scene sceneID="DyL-MO-k0g">
             <objects>
-                <viewController id="7Hb-cW-dSz" sceneMemberID="viewController">
+                <viewController id="7Hb-cW-dSz" customClass="AddItemViewController" customModule="food_share" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CPo-uo-rCf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

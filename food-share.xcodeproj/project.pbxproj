@@ -11,6 +11,7 @@
 		820A67B6272C863100E9918C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67B5272C863100E9918C /* LogInViewController.swift */; };
 		820A67C2272C998D00E9918C /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A67C1272C998D00E9918C /* Validation.swift */; };
 		825090D8272DEAB6004E5C9A /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825090D7272DEAB6004E5C9A /* Styling.swift */; };
+		8273D3D7274DB1460070056F /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8273D3D6274DB1460070056F /* AddItemViewController.swift */; };
 		829E31E52726C15A00CBC0C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31E42726C15A00CBC0C8 /* AppDelegate.swift */; };
 		829E31E72726C15A00CBC0C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31E62726C15A00CBC0C8 /* SceneDelegate.swift */; };
 		829E31E92726C15A00CBC0C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31E82726C15A00CBC0C8 /* ViewController.swift */; };
@@ -28,6 +29,7 @@
 		820A67B5272C863100E9918C /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		820A67C1272C998D00E9918C /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		825090D7272DEAB6004E5C9A /* Styling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styling.swift; sourceTree = "<group>"; };
+		8273D3D6274DB1460070056F /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		829E31E12726C15A00CBC0C8 /* food-share.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "food-share.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		829E31E42726C15A00CBC0C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		829E31E62726C15A00CBC0C8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				820A67B1272C861700E9918C /* SignUpViewController.swift */,
 				820A67B5272C863100E9918C /* LogInViewController.swift */,
 				82A393A5273DF8F300C16A74 /* HomeViewController.swift */,
+				8273D3D6274DB1460070056F /* AddItemViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				829E31E92726C15A00CBC0C8 /* ViewController.swift in Sources */,
 				829E31E52726C15A00CBC0C8 /* AppDelegate.swift in Sources */,
 				820A67B2272C861700E9918C /* SignUpViewController.swift in Sources */,
+				8273D3D7274DB1460070056F /* AddItemViewController.swift in Sources */,
 				820A67B6272C863100E9918C /* LogInViewController.swift in Sources */,
 				82A393A6273DF8F300C16A74 /* HomeViewController.swift in Sources */,
 				829E31E72726C15A00CBC0C8 /* SceneDelegate.swift in Sources */,
