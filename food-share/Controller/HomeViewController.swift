@@ -7,23 +7,28 @@
 
 import UIKit
 import FirebaseAuth
+import GoogleSignIn
 
 class HomeViewController: UIViewController {
-    //testing purposes - will be deleted
-    @IBOutlet weak var justLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var userEmailLabel: UILabel!
+    @IBOutlet weak var userPhoneLabel: UILabel!
+    @IBOutlet weak var userPhotoImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Auth.auth().addStateDidChangeListener { auth, user in
+        Auth.auth().addStateDidChangeListener { [self] auth, user in
             if user == nil {
                 self.authenticateUserAndLoadHome()
             }
         }
         
-        justLabel.text = Auth.auth().currentUser?.uid
-        
         // Do any additional setup after loading the view.
+        if ((GIDSignIn.sharedInstance.currentUser) != nil){
+            setUpUserLabels()
+            
+        }
         
         //set up navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign out", style: .plain, target: self, action: #selector(signOutAlert))
@@ -48,9 +53,23 @@ class HomeViewController: UIViewController {
         do {
             try Auth.auth().signOut()
         } catch _ {
-            justLabel.text = "Error signing out"
+            //
         }
         authenticateUserAndLoadHome()
+    }
+    
+    func setUpUserLabels() {
+        nameLabel.text = Auth.auth().currentUser?.displayName;
+        userEmailLabel.text = Auth.auth().currentUser?.email;
+        let url = Auth.auth().currentUser?.photoURL?.absoluteString
+
+        guard let imageUrl:URL = URL(string: url!) else {
+                    return
+                }
+
+        guard let imageData = try? Data(contentsOf: imageUrl) else {return}
+        let image = UIImage(data: imageData)
+        userPhotoImageView.image=image
     }
 }
 

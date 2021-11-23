@@ -67,6 +67,12 @@ class LogInViewController: UIViewController {
                     Validation.showAndHideError(self.errorLabel, error.localizedDescription)
                     return
                 } else {
+                    let db = Firestore.firestore()
+                    let userID = Auth.auth().currentUser!.uid
+                    let name = Auth.auth().currentUser?.displayName
+                    let email = Auth.auth().currentUser?.email
+                    db.collection("Users").document(userID).setData([ "Name": name! as String, "Email": email! as String ], merge: true)
+                    
                     transitionToHome()
                 }
             }
