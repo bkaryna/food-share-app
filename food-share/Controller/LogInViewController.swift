@@ -18,8 +18,6 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     
-    @IBOutlet weak var logInStackView: UIStackView!
-    
     @IBAction func logInButtonTapped(_ sender: Any) {
         
         //validate fields
