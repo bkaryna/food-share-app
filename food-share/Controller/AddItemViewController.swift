@@ -9,6 +9,12 @@ import UIKit
 class AddItemViewController: UIViewController {
     @IBOutlet weak var categoryTextView: UITextField!
     @IBOutlet weak var validUntilTextView: UITextField!
+    @IBOutlet weak var unitButton: UIButton!
+    @IBAction func unitButtonTapped(_ sender: Any) {
+    }
+
+    @IBOutlet weak var publishButton: UIButton!
+    @IBOutlet weak var discardButton: UIButton!
     
     var pickerView = UIPickerView()
     var datePicker = UIDatePicker()
@@ -19,6 +25,9 @@ class AddItemViewController: UIViewController {
         super.viewDidLoad()
         setUpCategoryPicker()
         setUpDatePicker()
+        
+        Styling.buttonStyle(publishButton)
+        Styling.buttonStyle(discardButton)
     }
     
     func setUpCategoryPicker() {
