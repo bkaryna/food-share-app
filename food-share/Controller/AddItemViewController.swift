@@ -9,32 +9,41 @@ import UIKit
 class AddItemViewController: UIViewController {
     @IBOutlet weak var categoryTextView: UITextField!
     @IBOutlet weak var validUntilTextView: UITextField!
-    @IBOutlet weak var unitButton: UIButton!
-    @IBAction func unitButtonTapped(_ sender: Any) {
-    }
-
+    @IBOutlet weak var unitTextView: UITextField!
+    
     @IBOutlet weak var publishButton: UIButton!
     @IBOutlet weak var discardButton: UIButton!
     
-    var pickerView = UIPickerView()
+    var categoryPickerView = UIPickerView()
     var datePicker = UIDatePicker()
+    var unitPickerView = UIPickerView()
     
     let categories = ["Fruit", "Vegetables", "Dairy", "Lactose free", "Grains", "Meat", "Fish", "Nonalcoholic beverages", "Alcohol", "Herbs", "Meals", "Desserts", "Baby food", "Cat food", "Dog food"]
+    
+    let units = ["piece(s)", "package(s)", "litre(s)", "kilogram(s)", "gram(s)", "carton(s)", "can(s)", "jar(s)"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCategoryPicker()
         setUpDatePicker()
+        setUpUnitPicker()
         
         Styling.buttonStyle(publishButton)
         Styling.buttonStyle(discardButton)
     }
     
     func setUpCategoryPicker() {
-        pickerView.delegate = self
-        pickerView.dataSource = self
+        categoryPickerView.delegate = self
+        categoryPickerView.dataSource = self
         
-        categoryTextView.inputView = pickerView
+        categoryTextView.inputView = categoryPickerView
+    }
+    
+    func setUpUnitPicker() {
+        unitPickerView.delegate = self
+        unitPickerView.dataSource = self
+        
+        unitTextView.inputView = unitPickerView
     }
     
     func setUpDatePicker() {
@@ -49,7 +58,6 @@ class AddItemViewController: UIViewController {
         datePicker.datePickerMode = .date
         datePicker.minimumDate = Date()
         validUntilTextView.inputView = datePicker
-        
     }
     
     @objc func doneButtonTapped() {
@@ -59,7 +67,6 @@ class AddItemViewController: UIViewController {
         validUntilTextView.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }
-    
 }
 
 extension AddItemViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -69,16 +76,30 @@ extension AddItemViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     //number of rows
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return categories.count
+        if (pickerView==categoryPickerView) {
+            return categories.count
+        } else {
+            return units.count
+        }
     }
     
     //title for each row
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return categories[row]
+        if (pickerView==categoryPickerView) {
+            return categories[row]
+        } else {
+            return units[row]
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        categoryTextView.text = categories[row]
-        categoryTextView.resignFirstResponder() //dismiss pickerview
+        
+        if (pickerView==categoryPickerView) {
+            categoryTextView.text = categories[row]
+            categoryTextView.resignFirstResponder() //dismiss pickerview
+        } else {
+            unitTextView.text = units[row]
+            unitTextView.resignFirstResponder() //dismiss pickerview
+        }
     }
 }

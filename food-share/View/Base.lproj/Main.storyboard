@@ -463,17 +463,14 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ul8-ar-3P8">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Unit" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9sV-ml-TlH">
                                                                 <rect key="frame" x="200" y="0.0" width="130" height="60"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="60" id="Rvv-Zg-fj8"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                                <color key="tintColor" name="AccentColor"/>
-                                                                <state key="normal" title="  Unit" image="chevron.down.circle.fill" catalog="system">
-                                                                    <color key="titleColor" name="ButtonInactiveText"/>
-                                                                </state>
-                                                                <connections>
-                                                                    <action selector="unitButtonTapped:" destination="7Hb-cW-dSz" eventType="touchUpInside" id="juB-tU-lH8"/>
-                                                                </connections>
-                                                            </button>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
                                                         </subviews>
                                                     </stackView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BB8-8t-3vx">
@@ -564,7 +561,7 @@
                         <outlet property="categoryTextView" destination="Tkg-Fw-cff" id="sya-lz-FT1"/>
                         <outlet property="discardButton" destination="F8W-2l-yk7" id="dQy-a7-bLB"/>
                         <outlet property="publishButton" destination="YvH-vg-5nB" id="hwg-L2-EXv"/>
-                        <outlet property="unitButton" destination="ul8-ar-3P8" id="tX1-6P-16n"/>
+                        <outlet property="unitTextView" destination="9sV-ml-TlH" id="Ba7-fd-oFj"/>
                         <outlet property="validUntilTextView" destination="D7n-8Z-Efr" id="H7N-mm-WrV"/>
                     </connections>
                 </viewController>
@@ -663,7 +660,6 @@
     </scenes>
     <resources>
         <image name="btn_google_dark_normal_ios" width="48" height="48"/>
-        <image name="chevron.down.circle.fill" catalog="system" width="128" height="121"/>
         <image name="logo" width="500" height="500"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="message.fill" catalog="system" width="128" height="113"/>
