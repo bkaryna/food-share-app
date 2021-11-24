@@ -5,14 +5,33 @@
 //  Created by Karyna Babenko on 24/11/2021.
 //
 import UIKit
+import Firebase
 
 class AddItemViewController: UIViewController {
+    @IBOutlet weak var nameTextView: UITextField!
     @IBOutlet weak var categoryTextView: UITextField!
     @IBOutlet weak var validUntilTextView: UITextField!
+    @IBOutlet weak var quantityTextView: UITextField!
     @IBOutlet weak var unitTextView: UITextField!
+    @IBOutlet weak var locationTextView: UITextField!
+    @IBOutlet weak var descriptionTextView: UITextField!
     
     @IBOutlet weak var publishButton: UIButton!
     @IBOutlet weak var discardButton: UIButton!
+    
+    @IBAction func publishButtonTapped(_ sender: Any) {
+        let db = Firestore.firestore()
+        let userID = Auth.auth().currentUser!.uid
+        
+        let name = nameTextView.text
+        let category = categoryTextView.text
+        let validUntil = validUntilTextView.text
+        let quantity = quantityTextView.text! + " " + unitTextView.text!
+        let location = locationTextView.text
+        let description = descriptionTextView.text
+        
+        db.collection("Items").document(userID).collection("user-items").document().setData([ "Name": name! as String, "Category": category! as String, "Good until": validUntil! as String, "Quantity": quantity, "Location": location! as String, "Description": description! as String ], merge: true)
+    }
     
     var categoryPickerView = UIPickerView()
     var datePicker = UIDatePicker()
