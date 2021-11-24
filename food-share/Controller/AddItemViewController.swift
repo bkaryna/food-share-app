@@ -8,21 +8,47 @@ import UIKit
 
 class AddItemViewController: UIViewController {
     @IBOutlet weak var categoryTextView: UITextField!
+    @IBOutlet weak var validUntilTextView: UITextField!
     
     var pickerView = UIPickerView()
+    var datePicker = UIDatePicker()
     
     let categories = ["Fruit", "Vegetables", "Dairy", "Lactose free", "Grains", "Meat", "Fish", "Nonalcoholic beverages", "Alcohol", "Herbs", "Meals", "Desserts", "Baby food", "Cat food", "Dog food"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpCountryPicker()
+        setUpCategoryPicker()
+        setUpDatePicker()
     }
     
-    func setUpCountryPicker() {
+    func setUpCategoryPicker() {
         pickerView.delegate = self
         pickerView.dataSource = self
         
         categoryTextView.inputView = pickerView
+    }
+    
+    func setUpDatePicker() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneButtonTapped))
+        toolBar.setItems([doneButton], animated: true)
+        
+        validUntilTextView.inputAccessoryView = toolBar
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
+        datePicker.minimumDate = Date()
+        validUntilTextView.inputView = datePicker
+        
+    }
+    
+    @objc func doneButtonTapped() {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        validUntilTextView.text = formatter.string(from: datePicker.date)
+        self.view.endEditing(true)
     }
     
 }
