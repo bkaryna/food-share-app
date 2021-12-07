@@ -11,11 +11,12 @@ import GoogleSignIn
 import Firebase
 
 class HomeViewController: UIViewController {
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var userEmailLabel: UILabel!
-    @IBOutlet weak var userPhoneLabel: UILabel!
     @IBOutlet weak var userPhotoImageView: UIImageView!
     @IBOutlet weak var addItemButton: UIButton!
+    
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField!
     
     let db = Firestore.firestore()
     
@@ -39,7 +40,7 @@ class HomeViewController: UIViewController {
         
         
         //set up navigation bar
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign out", style: .plain, target: self, action: #selector(signOutAlert))
+        setUpHomeNavigation()
     }
     
     func authenticateUserAndLoadHome() {
@@ -77,8 +78,10 @@ class HomeViewController: UIViewController {
                 name = document.get("Name") as! String
                 email = document.get("Email") as! String
                 
-                self.nameLabel.text = name
-                self.userEmailLabel.text = email
+                self.nameTextField.text = name
+                self.emailTextField.text = email
+                
+                self.disableTextFieldEdit()
                 
                 print("Name: " + name)
                 print("Email: " + email)
@@ -86,7 +89,65 @@ class HomeViewController: UIViewController {
                 print("Document does not exist")
             }
         }
+    }
+        
+    @objc func editUserProfile() {
+        self.enableTextFieldEdit()
+        setUpHomeEditNavigation()
+    }
+    
+    func setUpHomeNavigation() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign out", style: .plain, target: self, action: #selector(signOutAlert))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editUserProfile))
+    }
+    
+    func setUpHomeEditNavigation() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelChanges))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveChanges))
+    }
+    
+    @objc func cancelChanges() {
+        setUpUserLabels()
+        setUpHomeNavigation()
+    }
 
+    @objc func saveChanges() {
+        let userID = Auth.auth().currentUser?.uid
+        let docRef = db.collection("Users").document(userID!)
+        
+        docRef.setData(["Name": nameTextField.text! as String, "Phone": phoneTextField.text! as String], merge: true)
+        
+        //work on empty strings
+        informationAlert()
+        setUpHomeNavigation()
+        setUpUserLabels()
+        
+    }
+    
+    @objc func informationAlert() {
+        let informationAlert = UIAlertController(title: "Edit profile", message: "Changes saved successfully", preferredStyle: .actionSheet)
+        informationAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(informationAlert, animated: true)
+    }
+    
+    func enableTextFieldEdit() {
+        self.nameTextField.isEnabled = true
+        self.phoneTextField.isEnabled = true
+        
+        self.nameTextField.borderStyle = .roundedRect
+        self.phoneTextField.borderStyle = .roundedRect
+    }
+    
+    func disableTextFieldEdit() {
+        self.nameTextField.isEnabled = false
+        self.emailTextField.isEnabled = false
+        self.phoneTextField.isEnabled = false
+        
+        self.nameTextField.borderStyle = .none
+        self.phoneTextField.borderStyle = .none
+    }
         
 // for future custom photos
 //        let url = Auth.auth().currentUser?.photoURL?.absoluteString
@@ -98,6 +159,5 @@ class HomeViewController: UIViewController {
 //        guard let imageData = try? Data(contentsOf: imageUrl) else {return}
 //        let image = UIImage(data: imageData)
 //        userPhotoImageView.image=image
-    }
 }
 

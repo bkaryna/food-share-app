@@ -255,11 +255,11 @@
                                             <action selector="logInButtonTapped:" destination="2CB-Ld-xxZ" eventType="touchUpInside" id="feM-q5-iHj"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVv-QV-alC">
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVv-QV-alC" userLabel="Sign in with Google">
                                         <rect key="frame" x="0.0" y="180" width="334" height="40"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                         <size key="titleShadowOffset" width="2" height="1"/>
-                                        <state key="normal" title="   Sign in with Google" image="btn_google_dark_normal_ios">
+                                        <state key="normal" title="   Sign in with Google" image="google-logo-transparent">
                                             <color key="titleColor" name="ButtonInactiveText"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                                         </state>
@@ -333,38 +333,35 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-avatar" translatesAutoresizingMaskIntoConstraints="NO" id="Lqk-DU-MHZ">
                                 <rect key="frame" x="82" y="118" width="250" height="250"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="ISN-XF-IGX"/>
                                     <constraint firstAttribute="height" constant="250" id="QxW-8c-bCp"/>
+                                    <constraint firstAttribute="width" constant="250" id="c57-Nk-4od"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Y55-y4-num">
-                                <rect key="frame" x="82" y="403" width="250" height="150"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Y55-y4-num">
+                                <rect key="frame" x="47" y="403" width="320" height="152"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFg-bJ-iny">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PzR-ah-cKF">
-                                        <rect key="frame" x="0.0" y="50" width="250" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qai-3Y-DSQ">
-                                        <rect key="frame" x="0.0" y="100" width="250" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cUF-Pg-aFT">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Im9-Qo-wyt">
+                                        <rect key="frame" x="0.0" y="59" width="320" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ocJ-Fi-gLu">
+                                        <rect key="frame" x="0.0" y="118" width="320" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="yEG-fU-UtX"/>
+                                    <constraint firstAttribute="width" constant="320" id="jx6-Lz-sxo"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VKR-OI-2bA">
-                                <rect key="frame" x="57" y="623" width="300" height="60"/>
+                                <rect key="frame" x="57" y="625" width="300" height="60"/>
                                 <color key="backgroundColor" red="0.086274509799999996" green="0.65098039220000004" blue="0.4823529412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="DA3-kX-aUl"/>
@@ -385,14 +382,9 @@
                             <constraint firstItem="Lqk-DU-MHZ" firstAttribute="centerX" secondItem="cHW-ck-UmP" secondAttribute="centerX" id="2Eb-3e-ket"/>
                             <constraint firstItem="Lqk-DU-MHZ" firstAttribute="top" secondItem="Cmq-gA-flC" secondAttribute="top" constant="30" id="3nC-GC-PzM"/>
                             <constraint firstItem="VKR-OI-2bA" firstAttribute="top" secondItem="Y55-y4-num" secondAttribute="bottom" constant="70" id="BNk-RC-eIt"/>
-                            <constraint firstItem="Y55-y4-num" firstAttribute="width" secondItem="Lqk-DU-MHZ" secondAttribute="width" id="JTn-26-Dfx"/>
-                            <constraint firstItem="Cmq-gA-flC" firstAttribute="trailing" secondItem="Lqk-DU-MHZ" secondAttribute="trailing" constant="82" id="Rf3-zO-gH6"/>
                             <constraint firstItem="VKR-OI-2bA" firstAttribute="leading" secondItem="Cmq-gA-flC" secondAttribute="leading" constant="57" id="dKk-M0-hSU"/>
                             <constraint firstItem="Cmq-gA-flC" firstAttribute="trailing" secondItem="VKR-OI-2bA" secondAttribute="trailing" constant="57" id="dRh-gm-APA"/>
                             <constraint firstItem="VKR-OI-2bA" firstAttribute="centerX" secondItem="cHW-ck-UmP" secondAttribute="centerX" id="ihE-gT-6jd"/>
-                            <constraint firstItem="Cmq-gA-flC" firstAttribute="trailing" secondItem="Y55-y4-num" secondAttribute="trailing" constant="82" id="oZK-QL-WsO"/>
-                            <constraint firstItem="Y55-y4-num" firstAttribute="leading" secondItem="Cmq-gA-flC" secondAttribute="leading" constant="82" id="qjN-oM-L2z"/>
-                            <constraint firstItem="Lqk-DU-MHZ" firstAttribute="leading" secondItem="Cmq-gA-flC" secondAttribute="leading" constant="82" id="qvL-eN-QBc"/>
                             <constraint firstItem="Y55-y4-num" firstAttribute="top" secondItem="Lqk-DU-MHZ" secondAttribute="bottom" constant="35" id="v8i-ys-QC0"/>
                             <constraint firstItem="Y55-y4-num" firstAttribute="centerX" secondItem="cHW-ck-UmP" secondAttribute="centerX" id="xgB-Ss-LaE"/>
                         </constraints>
@@ -400,9 +392,9 @@
                     <navigationItem key="navigationItem" id="ae8-xT-9pK"/>
                     <connections>
                         <outlet property="addItemButton" destination="VKR-OI-2bA" id="4Ju-C6-Uc9"/>
-                        <outlet property="nameLabel" destination="OFg-bJ-iny" id="y86-dd-fub"/>
-                        <outlet property="userEmailLabel" destination="PzR-ah-cKF" id="gW0-9a-PAw"/>
-                        <outlet property="userPhoneLabel" destination="Qai-3Y-DSQ" id="lSr-3q-TsA"/>
+                        <outlet property="emailTextField" destination="Im9-Qo-wyt" id="zYb-F8-Urt"/>
+                        <outlet property="nameTextField" destination="cUF-Pg-aFT" id="OUp-bD-IAk"/>
+                        <outlet property="phoneTextField" destination="ocJ-Fi-gLu" id="sV4-E2-l5n"/>
                         <outlet property="userPhotoImageView" destination="Lqk-DU-MHZ" id="IEZ-uD-26w"/>
                     </connections>
                 </viewController>
@@ -571,7 +563,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fiD-Zu-HzF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2502.898550724638" y="2290.8482142857142"/>
+            <point key="canvasLocation" x="2499" y="2316"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="p3G-91-gbw">
@@ -663,7 +655,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="btn_google_dark_normal_ios" width="48" height="48"/>
+        <image name="google-logo-transparent" width="40" height="41"/>
         <image name="logo" width="500" height="500"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="message.fill" catalog="system" width="128" height="113"/>
@@ -671,7 +663,7 @@
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="user-avatar" width="500" height="500"/>
         <namedColor name="AccentColor">
-            <color red="0.086274504661560059" green="0.65098041296005249" blue="0.48235297203063965" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.085999995470046997" green="0.65100002288818359" blue="0.48199999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="BackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
