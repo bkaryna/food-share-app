@@ -21,6 +21,7 @@
 		82A393A6273DF8F300C16A74 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A393A5273DF8F300C16A74 /* HomeViewController.swift */; };
 		82A393A8273E061300C16A74 /* HomeTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A393A7273E061300C16A74 /* HomeTabsViewController.swift */; };
 		82C83E142731C77500733D54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82C83E132731C77500733D54 /* GoogleService-Info.plist */; };
+		A5A9F0FE34DFB2C40F59078B /* Pods_food_share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BBC12AEEC2B6EE425778BF /* Pods_food_share.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		82A393A7273E061300C16A74 /* HomeTabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabsViewController.swift; sourceTree = "<group>"; };
 		82C83E132731C77500733D54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9DD87D06B622A82C06474D9A /* Pods-food-share.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-share.debug.xcconfig"; path = "Target Support Files/Pods-food-share/Pods-food-share.debug.xcconfig"; sourceTree = "<group>"; };
+		C3BBC12AEEC2B6EE425778BF /* Pods_food_share.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_food_share.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5224670AEC24F9A57F95DC7 /* Pods-food-share-food-shareUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-share-food-shareUITests.release.xcconfig"; path = "Target Support Files/Pods-food-share-food-shareUITests/Pods-food-share-food-shareUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FE0EC75515FAA7DF743FD8CB /* Pods-food-share.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-share.release.xcconfig"; path = "Target Support Files/Pods-food-share/Pods-food-share.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5A9F0FE34DFB2C40F59078B /* Pods_food_share.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +63,7 @@
 		15EBD0E651231A68047045C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3BBC12AEEC2B6EE425778BF /* Pods_food_share.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

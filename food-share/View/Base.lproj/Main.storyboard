@@ -338,7 +338,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Y55-y4-num">
-                                <rect key="frame" x="47" y="403" width="320" height="152"/>
+                                <rect key="frame" x="47" y="411" width="320" height="152"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cUF-Pg-aFT">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
@@ -361,7 +361,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VKR-OI-2bA">
-                                <rect key="frame" x="57" y="625" width="300" height="60"/>
+                                <rect key="frame" x="57" y="633" width="300" height="60"/>
                                 <color key="backgroundColor" red="0.086274509799999996" green="0.65098039220000004" blue="0.4823529412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="DA3-kX-aUl"/>
@@ -375,6 +375,21 @@
                                     <segue destination="7Hb-cW-dSz" kind="show" id="7Zq-Gq-XVd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6P-2p-MIm">
+                                <rect key="frame" x="83.5" y="376" width="247" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="247" id="HPE-Y1-D7W"/>
+                                    <constraint firstAttribute="height" constant="15" id="SF8-2Q-MWv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="tintColor" name="AccentColor"/>
+                                <state key="normal" title="Edit photo" image="photo.on.rectangle" catalog="system">
+                                    <color key="titleColor" name="ButtonInactiveText"/>
+                                </state>
+                                <connections>
+                                    <action selector="editPhotoButtonTapped:" destination="h8r-0B-ocE" eventType="touchUpInside" id="zfT-ip-LhN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Cmq-gA-flC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -382,16 +397,19 @@
                             <constraint firstItem="Lqk-DU-MHZ" firstAttribute="centerX" secondItem="cHW-ck-UmP" secondAttribute="centerX" id="2Eb-3e-ket"/>
                             <constraint firstItem="Lqk-DU-MHZ" firstAttribute="top" secondItem="Cmq-gA-flC" secondAttribute="top" constant="30" id="3nC-GC-PzM"/>
                             <constraint firstItem="VKR-OI-2bA" firstAttribute="top" secondItem="Y55-y4-num" secondAttribute="bottom" constant="70" id="BNk-RC-eIt"/>
+                            <constraint firstItem="t6P-2p-MIm" firstAttribute="centerX" secondItem="cHW-ck-UmP" secondAttribute="centerX" id="BSZ-AB-Rpx"/>
+                            <constraint firstItem="Y55-y4-num" firstAttribute="top" secondItem="t6P-2p-MIm" secondAttribute="bottom" constant="20" id="OFS-6i-8ef"/>
                             <constraint firstItem="VKR-OI-2bA" firstAttribute="leading" secondItem="Cmq-gA-flC" secondAttribute="leading" constant="57" id="dKk-M0-hSU"/>
                             <constraint firstItem="Cmq-gA-flC" firstAttribute="trailing" secondItem="VKR-OI-2bA" secondAttribute="trailing" constant="57" id="dRh-gm-APA"/>
+                            <constraint firstItem="t6P-2p-MIm" firstAttribute="top" secondItem="Lqk-DU-MHZ" secondAttribute="bottom" constant="8" symbolic="YES" id="gfr-1w-GwJ"/>
                             <constraint firstItem="VKR-OI-2bA" firstAttribute="centerX" secondItem="cHW-ck-UmP" secondAttribute="centerX" id="ihE-gT-6jd"/>
-                            <constraint firstItem="Y55-y4-num" firstAttribute="top" secondItem="Lqk-DU-MHZ" secondAttribute="bottom" constant="35" id="v8i-ys-QC0"/>
                             <constraint firstItem="Y55-y4-num" firstAttribute="centerX" secondItem="cHW-ck-UmP" secondAttribute="centerX" id="xgB-Ss-LaE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ae8-xT-9pK"/>
                     <connections>
                         <outlet property="addItemButton" destination="VKR-OI-2bA" id="4Ju-C6-Uc9"/>
+                        <outlet property="editPhotoButton" destination="t6P-2p-MIm" id="NVh-2d-AVC"/>
                         <outlet property="emailTextField" destination="Im9-Qo-wyt" id="zYb-F8-Urt"/>
                         <outlet property="nameTextField" destination="cUF-Pg-aFT" id="OUp-bD-IAk"/>
                         <outlet property="phoneTextField" destination="ocJ-Fi-gLu" id="sV4-E2-l5n"/>
@@ -660,6 +678,7 @@
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="message.fill" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="96"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="user-avatar" width="500" height="500"/>
         <namedColor name="AccentColor">

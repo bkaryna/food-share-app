@@ -5,6 +5,7 @@ ${BUILT_PRODUCTS_DIR}/FirebaseAuth-framework/FirebaseAuth.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCore-framework/FirebaseCore.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics-framework/FirebaseCoreDiagnostics.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseFirestore-framework/FirebaseFirestore.framework
+${BUILT_PRODUCTS_DIR}/FirebaseStorage-framework/FirebaseStorage.framework
 ${BUILT_PRODUCTS_DIR}/GTMAppAuth-framework/GTMAppAuth.framework
 ${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-framework/GTMSessionFetcher.framework
 ${BUILT_PRODUCTS_DIR}/GoogleDataTransport-framework/GoogleDataTransport.framework

@@ -9,8 +9,9 @@ import UIKit
 import FirebaseAuth
 import GoogleSignIn
 import Firebase
+import FirebaseStorage
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var userPhotoImageView: UIImageView!
     @IBOutlet weak var addItemButton: UIButton!
     
@@ -18,12 +19,21 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     
-    let db = Firestore.firestore()
+    @IBOutlet weak var editPhotoButton: UIButton!
+
+    
+    private let db = Firestore.firestore()
+    private let storage = Storage.storage().reference()
+    
+    private var image: UIImage = UIImage()
+    private var imageData: Data = Data()
+    
     
     override func viewWillAppear(_ animated: Bool) {
         if ((Auth.auth().currentUser) != nil){
             setUpUserLabels()
         }
+        disableEdit()
         Styling.buttonStyle(addItemButton)
         super.viewWillAppear(animated)
     }
@@ -81,7 +91,7 @@ class HomeViewController: UIViewController {
                 self.nameTextField.text = name
                 self.emailTextField.text = email
                 
-                self.disableTextFieldEdit()
+                self.disableEdit()
                 
                 print("Name: " + name)
                 print("Email: " + email)
@@ -89,22 +99,32 @@ class HomeViewController: UIViewController {
                 print("Document does not exist")
             }
         }
+        
+        let ref = storage.child("\(userID!)/images/profile/photo.png")
+        ref.downloadURL { url, error in
+            if (error != nil) {
+            self.userPhotoImageView.image = UIImage(named: "user-avatar")
+            return
+          } else {
+            // Get the download URL for 'images/stars.jpg'
+            try? self.userPhotoImageView.image = UIImage(data: Data(contentsOf: url!))
+          }
+        }
+
     }
         
     @objc func editUserProfile() {
-        self.enableTextFieldEdit()
+        self.enableEdit()
         setUpHomeEditNavigation()
     }
     
     func setUpHomeNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign out", style: .plain, target: self, action: #selector(signOutAlert))
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editUserProfile))
     }
     
     func setUpHomeEditNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelChanges))
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveChanges))
     }
     
@@ -119,6 +139,24 @@ class HomeViewController: UIViewController {
         
         docRef.setData(["Name": nameTextField.text! as String, "Phone": phoneTextField.text! as String], merge: true)
         
+        let ref = storage.child("\(userID!)/images/profile/photo.png")
+        ref.putData(imageData, metadata: nil, completion: {_, error in
+            guard error == nil else {
+                return
+            }
+            
+            ref.downloadURL (completion: { url, error in
+                guard let url = url, error == nil else {
+                    return
+                }
+                //for future reference
+//                let urlString = url.absoluteString
+//                print("Download URL: \(urlString)")
+//                UserDefaults.standard.set(urlString, forKey: "url")
+                
+            })
+        })
+        
         //work on empty strings
         informationAlert()
         setUpHomeNavigation()
@@ -132,21 +170,45 @@ class HomeViewController: UIViewController {
         self.present(informationAlert, animated: true)
     }
     
-    func enableTextFieldEdit() {
+    func enableEdit() {
         self.nameTextField.isEnabled = true
         self.phoneTextField.isEnabled = true
         
         self.nameTextField.borderStyle = .roundedRect
         self.phoneTextField.borderStyle = .roundedRect
+        
+        self.editPhotoButton.isHidden = false
     }
     
-    func disableTextFieldEdit() {
+    func disableEdit() {
         self.nameTextField.isEnabled = false
         self.emailTextField.isEnabled = false
         self.phoneTextField.isEnabled = false
         
         self.nameTextField.borderStyle = .none
         self.phoneTextField.borderStyle = .none
+        
+        self.editPhotoButton.isHidden = true
+    }
+    
+    @IBAction func editPhotoButtonTapped(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        image = (info[UIImagePickerController.InfoKey.editedImage] as? UIImage)!
+        imageData = image.pngData()!
+        userPhotoImageView.image = UIImage(data: imageData)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: false, completion: nil)
     }
         
 // for future custom photos
