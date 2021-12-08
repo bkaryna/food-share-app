@@ -6,8 +6,9 @@
 //
 import UIKit
 import Firebase
+import Photos
 
-class AddItemViewController: UIViewController {
+class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var nameTextView: UITextField!
     @IBOutlet weak var categoryTextView: UITextField!
     @IBOutlet weak var validUntilTextView: UITextField!
@@ -18,11 +19,13 @@ class AddItemViewController: UIViewController {
     
     @IBOutlet weak var publishButton: UIButton!
     @IBOutlet weak var discardButton: UIButton!
+    @IBOutlet weak var itemPhotoImageView: UIImageView!
+    
+    private let db = Firestore.firestore()
+    private let userID = Auth.auth().currentUser!.uid
+    private let storage = Storage.storage().reference()
     
     @IBAction func publishButtonTapped(_ sender: Any) {
-        let db = Firestore.firestore()
-        let userID = Auth.auth().currentUser!.uid
-        
         let name = nameTextView.text
         let category = categoryTextView.text
         let validUntil = validUntilTextView.text
@@ -30,7 +33,28 @@ class AddItemViewController: UIViewController {
         let location = locationTextView.text
         let description = descriptionTextView.text
         
-        db.collection("Items").document(userID).collection("user-items").document().setData([ "Name": name! as String, "Category": category! as String, "Good until": validUntil! as String, "Quantity": quantity, "Location": location! as String, "Description": description! as String ], merge: true)
+        let itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document()
+        
+        itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Good until": validUntil! as String, "Quantity": quantity, "Location": location! as String, "Description": description! as String ], merge: true)
+        
+        
+        let storageRef = storage.child("\(userID)/images/items/\(itemDocumentRef.documentID).png")
+        storageRef.putData(imageData, metadata: nil, completion: {_, error in
+            guard error == nil else {
+                return
+            }
+            
+            storageRef.downloadURL (completion: { url, error in
+                guard let url = url, error == nil else {
+                    return
+                }
+                //for future reference
+                let urlString = url.absoluteString
+                print("Download URL: \(urlString)")
+                UserDefaults.standard.set(urlString, forKey: "url")
+                
+            })
+        })
     }
     
     var categoryPickerView = UIPickerView()
@@ -86,8 +110,97 @@ class AddItemViewController: UIViewController {
         validUntilTextView.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }
+    
+    @IBAction func addPhotoButtonTapped(_ sender: Any) {
+        var readWriteStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+        let picker = UIImagePickerController()
+        
+        PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+            switch status {
+            case .notDetermined:
+                PHPhotoLibrary.requestAuthorization(for: .readWrite) {
+                    newStatus in
+                    switch newStatus
+                    {case .restricted:
+                        // The system restricted this app's access.
+                        DispatchQueue.main.async {
+                        picker.sourceType = .photoLibrary
+                        picker.delegate = self
+                        picker.allowsEditing = true
+                        self.present(picker, animated: true)
+                        }
+                    case .denied:
+                        DispatchQueue.main.async {
+                            readWriteStatus = .notDetermined
+                            self.informationAlert(title: "Access denied", message: "Please allow access to photo library.")
+                        }
+                    case .authorized:
+                        DispatchQueue.main.async {
+                        picker.sourceType = .photoLibrary
+                        picker.delegate = self
+                        picker.allowsEditing = true
+                        self.present(picker, animated: true)
+                        }
+                    case .limited:
+                        DispatchQueue.main.async {
+                        picker.sourceType = .photoLibrary
+                        picker.delegate = self
+                        picker.allowsEditing = true
+                        self.present(picker, animated: true)
+                        }
+                    @unknown default:
+                        fatalError()
+                    }}
+            case .restricted:
+                // The system restricted this app's access.
+                DispatchQueue.main.async {
+                picker.sourceType = .photoLibrary
+                picker.delegate = self
+                picker.allowsEditing = true
+                self.present(picker, animated: true)
+                }
+            case .denied:
+                DispatchQueue.main.async {
+                    readWriteStatus = .notDetermined
+                    self.informationAlert(title: "Access denied", message: "Please allow access to photo library.")
+                }
+            case .authorized:
+                DispatchQueue.main.async {
+                picker.sourceType = .photoLibrary
+                picker.delegate = self
+                picker.allowsEditing = true
+                self.present(picker, animated: true)
+                }
+            case .limited:
+                DispatchQueue.main.async {
+                    picker.sourceType = .photoLibrary
+                picker.delegate = self
+                picker.allowsEditing = true
+                self.present(picker, animated: true)
+                }
+            @unknown default:
+                fatalError()
+            }
+        }
+    }
+    
+    private var image: UIImage = UIImage()
+    private var imageData: Data = Data()
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        image = (info[UIImagePickerController.InfoKey.editedImage] as? UIImage)!
+        imageData = image.pngData()!
+        itemPhotoImageView.image = UIImage(data: imageData)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: false, completion: nil)
+    }
 }
 
+
+// categoty&date picker extensions
 extension AddItemViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -120,5 +233,11 @@ extension AddItemViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             unitTextView.text = units[row]
             unitTextView.resignFirstResponder() //dismiss pickerview
         }
+    }
+    
+    func informationAlert(title: String, message: String) {
+        let informationAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        informationAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(informationAlert, animated: true)
     }
 }
