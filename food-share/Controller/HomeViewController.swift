@@ -10,6 +10,7 @@ import FirebaseAuth
 import GoogleSignIn
 import Firebase
 import FirebaseStorage
+import Photos
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var userPhotoImageView: UIImageView!
@@ -20,7 +21,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var phoneTextField: UITextField!
     
     @IBOutlet weak var editPhotoButton: UIButton!
-
+    
     
     private let db = Firestore.firestore()
     private let storage = Storage.storage().reference()
@@ -51,6 +52,21 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         //set up navigation bar
         setUpHomeNavigation()
+        guard let urlString = UserDefaults.standard.value(forKey: "url") as? String,
+              let url = URL(string: urlString) else {
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            DispatchQueue.main.async {
+                let image = UIImage(data: data)
+                self.userPhotoImageView.image = image
+            }
+        }
+        task.resume()
     }
     
     func authenticateUserAndLoadHome() {
@@ -79,22 +95,23 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func setUpUserLabels() {
         let userID = Auth.auth().currentUser?.uid
-        
         let docRef = db.collection("Users").document(userID!)
+        
         var name: String = ""
         var email: String = ""
+        var phone: String = ""
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 name = document.get("Name") as! String
                 email = document.get("Email") as! String
+                phone = document.get("Phone") as! String
                 
                 self.nameTextField.text = name
                 self.emailTextField.text = email
+                self.phoneTextField.text = phone
                 
                 self.disableEdit()
                 
-                print("Name: " + name)
-                print("Email: " + email)
             } else {
                 print("Document does not exist")
             }
@@ -103,16 +120,16 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let ref = storage.child("\(userID!)/images/profile/photo.png")
         ref.downloadURL { url, error in
             if (error != nil) {
-            self.userPhotoImageView.image = UIImage(named: "user-avatar")
-            return
-          } else {
-            // Get the download URL for 'images/stars.jpg'
-            try? self.userPhotoImageView.image = UIImage(data: Data(contentsOf: url!))
-          }
+                self.userPhotoImageView.image = UIImage(named: "user-avatar")
+                return
+            } else {
+                // Get the download URL for 'images/stars.jpg'
+                try? self.userPhotoImageView.image = UIImage(data: Data(contentsOf: url!))
+            }
         }
-
-    }
         
+    }
+    
     @objc func editUserProfile() {
         self.enableEdit()
         setUpHomeEditNavigation()
@@ -132,7 +149,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         setUpUserLabels()
         setUpHomeNavigation()
     }
-
+    
     @objc func saveChanges() {
         let userID = Auth.auth().currentUser?.uid
         let docRef = db.collection("Users").document(userID!)
@@ -150,22 +167,22 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                     return
                 }
                 //for future reference
-//                let urlString = url.absoluteString
-//                print("Download URL: \(urlString)")
-//                UserDefaults.standard.set(urlString, forKey: "url")
+                let urlString = url.absoluteString
+                print("Download URL: \(urlString)")
+                UserDefaults.standard.set(urlString, forKey: "url")
                 
             })
         })
         
         //work on empty strings
-        informationAlert()
+        informationAlert(title: "Edit profile", message: "Changes saved successfully")
         setUpHomeNavigation()
-        setUpUserLabels()
+        disableEdit()
         
     }
     
-    @objc func informationAlert() {
-        let informationAlert = UIAlertController(title: "Edit profile", message: "Changes saved successfully", preferredStyle: .actionSheet)
+    @objc func informationAlert(title: String, message: String) {
+        let informationAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         informationAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(informationAlert, animated: true)
     }
@@ -192,11 +209,82 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     @IBAction func editPhotoButtonTapped(_ sender: Any) {
+        var readWriteStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
         let picker = UIImagePickerController()
-        picker.sourceType = .photoLibrary
-        picker.delegate = self
-        picker.allowsEditing = true
-        present(picker, animated: true)
+        
+        PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+            switch status {
+            case .notDetermined:
+                PHPhotoLibrary.requestAuthorization(for: .readWrite) {
+                    newStatus in
+                    switch newStatus
+                    {case .restricted:
+                        // The system restricted this app's access.
+                        DispatchQueue.main.async {
+                        picker.sourceType = .photoLibrary
+                        picker.delegate = self
+                        picker.allowsEditing = true
+                        self.present(picker, animated: true)
+                        }
+                    case .denied:
+                        DispatchQueue.main.async {
+                            readWriteStatus = .notDetermined
+                            self.informationAlert(title: "Access denied", message: "Please allow access to photo library.")
+                        }
+                    case .authorized:
+                        DispatchQueue.main.async {
+                        picker.sourceType = .photoLibrary
+                        picker.delegate = self
+                        picker.allowsEditing = true
+                        self.present(picker, animated: true)
+                        }
+                    case .limited:
+                        DispatchQueue.main.async {
+                        picker.sourceType = .photoLibrary
+                        picker.delegate = self
+                        picker.allowsEditing = true
+                        self.present(picker, animated: true)
+                        }
+                    @unknown default:
+                        fatalError()
+                    }}
+            case .restricted:
+                // The system restricted this app's access.
+                DispatchQueue.main.async {
+                picker.sourceType = .photoLibrary
+                picker.delegate = self
+                picker.allowsEditing = true
+                self.present(picker, animated: true)
+                }
+            case .denied:
+                DispatchQueue.main.async {
+                    readWriteStatus = .notDetermined
+                    self.informationAlert(title: "Access denied", message: "Please allow access to photo library.")
+                }
+            case .authorized:
+                DispatchQueue.main.async {
+                picker.sourceType = .photoLibrary
+                picker.delegate = self
+                picker.allowsEditing = true
+                self.present(picker, animated: true)
+                }
+            case .limited:
+                DispatchQueue.main.async {
+                    picker.sourceType = .photoLibrary
+                picker.delegate = self
+                picker.allowsEditing = true
+                self.present(picker, animated: true)
+                }
+            @unknown default:
+                fatalError()
+            }
+        }
+        
+//        let picker = UIImagePickerController()
+//        picker.sourceType = .photoLibrary
+//        picker.delegate = self
+//        picker.allowsEditing = true
+//        present(picker, animated: true)
         
     }
     
@@ -206,20 +294,20 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         imageData = image.pngData()!
         userPhotoImageView.image = UIImage(data: imageData)
     }
-
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: false, completion: nil)
     }
-        
-// for future custom photos
-//        let url = Auth.auth().currentUser?.photoURL?.absoluteString
-//
-//        guard let imageUrl:URL = URL(string: url!) else {
-//                    return
-//                }
-//
-//        guard let imageData = try? Data(contentsOf: imageUrl) else {return}
-//        let image = UIImage(data: imageData)
-//        userPhotoImageView.image=image
+    
+    // for future custom photos
+    //        let url = Auth.auth().currentUser?.photoURL?.absoluteString
+    //
+    //        guard let imageUrl:URL = URL(string: url!) else {
+    //                    return
+    //                }
+    //
+    //        guard let imageData = try? Data(contentsOf: imageUrl) else {return}
+    //        let image = UIImage(data: imageData)
+    //        userPhotoImageView.image=image
 }
 
