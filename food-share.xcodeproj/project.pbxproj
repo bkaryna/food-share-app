@@ -22,6 +22,9 @@
 		82A393A8273E061300C16A74 /* HomeTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A393A7273E061300C16A74 /* HomeTabsViewController.swift */; };
 		82C83E142731C77500733D54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82C83E132731C77500733D54 /* GoogleService-Info.plist */; };
 		82FABC7A27616E8D0096E594 /* MyItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FABC7927616E8D0096E594 /* MyItemsViewController.swift */; };
+		82FABC7D2761807C0096E594 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FABC7B2761807C0096E594 /* MyCollectionViewCell.swift */; };
+		82FABC7E2761807C0096E594 /* MyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82FABC7C2761807C0096E594 /* MyCollectionViewCell.xib */; };
+		82FABC8027618B270096E594 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FABC7F27618B270096E594 /* UserItem.swift */; };
 		A5A9F0FE34DFB2C40F59078B /* Pods_food_share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BBC12AEEC2B6EE425778BF /* Pods_food_share.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +47,9 @@
 		82A393A7273E061300C16A74 /* HomeTabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabsViewController.swift; sourceTree = "<group>"; };
 		82C83E132731C77500733D54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		82FABC7927616E8D0096E594 /* MyItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItemsViewController.swift; sourceTree = "<group>"; };
+		82FABC7B2761807C0096E594 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
+		82FABC7C2761807C0096E594 /* MyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCollectionViewCell.xib; sourceTree = "<group>"; };
+		82FABC7F27618B270096E594 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
 		9DD87D06B622A82C06474D9A /* Pods-food-share.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-share.debug.xcconfig"; path = "Target Support Files/Pods-food-share/Pods-food-share.debug.xcconfig"; sourceTree = "<group>"; };
 		C3BBC12AEEC2B6EE425778BF /* Pods_food_share.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_food_share.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5224670AEC24F9A57F95DC7 /* Pods-food-share-food-shareUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-share-food-shareUITests.release.xcconfig"; path = "Target Support Files/Pods-food-share-food-shareUITests/Pods-food-share-food-shareUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -80,6 +86,8 @@
 				82A393A5273DF8F300C16A74 /* HomeViewController.swift */,
 				8273D3D6274DB1460070056F /* AddItemViewController.swift */,
 				82FABC7927616E8D0096E594 /* MyItemsViewController.swift */,
+				82FABC7B2761807C0096E594 /* MyCollectionViewCell.swift */,
+				82FABC7C2761807C0096E594 /* MyCollectionViewCell.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -87,6 +95,7 @@
 		820A67BE272C901100E9918C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				82FABC7F27618B270096E594 /* UserItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,6 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82FABC7E2761807C0096E594 /* MyCollectionViewCell.xib in Resources */,
 				829E31F12726C15C00CBC0C8 /* LaunchScreen.storyboard in Resources */,
 				82C83E142731C77500733D54 /* GoogleService-Info.plist in Resources */,
 				829E31EE2726C15C00CBC0C8 /* Assets.xcassets in Resources */,
@@ -271,9 +281,11 @@
 			files = (
 				825090D8272DEAB6004E5C9A /* Styling.swift in Sources */,
 				82A393A8273E061300C16A74 /* HomeTabsViewController.swift in Sources */,
+				82FABC7D2761807C0096E594 /* MyCollectionViewCell.swift in Sources */,
 				829E31E92726C15A00CBC0C8 /* ViewController.swift in Sources */,
 				829E31E52726C15A00CBC0C8 /* AppDelegate.swift in Sources */,
 				820A67B2272C861700E9918C /* SignUpViewController.swift in Sources */,
+				82FABC8027618B270096E594 /* UserItem.swift in Sources */,
 				8273D3D7274DB1460070056F /* AddItemViewController.swift in Sources */,
 				820A67B6272C863100E9918C /* LogInViewController.swift in Sources */,
 				82FABC7A27616E8D0096E594 /* MyItemsViewController.swift in Sources */,

@@ -21,6 +21,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var phoneTextField: UITextField!
     
     @IBOutlet weak var editPhotoButton: UIButton!
+    @IBOutlet weak var myItemsButton: UIButton!
     
     
     private let db = Firestore.firestore()
@@ -36,6 +37,10 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         disableEdit()
         Styling.buttonStyle(addItemButton)
+        Styling.buttonStyle(myItemsButton)
+        Styling.makeImageCornersRound(userPhotoImageView)
+
+        
         super.viewWillAppear(animated)
     }
     

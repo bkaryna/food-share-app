@@ -13,4 +13,9 @@ class Styling {
         button.layer.cornerRadius = 20
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
     }
+    
+    static func makeImageCornersRound(_ image: UIImageView) {
+        image.layer.cornerRadius = 125
+        image.clipsToBounds = true
+    }
 }
