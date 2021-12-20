@@ -6,11 +6,40 @@
 //
 
 import UIKit
+import Firebase
+
 class MyItemsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var itemList: Array<UserItem> = Array()
+    private let db = Firestore.firestore()
     
     @IBOutlet var myItemsCollectionView: UICollectionView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let userID = Auth.auth().currentUser?.uid
+        let docRef = db.collection("Items").document(userID!)
+        
+        db.collection("Items").document(userID!).collection("user-items")
+            .addSnapshotListener { querySnapshot, error in
+                guard let documents = querySnapshot?.documents else {
+                    print("Error fetching documents: \(error!)")
+                    return
+                }
+
+                self.itemList = documents.map { queryDocumentSnapshot -> UserItem in
+                    let data = queryDocumentSnapshot.data()
+                    let _id = queryDocumentSnapshot.documentID as? String ?? ""
+                    let _name = data["Name"] as? String ?? ""
+                    let _date = data["Good until"] as? String ?? ""
+                    
+                    return UserItem(id: _id, name: _name, date: _date)
+                }
+                
+                for item in self.itemList {
+                    print("<Name: \(item.getname()) \t Id: \(item.getID()) \t date: \(item.getValidUntilDate())\n")
+                }
+            }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
