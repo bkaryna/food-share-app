@@ -8,76 +8,50 @@
 import UIKit
 import Firebase
 
-class MyItemsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MyItemsViewController: UIViewController  {
     
-    var itemList: Array<UserItem> = Array()
+    var testItem: UserItem = UserItem(id: "user-avatar-id", name: "Name", date: "Date")
+    
     private let db = Firestore.firestore()
     
     @IBOutlet var myItemsCollectionView: UICollectionView!
     
     override func viewWillAppear(_ animated: Bool) {
-        let userID = Auth.auth().currentUser?.uid
-        let docRef = db.collection("Items").document(userID!)
-        
-        db.collection("Items").document(userID!).collection("user-items")
-            .addSnapshotListener { querySnapshot, error in
-                guard let documents = querySnapshot?.documents else {
-                    print("Error fetching documents: \(error!)")
-                    return
-                }
 
-                self.itemList = documents.map { queryDocumentSnapshot -> UserItem in
-                    let data = queryDocumentSnapshot.data()
-                    let _id = queryDocumentSnapshot.documentID as? String ?? ""
-                    let _name = data["Name"] as? String ?? ""
-                    let _date = data["Good until"] as? String ?? ""
-                    
-                    return UserItem(id: _id, name: _name, date: _date)
-                }
-                
-                for item in self.itemList {
-                    print("<Name: \(item.getname()) \t Id: \(item.getID()) \t date: \(item.getValidUntilDate())\n")
-                }
-            }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 300, height: 120)
-        myItemsCollectionView.collectionViewLayout = layout
-        
-        myItemsCollectionView.register(MyCollectionViewCell.nib(), forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
-        
         myItemsCollectionView.delegate = self
         myItemsCollectionView.dataSource = self
-    }
-  
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-        
-        print("You tapped me")
+        myItemsCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
     }
     
+    
+        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            collectionView.deselectItem(at: indexPath, animated: true)
+    
+            print("You tapped me")
+        }
+}
+
+extension MyItemsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return UserItems.itemList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.identifier, for: indexPath) as! MyCollectionViewCell
         
-        cell.configure(with: UIImage(named: "user-avatar")!, with: "Some label", with: "SomeDate")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCollectionViewCell", for: indexPath) as! MyCollectionViewCell
+        
+        cell.setup(with: UserItems.itemList[indexPath.row])
         return cell
     }
-    
+}
+
+extension MyItemsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 350, height: 120)
-    }
-    
-    func getUserIteamsFromDatabase() {
-        
+        return CGSize(width: 350, height: 135)
     }
 }
 

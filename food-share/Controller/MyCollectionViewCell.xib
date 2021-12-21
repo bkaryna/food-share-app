@@ -38,11 +38,6 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="352" height="121"/>
-            <connections>
-                <outlet property="imageView" destination="WwC-oo-URe" id="tYi-dU-Jaz"/>
-                <outlet property="nameLabel" destination="1FI-WD-JaB" id="aL4-zs-5yA"/>
-                <outlet property="validUntilLabel" destination="1md-88-4Hb" id="1Qt-1H-fJf"/>
-            </connections>
             <point key="canvasLocation" x="89.855072463768124" y="110.82589285714285"/>
         </collectionViewCell>
     </objects>

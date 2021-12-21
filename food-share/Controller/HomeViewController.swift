@@ -30,7 +30,6 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     private var image: UIImage = UIImage()
     private var imageData: Data = Data()
     
-    
     override func viewWillAppear(_ animated: Bool) {
         if ((Auth.auth().currentUser) != nil){
             setUpUserLabels()
@@ -72,6 +71,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             }
         }
         task.resume()
+        UserItems.getUserItemsList()
     }
     
     func authenticateUserAndLoadHome() {

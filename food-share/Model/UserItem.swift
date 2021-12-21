@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class UserItem {
     private var id: String
