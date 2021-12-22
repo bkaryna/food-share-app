@@ -7,6 +7,7 @@ pod 'Firebase/Auth'
 pod 'Firebase/Firestore'
 pod 'GoogleSignIn'
 pod 'Firebase/Storage'
+pod 'lottie-ios'
 
 
 target 'food-share' do

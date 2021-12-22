@@ -7,29 +7,38 @@
 
 import UIKit
 import Firebase
+import Lottie
 
 class MyItemsViewController: UIViewController  {
     private let db = Firestore.firestore()
+    let animationView = AnimationView()
     
     @IBOutlet var myItemsCollectionView: UICollectionView!
     
     override func viewWillAppear(_ animated: Bool) {
-
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpAnimation()
+        
         myItemsCollectionView.delegate = self
         myItemsCollectionView.dataSource = self
         myItemsCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
+            self.animationView.stop()
+            self.animationView.isHidden = true
+        }
     }
     
     
-        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            collectionView.deselectItem(at: indexPath, animated: true)
-    
-            print("You tapped me")
-        }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        print("You tapped me")
+    }
 }
 
 extension MyItemsViewController: UICollectionViewDataSource {
@@ -44,6 +53,29 @@ extension MyItemsViewController: UICollectionViewDataSource {
         cell.setup(with: UserItems.itemList[indexPath.row])
         return cell
     }
+    //set up animation
+    private func setUpAnimation() {
+        //animationView.animation = Animation.named("")
+        animationView.animation = Animation.named("loading")
+        switch traitCollection.userInterfaceStyle {
+                case .light, .unspecified:
+                    animationView.backgroundColor = .white
+                case .dark:
+                    animationView.backgroundColor = .black
+        @unknown default:
+            animationView.animation = Animation.named("loading")
+            animationView.backgroundColor = .white
+        }
+        
+        animationView.frame = view.bounds
+        animationView.center = view.center
+        animationView.contentMode = .scaleAspectFit
+        
+        animationView.loopMode = .repeat(3)
+        animationView.play()
+        view.addSubview(animationView)
+    }
+    
 }
 
 extension MyItemsViewController: UICollectionViewDelegateFlowLayout {
