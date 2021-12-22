@@ -130,7 +130,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             } else {
                 // Get the download URL for 'images/stars.jpg'
                 try? self.userPhotoImageView.image = UIImage(data: Data(contentsOf: url!))
-                print("\(url?.absoluteString)")
+                print("\(String(describing: url?.absoluteString))")
             }
         }
         

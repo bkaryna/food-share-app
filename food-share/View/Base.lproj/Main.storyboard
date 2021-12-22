@@ -235,7 +235,7 @@
                                         <color key="backgroundColor" name="BackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="JX3-B6-ht3"/>
-                                            <constraint firstAttribute="width" constant="334" id="wQJ-ff-Nbz"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="334" id="wQJ-ff-Nbz"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -244,7 +244,7 @@
                                         <rect key="frame" x="0.0" y="60" width="334" height="40"/>
                                         <color key="backgroundColor" name="BackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="334" id="mPb-cJ-tDh"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="334" id="mPb-cJ-tDh"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -331,8 +331,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CxV-EB-YGV">
-                                <rect key="frame" x="0.0" y="33" width="414" height="794"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CxV-EB-YGV">
+                                <rect key="frame" x="0.0" y="-57" width="414" height="884"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxz-gw-rlM">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
@@ -345,9 +345,9 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6P-2p-MIm">
-                                                <rect key="frame" x="83.5" y="266" width="247" height="15"/>
+                                                <rect key="frame" x="160.5" y="266" width="93" height="15"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="247" id="HPE-Y1-D7W"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="HPE-Y1-D7W"/>
                                                     <constraint firstAttribute="height" constant="15" id="SF8-2Q-MWv"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -436,7 +436,7 @@
                                     <constraint firstItem="fxz-gw-rlM" firstAttribute="centerX" secondItem="CxV-EB-YGV" secondAttribute="centerX" id="15D-5y-c9U"/>
                                     <constraint firstItem="fxz-gw-rlM" firstAttribute="leading" secondItem="CxV-EB-YGV" secondAttribute="leading" id="6Q2-H0-cZv"/>
                                     <constraint firstItem="fxz-gw-rlM" firstAttribute="trailing" secondItem="CxV-EB-YGV" secondAttribute="trailing" id="9nx-hW-enA"/>
-                                    <constraint firstItem="fxz-gw-rlM" firstAttribute="bottom" secondItem="CxV-EB-YGV" secondAttribute="bottom" id="VyU-gX-5Bo"/>
+                                    <constraint firstItem="fxz-gw-rlM" firstAttribute="bottom" secondItem="CxV-EB-YGV" secondAttribute="bottom" constant="-110" id="VyU-gX-5Bo"/>
                                     <constraint firstItem="fxz-gw-rlM" firstAttribute="top" secondItem="CxV-EB-YGV" secondAttribute="top" id="omd-nP-tHO"/>
                                 </constraints>
                             </scrollView>
@@ -446,7 +446,7 @@
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="CxV-EB-YGV" secondAttribute="bottom" constant="-19" id="0bY-kK-829"/>
                             <constraint firstItem="CxV-EB-YGV" firstAttribute="leading" secondItem="cHW-ck-UmP" secondAttribute="leading" id="Ilp-RS-Mhq"/>
-                            <constraint firstItem="CxV-EB-YGV" firstAttribute="top" secondItem="Cmq-gA-flC" secondAttribute="top" constant="69" id="cSl-SS-4fO"/>
+                            <constraint firstItem="CxV-EB-YGV" firstAttribute="top" secondItem="Cmq-gA-flC" secondAttribute="top" constant="-57" id="cSl-SS-4fO"/>
                             <constraint firstAttribute="trailing" secondItem="CxV-EB-YGV" secondAttribute="trailing" id="hXn-e4-NSb"/>
                         </constraints>
                     </view>
