@@ -52,7 +52,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             }
         }
         // Do any additional setup after loading the view.
-        
+        setUpUserLabels()
         
         //set up navigation bar
         setUpHomeNavigation()
@@ -130,6 +130,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             } else {
                 // Get the download URL for 'images/stars.jpg'
                 try? self.userPhotoImageView.image = UIImage(data: Data(contentsOf: url!))
+                print("\(url?.absoluteString)")
             }
         }
         

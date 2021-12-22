@@ -9,9 +9,6 @@ import UIKit
 import Firebase
 
 class MyItemsViewController: UIViewController  {
-    
-    var testItem: UserItem = UserItem(id: "user-avatar-id", name: "Name", date: "Date")
-    
     private let db = Firestore.firestore()
     
     @IBOutlet var myItemsCollectionView: UICollectionView!

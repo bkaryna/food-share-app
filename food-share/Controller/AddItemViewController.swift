@@ -28,6 +28,9 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBAction func publishButtonTapped(_ sender: Any) {
         let name = nameTextView.text
         let category = categoryTextView.text
+    
+        let validFrom = Styling.formatDate(Date.init(), "MMM dd, yyyy")
+        
         let validUntil = validUntilTextView.text
         let quantity = quantityTextView.text! + " " + unitTextView.text!
         let location = locationTextView.text
@@ -35,7 +38,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         let itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document()
         
-        itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Good until": validUntil! as String, "Quantity": quantity, "Location": location! as String, "Description": description! as String ], merge: true)
+        itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Location": location! as String, "Description": description! as String ], merge: true)
         
         
         let storageRef = storage.child("\(userID)/images/items/\(itemDocumentRef.documentID).png")
@@ -51,7 +54,6 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
                 //for future reference
                 let urlString = url.absoluteString
                 print("Download URL: \(urlString)")
-                UserDefaults.standard.set(urlString, forKey: "url")
                 
             })
         })
@@ -63,7 +65,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     let categories = ["Fruit", "Vegetables", "Dairy", "Lactose free", "Grains", "Meat", "Fish", "Nonalcoholic beverages", "Alcohol", "Herbs", "Meals", "Desserts", "Baby food", "Cat food", "Dog food"]
     
-    let units = ["piece(s)", "package(s)", "litre(s)", "kilogram(s)", "gram(s)", "carton(s)", "can(s)", "jar(s)"]
+    let units = ["item(s)", "piece(s)", "package(s)", "litre(s)", "kilogram(s)", "gram(s)", "carton(s)", "can(s)", "jar(s)"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
