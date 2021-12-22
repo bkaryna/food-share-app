@@ -1,6 +1,0 @@
-framework module Pods_food_shareTests {
-  umbrella header "Pods-food-shareTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

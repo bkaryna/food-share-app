@@ -5,6 +5,7 @@ ${BUILT_PRODUCTS_DIR}/FirebaseAuth-framework/FirebaseAuth.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCore-framework/FirebaseCore.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics-framework/FirebaseCoreDiagnostics.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseFirestore-framework/FirebaseFirestore.framework
+${BUILT_PRODUCTS_DIR}/FirebaseStorage-framework/FirebaseStorage.framework
 ${BUILT_PRODUCTS_DIR}/GTMAppAuth-framework/GTMAppAuth.framework
 ${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-framework/GTMSessionFetcher.framework
 ${BUILT_PRODUCTS_DIR}/GoogleDataTransport-framework/GoogleDataTransport.framework
@@ -15,4 +16,5 @@ ${BUILT_PRODUCTS_DIR}/abseil-framework/absl.framework
 ${BUILT_PRODUCTS_DIR}/gRPC-C++-framework/grpcpp.framework
 ${BUILT_PRODUCTS_DIR}/gRPC-Core-framework/grpc.framework
 ${BUILT_PRODUCTS_DIR}/leveldb-library-framework/leveldb.framework
+${BUILT_PRODUCTS_DIR}/lottie-ios-framework/Lottie.framework
 ${BUILT_PRODUCTS_DIR}/nanopb-framework/nanopb.framework

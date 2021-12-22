@@ -6,6 +6,8 @@ platform :ios, ‘14.5’
 pod 'Firebase/Auth'
 pod 'Firebase/Firestore'
 pod 'GoogleSignIn'
+pod 'Firebase/Storage'
+pod 'lottie-ios'
 
 
 target 'food-share' do
@@ -13,14 +15,5 @@ target 'food-share' do
   use_frameworks!
 
   # Pods for food-share
-
-  target 'food-shareTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'food-shareUITests' do
-    # Pods for testing
-  end
 
 end

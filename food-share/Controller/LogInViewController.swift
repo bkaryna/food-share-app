@@ -18,8 +18,6 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     
-    @IBOutlet weak var logInStackView: UIStackView!
-    
     @IBAction func logInButtonTapped(_ sender: Any) {
         
         //validate fields
@@ -67,6 +65,12 @@ class LogInViewController: UIViewController {
                     Validation.showAndHideError(self.errorLabel, error.localizedDescription)
                     return
                 } else {
+                    let db = Firestore.firestore()
+                    let userID = Auth.auth().currentUser!.uid
+                    let name = Auth.auth().currentUser?.displayName
+                    let email = Auth.auth().currentUser?.email
+                    db.collection("Users").document(userID).setData([ "Name": name! as String, "Email": email! as String ], merge: true)
+                    
                     transitionToHome()
                 }
             }
@@ -82,15 +86,7 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let googleButton = GIDSignInButton(frame: CGRect(x: 100,
-                                                         y: 100,
-                                                         width: 200,
-                                                         height: 60))
-        
-        googleButton.addTarget(self,action: #selector(LogInWithGoogleTapped(_:)),for: .touchUpInside)
-        
-        logInStackView.addArrangedSubview(googleButton)
+
         //disable auto fill for password field https://developer.apple.com/forums/thread/108085
         passwordTextField.textContentType = .oneTimeCode
         

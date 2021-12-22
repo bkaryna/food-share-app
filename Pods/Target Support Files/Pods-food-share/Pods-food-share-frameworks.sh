@@ -182,6 +182,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore-framework/FirebaseCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics-framework/FirebaseCoreDiagnostics.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseFirestore-framework/FirebaseFirestore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseStorage-framework/FirebaseStorage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GTMAppAuth-framework/GTMAppAuth.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-framework/GTMSessionFetcher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleDataTransport-framework/GoogleDataTransport.framework"
@@ -192,6 +193,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/gRPC-C++-framework/grpcpp.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/gRPC-Core-framework/grpc.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/leveldb-library-framework/leveldb.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/lottie-ios-framework/Lottie.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb-framework/nanopb.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -201,6 +203,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore-framework/FirebaseCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics-framework/FirebaseCoreDiagnostics.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseFirestore-framework/FirebaseFirestore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseStorage-framework/FirebaseStorage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GTMAppAuth-framework/GTMAppAuth.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-framework/GTMSessionFetcher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleDataTransport-framework/GoogleDataTransport.framework"
@@ -211,6 +214,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/gRPC-C++-framework/grpcpp.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/gRPC-Core-framework/grpc.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/leveldb-library-framework/leveldb.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/lottie-ios-framework/Lottie.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb-framework/nanopb.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

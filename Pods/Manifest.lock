@@ -357,6 +357,9 @@ PODS:
   - Firebase/Firestore (8.9.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 8.9.0)
+  - Firebase/Storage (8.9.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 8.9.0)
   - FirebaseAuth (8.9.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.6)
@@ -384,6 +387,9 @@ PODS:
     - "gRPC-C++ (~> 1.28.0)"
     - leveldb-library (~> 1.22)
     - nanopb (~> 2.30908.0)
+  - FirebaseStorage (8.9.0):
+    - FirebaseCore (~> 8.0)
+    - GTMSessionFetcher/Core (~> 1.5)
   - GoogleDataTransport (9.1.2):
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30908.0)
@@ -436,6 +442,7 @@ PODS:
     - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.7.0)
   - leveldb-library (1.22.1)
+  - lottie-ios (3.3.0)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
@@ -446,7 +453,9 @@ PODS:
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Firestore
+  - Firebase/Storage
   - GoogleSignIn
+  - lottie-ios
 
 SPEC REPOS:
   trunk:
@@ -458,6 +467,7 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseFirestore
+    - FirebaseStorage
     - GoogleDataTransport
     - GoogleSignIn
     - GoogleUtilities
@@ -466,6 +476,7 @@ SPEC REPOS:
     - GTMAppAuth
     - GTMSessionFetcher
     - leveldb-library
+    - lottie-ios
     - nanopb
     - PromisesObjC
 
@@ -478,6 +489,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 599ee609343eaf4941bd188f85e3aa077ffe325b
   FirebaseCoreDiagnostics: 5daa63f1c1409d981a2d5007daa100b36eac6a34
   FirebaseFirestore: bb57bfeb3ec001d99e7e2a96dd29072b01e816f6
+  FirebaseStorage: 452c98c31ccb40b819764bf3039426c4388d9939
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleSignIn: fd381840dbe7c1137aa6dc30849a5c3e070c034a
   GoogleUtilities: 684ee790a24f73ebb2d1d966e9711c203f2a4237
@@ -486,9 +498,10 @@ SPEC CHECKSUMS:
   GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
+  lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
 
-PODFILE CHECKSUM: b3b4cb619342d763f5772f285878aa27295be091
+PODFILE CHECKSUM: 3742051cd40fbcbce57162b72655a838c33a733a
 
 COCOAPODS: 1.11.2
