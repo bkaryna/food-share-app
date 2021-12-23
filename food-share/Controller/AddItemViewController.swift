@@ -7,6 +7,7 @@
 import UIKit
 import Firebase
 import Photos
+import Lottie
 
 class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var nameTextView: UITextField!
@@ -20,10 +21,19 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var publishButton: UIButton!
     @IBOutlet weak var discardButton: UIButton!
     @IBOutlet weak var itemPhotoImageView: UIImageView!
-    
+
     private let db = Firestore.firestore()
     private let userID = Auth.auth().currentUser!.uid
     private let storage = Storage.storage().reference()
+    private let animationView = AnimationView()
+    
+    var categoryPickerView = UIPickerView()
+    var datePicker = UIDatePicker()
+    var unitPickerView = UIPickerView()
+    
+    let categories = ["Fruit", "Vegetables", "Dairy", "Lactose free", "Grains", "Meat", "Fish", "Nonalcoholic beverages", "Alcohol", "Herbs", "Meals", "Desserts", "Baby food", "Cat food", "Dog food"]
+    
+    let units = ["item(s)", "piece(s)", "package(s)", "litre(s)", "kilogram(s)", "gram(s)", "carton(s)", "can(s)", "jar(s)"]
     
     @IBAction func publishButtonTapped(_ sender: Any) {
         let name = nameTextView.text
@@ -57,18 +67,23 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
                 
             })
         })
+        
+        CustomAnimation.setUp(view: view, animationView: animationView, frequency: 2, type: "done")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+            self.animationView.stop()
+            self.animationView.isHidden = true
+            _ = self.navigationController?.popToRootViewController(animated: true)
+        }
     }
     
-    var categoryPickerView = UIPickerView()
-    var datePicker = UIDatePicker()
-    var unitPickerView = UIPickerView()
-    
-    let categories = ["Fruit", "Vegetables", "Dairy", "Lactose free", "Grains", "Meat", "Fish", "Nonalcoholic beverages", "Alcohol", "Herbs", "Meals", "Desserts", "Baby food", "Cat food", "Dog food"]
-    
-    let units = ["item(s)", "piece(s)", "package(s)", "litre(s)", "kilogram(s)", "gram(s)", "carton(s)", "can(s)", "jar(s)"]
+    @IBAction func discardButtonTapped(_ sender: Any) {
+        _ = self.navigationController?.popToRootViewController(animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUpCategoryPicker()
         setUpDatePicker()
         setUpUnitPicker()
