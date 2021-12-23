@@ -11,6 +11,7 @@ import GoogleSignIn
 import Firebase
 import FirebaseStorage
 import Photos
+import Lottie
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var userPhotoImageView: UIImageView!
@@ -29,6 +30,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     private var image: UIImage = UIImage()
     private var imageData: Data = Data()
+    
+    let animationView = AnimationView()
     
     override func viewWillAppear(_ animated: Bool) {
         if ((Auth.auth().currentUser) != nil){
@@ -53,6 +56,13 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         // Do any additional setup after loading the view.
         setUpUserLabels()
+        
+        LoadingAnimation.setUp(view: view, animationView: animationView, frequency: 3)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
+            self.animationView.stop()
+            self.animationView.isHidden = true
+        }
         
         //set up navigation bar
         setUpHomeNavigation()

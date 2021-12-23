@@ -21,7 +21,9 @@ class MyItemsViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpAnimation()
+        
+        //setUpAnimation
+        LoadingAnimation.setUp(view: view, animationView: animationView, frequency: 2)
         
         myItemsCollectionView.delegate = self
         myItemsCollectionView.dataSource = self
