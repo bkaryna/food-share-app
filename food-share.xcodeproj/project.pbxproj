@@ -13,7 +13,8 @@
 		825090D8272DEAB6004E5C9A /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825090D7272DEAB6004E5C9A /* Styling.swift */; };
 		8273D3D7274DB1460070056F /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8273D3D6274DB1460070056F /* AddItemViewController.swift */; };
 		828853342773D908000492C3 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 828853332773D908000492C3 /* loading.json */; };
-		828853362773F306000492C3 /* LoadingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828853352773F306000492C3 /* LoadingAnimation.swift */; };
+		828853382773F8C7000492C3 /* done.json in Resources */ = {isa = PBXBuildFile; fileRef = 828853372773F8C7000492C3 /* done.json */; };
+		8288533C2773F91A000492C3 /* CustomAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8288533B2773F919000492C3 /* CustomAnimation.swift */; };
 		829E31E52726C15A00CBC0C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31E42726C15A00CBC0C8 /* AppDelegate.swift */; };
 		829E31E72726C15A00CBC0C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31E62726C15A00CBC0C8 /* SceneDelegate.swift */; };
 		829E31E92726C15A00CBC0C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E31E82726C15A00CBC0C8 /* ViewController.swift */; };
@@ -38,7 +39,8 @@
 		825090D7272DEAB6004E5C9A /* Styling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styling.swift; sourceTree = "<group>"; };
 		8273D3D6274DB1460070056F /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		828853332773D908000492C3 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
-		828853352773F306000492C3 /* LoadingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAnimation.swift; sourceTree = "<group>"; };
+		828853372773F8C7000492C3 /* done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = done.json; sourceTree = "<group>"; };
+		8288533B2773F919000492C3 /* CustomAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnimation.swift; sourceTree = "<group>"; };
 		829E31E12726C15A00CBC0C8 /* food-share.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "food-share.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		829E31E42726C15A00CBC0C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		829E31E62726C15A00CBC0C8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,9 +118,10 @@
 			isa = PBXGroup;
 			children = (
 				828853332773D908000492C3 /* loading.json */,
+				828853372773F8C7000492C3 /* done.json */,
 				825090D7272DEAB6004E5C9A /* Styling.swift */,
+				8288533B2773F919000492C3 /* CustomAnimation.swift */,
 				820A67C1272C998D00E9918C /* Validation.swift */,
-				828853352773F306000492C3 /* LoadingAnimation.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				829E31F12726C15C00CBC0C8 /* LaunchScreen.storyboard in Resources */,
+				828853382773F8C7000492C3 /* done.json in Resources */,
 				82C83E142731C77500733D54 /* GoogleService-Info.plist in Resources */,
 				828853342773D908000492C3 /* loading.json in Resources */,
 				829E31EE2726C15C00CBC0C8 /* Assets.xcassets in Resources */,
@@ -285,7 +289,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				828853362773F306000492C3 /* LoadingAnimation.swift in Sources */,
 				825090D8272DEAB6004E5C9A /* Styling.swift in Sources */,
 				82A393A8273E061300C16A74 /* HomeTabsViewController.swift in Sources */,
 				82FABC7D2761807C0096E594 /* MyCollectionViewCell.swift in Sources */,
@@ -300,6 +303,7 @@
 				82A393A6273DF8F300C16A74 /* HomeViewController.swift in Sources */,
 				829E31E72726C15A00CBC0C8 /* SceneDelegate.swift in Sources */,
 				820A67C2272C998D00E9918C /* Validation.swift in Sources */,
+				8288533C2773F91A000492C3 /* CustomAnimation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

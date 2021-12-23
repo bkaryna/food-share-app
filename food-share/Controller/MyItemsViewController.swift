@@ -23,7 +23,7 @@ class MyItemsViewController: UIViewController  {
         super.viewDidLoad()
         
         //setUpAnimation
-        LoadingAnimation.setUp(view: view, animationView: animationView, frequency: 2)
+        CustomAnimation.setUp(view: view, animationView: animationView, frequency: 2, type: "loading")
         
         myItemsCollectionView.delegate = self
         myItemsCollectionView.dataSource = self

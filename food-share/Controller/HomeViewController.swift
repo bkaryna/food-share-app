@@ -57,7 +57,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         // Do any additional setup after loading the view.
         setUpUserLabels()
         
-        LoadingAnimation.setUp(view: view, animationView: animationView, frequency: 3)
+        CustomAnimation.setUp(view: view, animationView: animationView, frequency: 3, type: "loading")
         
         DispatchQueue.main.asyncAfter(deadline: .now()+3) {
             self.animationView.stop()

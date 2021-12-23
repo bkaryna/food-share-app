@@ -9,10 +9,17 @@ import Foundation
 import UIKit
 import Lottie
 
-class LoadingAnimation {
-    static func setUp(view: UIView, animationView: AnimationView, frequency: Float) {
+class CustomAnimation {
+    static func setUp(view: UIView, animationView: AnimationView, frequency: Float, type: String) {
         //animationView.animation = Animation.named("")
-        animationView.animation = Animation.named("loading")
+        switch type{
+        case "loading":
+            animationView.animation = Animation.named("loading")
+        case "done":
+            animationView.animation = Animation.named("done")
+        default:
+            animationView.animation = Animation.named("loading")
+        }
         
         switch view.traitCollection.userInterfaceStyle {
                 case .light, .unspecified:
@@ -20,7 +27,6 @@ class LoadingAnimation {
                 case .dark:
                     animationView.backgroundColor = .black
         @unknown default:
-            animationView.animation = Animation.named("loading")
             animationView.backgroundColor = .white
         }
         
