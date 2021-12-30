@@ -6,6 +6,7 @@
 //
 import UIKit
 import Firebase
+import FirebaseAuth
 import Photos
 import Lottie
 
@@ -30,6 +31,8 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     var categoryPickerView = UIPickerView()
     var datePicker = UIDatePicker()
     var unitPickerView = UIPickerView()
+    
+    var userItem: UserItem?
     
     let categories = ["Fruit", "Vegetables", "Dairy", "Lactose free", "Grains", "Meat", "Fish", "Nonalcoholic beverages", "Alcohol", "Herbs", "Meals", "Desserts", "Baby food", "Cat food", "Dog food"]
     
@@ -73,12 +76,20 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         DispatchQueue.main.asyncAfter(deadline: .now()+2) {
             self.animationView.stop()
             self.animationView.isHidden = true
+            self.userItem = nil
             _ = self.navigationController?.popToRootViewController(animated: true)
         }
     }
     
     @IBAction func discardButtonTapped(_ sender: Any) {
         _ = self.navigationController?.popToRootViewController(animated: true)
+        userItem = nil
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if userItem != nil {
+            setUpUserItemData()
+        }
     }
     
     override func viewDidLoad() {
@@ -90,6 +101,8 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         Styling.buttonStyle(publishButton)
         Styling.buttonStyle(discardButton)
+        
+        print("Add item vc loaded with data: \(userItem?.getname())")
     }
     
     func setUpCategoryPicker() {
@@ -213,6 +226,11 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: false, completion: nil)
+    }
+    
+    func setUpUserItemData() {
+        nameTextView.text = userItem?.getname()
+        validUntilTextView.text = userItem?.getValidUntilDate()
     }
 }
 

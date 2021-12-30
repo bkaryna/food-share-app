@@ -468,7 +468,7 @@
         <!--Add Item View Controller-->
         <scene sceneID="DyL-MO-k0g">
             <objects>
-                <viewController id="7Hb-cW-dSz" customClass="AddItemViewController" customModule="food_share" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddItemVC" id="7Hb-cW-dSz" customClass="AddItemViewController" customModule="food_share" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CPo-uo-rCf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -655,7 +655,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dzX-dP-gzy">
-                                <rect key="frame" x="10" y="108" width="394" height="705"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="705"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="69W-BX-BwT">
                                     <size key="itemSize" width="350" height="135"/>
@@ -665,7 +665,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyCollectionViewCell" id="aXy-sc-axc" customClass="MyCollectionViewCell" customModule="food_share" customModuleProvider="target">
-                                        <rect key="frame" x="22" y="0.0" width="350" height="135"/>
+                                        <rect key="frame" x="32" y="0.0" width="350" height="135"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RaT-mO-0XB">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="135"/>
@@ -716,10 +716,10 @@
                         <viewLayoutGuide key="safeArea" id="324-cD-rg9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="324-cD-rg9" firstAttribute="trailing" secondItem="dzX-dP-gzy" secondAttribute="trailing" constant="10" id="0WG-B4-z26"/>
+                            <constraint firstItem="324-cD-rg9" firstAttribute="trailing" secondItem="dzX-dP-gzy" secondAttribute="trailing" id="0WG-B4-z26"/>
                             <constraint firstItem="dzX-dP-gzy" firstAttribute="bottom" secondItem="324-cD-rg9" secondAttribute="bottom" id="9hw-IR-kcQ"/>
                             <constraint firstItem="dzX-dP-gzy" firstAttribute="top" secondItem="324-cD-rg9" secondAttribute="top" constant="20" id="rBr-nc-sSu"/>
-                            <constraint firstItem="dzX-dP-gzy" firstAttribute="leading" secondItem="324-cD-rg9" secondAttribute="leading" constant="10" id="xoE-bL-IyC"/>
+                            <constraint firstItem="dzX-dP-gzy" firstAttribute="leading" secondItem="324-cD-rg9" secondAttribute="leading" id="xoE-bL-IyC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3R7-u7-SPU"/>

@@ -16,8 +16,10 @@ class MyItemsViewController: UIViewController  {
     @IBOutlet var myItemsCollectionView: UICollectionView!
     
     override func viewWillAppear(_ animated: Bool) {
-        
+    
     }
+    
+    var tappedItem: UserItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +42,31 @@ class MyItemsViewController: UIViewController  {
         collectionView.deselectItem(at: indexPath, animated: true)
         
         print("You tapped me")
+        tappedItem = UserItems.itemList[indexPath.row]
+        
+//        let vc = storyboard?.instantiateViewController(identifier: "AddItemVC") as! AddItemViewController
+//        vc.modalPresentationStyle = .automatic
+//        present(vc, animated: true)
+        goToItemView()
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "myItem" {
+            let destinationController = segue.destination as! AddItemViewController
+            destinationController.userItem = tappedItem
+        }
+    }
+    
+    func goToItemView() {
+        guard let destinationController = self.storyboard?.instantiateViewController(identifier: "AddItemVC") as? AddItemViewController
+        else {
+            print("Failed to load vc")
+            return
+        }
+        destinationController.userItem = tappedItem
+        
+        navigationController?.pushViewController(destinationController, animated: true)
     }
 }
 
