@@ -42,6 +42,19 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewWillAppear(_ animated: Bool) {
         if userItem != nil {
+            DispatchQueue.global().async {
+                let ref = self.storage.child("\(self.userItem!.getOwner())/images/items/\(self.userItem!.getID()).png")
+                
+                ref.downloadURL { url, error in
+                    if (error != nil) {
+                        try? self.itemPhotoImageView.image = UIImage(data: Data(contentsOf: URL(string: "https://www.wfp.org/sites/default/files/styles/impact_image/public/2017-01/SOM_20150614_WFP-Laila_Ali_5556.jpg?itok=Ef1CTnPL")!))
+                        
+                        print("image fetching - error")
+                    } else {
+                        try? self.itemPhotoImageView.image = UIImage(data: Data(contentsOf:url!))
+                    }
+                }
+            }
             setUpUserItemData()
             deleteButton.isHidden = false
         } else {
