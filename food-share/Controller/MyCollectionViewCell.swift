@@ -32,5 +32,6 @@ class MyCollectionViewCell: UICollectionViewCell {
 
         nameLabel.text = item.getname()
         validUntilLabel.text = item.getValidUntilDate()
+        Styling.makeImageCornersRound(self.imageView)
     }
 }

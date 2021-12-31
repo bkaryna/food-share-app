@@ -24,7 +24,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var deleteButton: UIButton!
     
     @IBOutlet weak var itemPhotoImageView: UIImageView!
-
+    
     private let db = Firestore.firestore()
     private let userID = Auth.auth().currentUser!.uid
     private let storage = Storage.storage().reference()
@@ -68,6 +68,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         Styling.buttonStyle(publishButton)
         Styling.buttonStyle(discardButton)
         Styling.buttonStyle(deleteButton)
+        Styling.makeImageCornersRound(itemPhotoImageView)
     }
     
     override func viewDidLoad() {
@@ -79,7 +80,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBAction func publishButtonTapped(_ sender: Any) {
         let name = nameTextView.text
         let category = categoryTextView.text
-    
+        
         let validFrom = Styling.formatDate(Date.init(), "MMM dd, yyyy")
         
         let validUntil = validUntilTextView.text
@@ -92,23 +93,25 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Unit": unit as String, "Location": location! as String, "Description": description! as String ], merge: true)
         
-        
-        let storageRef = storage.child("\(userID)/images/items/\(itemDocumentRef.documentID).png")
-        storageRef.putData(imageData, metadata: nil, completion: {_, error in
-            guard error == nil else {
-                return
-            }
+        if itemPhotoImageView.image != nil {
             
-            storageRef.downloadURL (completion: { url, error in
-                guard let url = url, error == nil else {
+            let storageRef = storage.child("\(userID)/images/items/\(itemDocumentRef.documentID).png")
+            storageRef.putData(imageData, metadata: nil, completion: {_, error in
+                guard error == nil else {
                     return
                 }
-                //for future reference
-                let urlString = url.absoluteString
-                print("Download URL: \(urlString)")
                 
+                storageRef.downloadURL (completion: { url, error in
+                    guard let url = url, error == nil else {
+                        return
+                    }
+                    //for future reference
+                    let urlString = url.absoluteString
+                    print("Download URL: \(urlString)")
+                    
+                })
             })
-        })
+        }
         
         CustomAnimation.setUp(view: view, animationView: animationView, frequency: 2, type: "done")
         
@@ -177,10 +180,10 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
                     {case .restricted:
                         // The system restricted this app's access.
                         DispatchQueue.main.async {
-                        picker.sourceType = .photoLibrary
-                        picker.delegate = self
-                        picker.allowsEditing = true
-                        self.present(picker, animated: true)
+                            picker.sourceType = .photoLibrary
+                            picker.delegate = self
+                            picker.allowsEditing = true
+                            self.present(picker, animated: true)
                         }
                     case .denied:
                         DispatchQueue.main.async {
@@ -189,17 +192,17 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
                         }
                     case .authorized:
                         DispatchQueue.main.async {
-                        picker.sourceType = .photoLibrary
-                        picker.delegate = self
-                        picker.allowsEditing = true
-                        self.present(picker, animated: true)
+                            picker.sourceType = .photoLibrary
+                            picker.delegate = self
+                            picker.allowsEditing = true
+                            self.present(picker, animated: true)
                         }
                     case .limited:
                         DispatchQueue.main.async {
-                        picker.sourceType = .photoLibrary
-                        picker.delegate = self
-                        picker.allowsEditing = true
-                        self.present(picker, animated: true)
+                            picker.sourceType = .photoLibrary
+                            picker.delegate = self
+                            picker.allowsEditing = true
+                            self.present(picker, animated: true)
                         }
                     @unknown default:
                         fatalError()
@@ -207,10 +210,10 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
             case .restricted:
                 // The system restricted this app's access.
                 DispatchQueue.main.async {
-                picker.sourceType = .photoLibrary
-                picker.delegate = self
-                picker.allowsEditing = true
-                self.present(picker, animated: true)
+                    picker.sourceType = .photoLibrary
+                    picker.delegate = self
+                    picker.allowsEditing = true
+                    self.present(picker, animated: true)
                 }
             case .denied:
                 DispatchQueue.main.async {
@@ -219,17 +222,17 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
                 }
             case .authorized:
                 DispatchQueue.main.async {
-                picker.sourceType = .photoLibrary
-                picker.delegate = self
-                picker.allowsEditing = true
-                self.present(picker, animated: true)
+                    picker.sourceType = .photoLibrary
+                    picker.delegate = self
+                    picker.allowsEditing = true
+                    self.present(picker, animated: true)
                 }
             case .limited:
                 DispatchQueue.main.async {
                     picker.sourceType = .photoLibrary
-                picker.delegate = self
-                picker.allowsEditing = true
-                self.present(picker, animated: true)
+                    picker.delegate = self
+                    picker.allowsEditing = true
+                    self.present(picker, animated: true)
                 }
             @unknown default:
                 fatalError()
