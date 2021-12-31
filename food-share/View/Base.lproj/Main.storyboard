@@ -477,7 +477,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="705"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0WZ-Wj-Hiq">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1090"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="De2-vt-kJ7">
                                                 <rect key="frame" x="42" y="1" width="330" height="770"/>
@@ -564,7 +564,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ibe-ZG-9UF">
-                                                <rect key="frame" x="52" y="801" width="310" height="150"/>
+                                                <rect key="frame" x="52" y="801" width="310" height="240"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YvH-vg-5nB">
                                                         <rect key="frame" x="0.0" y="0.0" width="310" height="60"/>
@@ -572,7 +572,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="7Os-Et-oIp"/>
                                                         </constraints>
-                                                        <state key="normal" title="Publish">
+                                                        <state key="normal" title="Save">
                                                             <color key="titleColor" name="ButtonActiveText"/>
                                                         </state>
                                                         <connections>
@@ -592,10 +592,23 @@
                                                             <action selector="discardButtonTapped:" destination="7Hb-cW-dSz" eventType="touchUpInside" id="4J6-ix-4kP"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1J-b7-abI">
+                                                        <rect key="frame" x="0.0" y="180" width="310" height="60"/>
+                                                        <color key="backgroundColor" red="0.83981925249099731" green="0.068757578730583191" blue="0.1987101137638092" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="DNd-vc-tER"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Delete">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="deleteButtonTapped:" destination="7Hb-cW-dSz" eventType="touchUpInside" id="cOk-h2-N0g"/>
+                                                            <action selector="discardButtonTapped:" destination="7Hb-cW-dSz" eventType="touchUpInside" id="gIN-Y8-l4U"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="310" id="4Lt-Rx-bsJ"/>
-                                                    <constraint firstAttribute="height" constant="150" id="Zx8-cP-uiP"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
@@ -631,6 +644,7 @@
                     <navigationItem key="navigationItem" id="hff-ul-e23"/>
                     <connections>
                         <outlet property="categoryTextView" destination="Tkg-Fw-cff" id="sya-lz-FT1"/>
+                        <outlet property="deleteButton" destination="h1J-b7-abI" id="yUZ-0x-kd4"/>
                         <outlet property="descriptionTextView" destination="d0q-p3-Mvp" id="Z8D-e8-TUU"/>
                         <outlet property="discardButton" destination="F8W-2l-yk7" id="dQy-a7-bLB"/>
                         <outlet property="itemPhotoImageView" destination="WPM-wH-qT7" id="hvz-PY-S5J"/>

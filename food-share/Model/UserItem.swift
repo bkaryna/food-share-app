@@ -15,12 +15,24 @@ class UserItem {
     private var validUntil: String
     private var owner: String
     
-    init (id: String, owner: String, name: String, dateFrom: String, dateUntil: String) {
+    private var category: String
+    private var quantity: String //consider changing to Float
+    private var unit: String
+    private var location: String
+    private var description: String
+    
+    init (id: String, owner: String, name: String, dateFrom: String, dateUntil: String, category: String, quantity: String, unit: String, location: String, description: String) {
         self.id = id
         self.owner = owner
         self.name = name
         self.validFrom = dateFrom
         self.validUntil = dateUntil
+        
+        self.category = category
+        self.quantity = quantity
+        self.unit = unit
+        self.location = location
+        self.description = description
     }
     
     func getID() -> String {
@@ -41,5 +53,25 @@ class UserItem {
     
     func getValidUntilDate() -> String {
         return self.validUntil
+    }
+    
+    func getCategory() -> String {
+        return self.category
+    }
+    
+    func getQuantity() -> String {
+        return self.quantity
+    }
+    
+    func getUnit() -> String {
+        return self.unit
+    }
+    
+    func getLocation() -> String {
+        return self.location
+    }
+    
+    func getDescription() -> String {
+        return self.description
     }
 }

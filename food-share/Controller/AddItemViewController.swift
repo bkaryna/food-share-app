@@ -21,6 +21,8 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBOutlet weak var publishButton: UIButton!
     @IBOutlet weak var discardButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
+    
     @IBOutlet weak var itemPhotoImageView: UIImageView!
 
     private let db = Firestore.firestore()
@@ -38,6 +40,29 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     let units = ["item(s)", "piece(s)", "package(s)", "litre(s)", "kilogram(s)", "gram(s)", "carton(s)", "can(s)", "jar(s)"]
     
+    override func viewWillAppear(_ animated: Bool) {
+        if userItem != nil {
+            setUpUserItemData()
+            deleteButton.isHidden = false
+        } else {
+            deleteButton.isHidden = true
+        }
+        
+        setUpCategoryPicker()
+        setUpDatePicker()
+        setUpUnitPicker()
+        
+        Styling.buttonStyle(publishButton)
+        Styling.buttonStyle(discardButton)
+        Styling.buttonStyle(deleteButton)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        print("Add item vc loaded with data: \(userItem?.getname())")
+    }
+    
     @IBAction func publishButtonTapped(_ sender: Any) {
         let name = nameTextView.text
         let category = categoryTextView.text
@@ -45,13 +70,14 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         let validFrom = Styling.formatDate(Date.init(), "MMM dd, yyyy")
         
         let validUntil = validUntilTextView.text
-        let quantity = quantityTextView.text! + " " + unitTextView.text!
+        let quantity = quantityTextView.text!
+        let unit = unitTextView.text!
         let location = locationTextView.text
         let description = descriptionTextView.text
         
         let itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document()
         
-        itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Location": location! as String, "Description": description! as String ], merge: true)
+        itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Unit": unit as String, "Location": location! as String, "Description": description! as String ], merge: true)
         
         
         let storageRef = storage.child("\(userID)/images/items/\(itemDocumentRef.documentID).png")
@@ -86,23 +112,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         userItem = nil
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        if userItem != nil {
-            setUpUserItemData()
-        }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setUpCategoryPicker()
-        setUpDatePicker()
-        setUpUnitPicker()
-        
-        Styling.buttonStyle(publishButton)
-        Styling.buttonStyle(discardButton)
-        
-        print("Add item vc loaded with data: \(userItem?.getname())")
+    @IBAction func deleteButtonTapped(_ sender: Any) {
     }
     
     func setUpCategoryPicker() {
@@ -230,7 +240,12 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func setUpUserItemData() {
         nameTextView.text = userItem?.getname()
+        categoryTextView.text = userItem?.getCategory()
         validUntilTextView.text = userItem?.getValidUntilDate()
+        quantityTextView.text = userItem?.getQuantity()
+        unitTextView.text = userItem?.getUnit()
+        locationTextView.text = userItem?.getLocation()
+        descriptionTextView.text = userItem?.getDescription()
     }
 }
 

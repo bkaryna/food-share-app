@@ -31,7 +31,13 @@ struct UserItems {
                         let _dateFrom = data["Valid from"] as? String ?? ""
                         let _dateUntil = data["Valid until"] as? String ?? ""
                         
-                        return UserItem(id: _id, owner: userID!, name: _name, dateFrom: _dateFrom, dateUntil: _dateUntil)
+                        let _category = data["Category"] as? String ?? ""
+                        let _quantity = data["Quantity"] as? String ?? ""
+                        let _unit = data["Unit"] as? String ?? ""
+                        let _location = data["Location"] as? String ?? ""
+                        let _description = data["Description"] as? String ?? ""
+                        
+                        return UserItem(id: _id, owner: userID!, name: _name, dateFrom: _dateFrom, dateUntil: _dateUntil, category: _category, quantity: _quantity, unit: _unit, location: _location, description: _description)
                     }
                     
                     for item in itemList {
