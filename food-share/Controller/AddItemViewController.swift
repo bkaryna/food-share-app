@@ -93,7 +93,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Unit": unit as String, "Location": location! as String, "Description": description! as String ], merge: true)
         
-        if itemPhotoImageView.image != nil {
+        if (itemPhotoImageView.image != nil && itemPhotoImageView.image?.isEqual(UIImage(systemName: "photo.fill")) == false) {
             
             let storageRef = storage.child("\(userID)/images/items/\(itemDocumentRef.documentID).png")
             storageRef.putData(imageData, metadata: nil, completion: {_, error in
