@@ -21,7 +21,9 @@ struct OtherItems {
                 print("Failed to fetch user list")
             } else {
                 for document in querySnapshot!.documents {
-                    db.collection("Items").document(document.documentID).collection("user-items")
+                    print("\n\n document: \(document.documentID)\t\t\tuserI: \(userID)\n\n")
+                    if (document.documentID != userID)
+{                    db.collection("Items").document(document.documentID).collection("user-items")
                         .addSnapshotListener { querySnapshot, error in
                             guard let documents = querySnapshot?.documents else {
                                 print("Error fetching documents: \(error!)")
@@ -42,14 +44,14 @@ struct OtherItems {
                                     let _location = data["Location"] as? String ?? ""
                                     let _description = data["Description"] as? String ?? ""
                                     
-                                    return UserItem(id: _id, owner: userID!, name: _name, dateFrom: _dateFrom, dateUntil: _dateUntil, category: _category, quantity: _quantity, unit: _unit, location: _location, description: _description)
+                                    return UserItem(id: _id, owner: document.documentID, name: _name, dateFrom: _dateFrom, dateUntil: _dateUntil, category: _category, quantity: _quantity, unit: _unit, location: _location, description: _description)
                                 }
                                 
                                 for item in itemList {
                                     print("<Name: \(item.getname()) \t Id: \(item.getID()) \t dateFrom: \(item.getValidFromDate()) \t dateUntil: \(item.getValidUntilDate())\n")
                                 }
                             }
-                        }
+                        }}
                 }
             }
         }

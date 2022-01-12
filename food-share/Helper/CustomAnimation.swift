@@ -37,7 +37,5 @@ class CustomAnimation {
         animationView.loopMode = .repeat(frequency)
         animationView.play()
         view.addSubview(animationView)
-        
-        
     }
 }

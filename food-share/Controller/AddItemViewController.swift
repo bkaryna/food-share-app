@@ -87,11 +87,18 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         let location = locationTextView.text
         let description = descriptionTextView.text
         
-        let itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document()
+        var itemDocumentRef: DocumentReference
         
-        itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Unit": unit as String, "Location": location! as String, "Description": description! as String ], merge: true)
+        if (self.userItem == nil) {
+            itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document()
+            
+            itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Unit": unit as String, "Location": location! as String, "Description": description! as String ], merge: true)
+        } else {
+            itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document((self.userItem?.getID())!)
+            itemDocumentRef.updateData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Unit": unit as String, "Location": location! as String, "Description": description! as String])
+        }
         
-        if (itemPhotoImageView.image != nil && itemPhotoImageView.image?.isEqual(UIImage(systemName: "photo.fill")) == false) {
+        if (self.itemPhotoImageView.image != nil && self.itemPhotoImageView.image?.isEqual(UIImage(systemName: "photo.fill")) == false) {
             
             let storageRef = storage.child("\(userID)/images/items/\(itemDocumentRef.documentID).png")
             storageRef.putData(imageData, metadata: nil, completion: {_, error in

@@ -1,19 +1,19 @@
 //
-//  MyItemsViewController.swift
+//  OtherUsersItemsViewController.swift
 //  food-share
 //
-//  Created by Karyna Babenko on 08/12/2021.
+//  Created by Karen on 12/01/2022.
 //
 
 import UIKit
 import Firebase
 import Lottie
 
-class MyItemsViewController: UIViewController  {
+class OtherUsersItemsViewController: UIViewController  {
     private let db = Firestore.firestore()
     let animationView = AnimationView()
-    
-    @IBOutlet var myItemsCollectionView: UICollectionView!
+
+    @IBOutlet weak var myItemsCollectionView: UICollectionView!
     
     override func viewWillAppear(_ animated: Bool) {
     
@@ -42,7 +42,7 @@ class MyItemsViewController: UIViewController  {
         collectionView.deselectItem(at: indexPath, animated: true)
         
         print("You tapped me")
-        tappedItem = UserItems.itemList[indexPath.row]
+        tappedItem = OtherItems.itemList[indexPath.row]
         goToItemView()
         
     }
@@ -66,46 +66,44 @@ class MyItemsViewController: UIViewController  {
     }
 }
 
-extension MyItemsViewController: UICollectionViewDataSource {
+extension OtherUsersItemsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return UserItems.itemList.count
+        return OtherItems.itemList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCollectionViewCell", for: indexPath) as! MyCollectionViewCell
         
-        cell.setup(with: UserItems.itemList[indexPath.row])
+        cell.setup(with: OtherItems.itemList[indexPath.row])
         return cell
     }
     //set up animation
-    private func setUpAnimation() {
-        //animationView.animation = Animation.named("")
-        animationView.animation = Animation.named("loading")
-        switch traitCollection.userInterfaceStyle {
-                case .light, .unspecified:
-                    animationView.backgroundColor = .white
-                case .dark:
-                    animationView.backgroundColor = .black
-        @unknown default:
-            animationView.animation = Animation.named("loading")
-            animationView.backgroundColor = .white
-        }
-        
-        animationView.frame = view.bounds
-        animationView.center = view.center
-        animationView.contentMode = .scaleAspectFit
-        
-        animationView.loopMode = .repeat(3)
-        animationView.play()
-        view.addSubview(animationView)
-    }
+//    private func setUpAnimation() {
+//        animationView.animation = Animation.named("loading")
+//        switch traitCollection.userInterfaceStyle {
+//                case .light, .unspecified:
+//                    animationView.backgroundColor = .white
+//                case .dark:
+//                    animationView.backgroundColor = .black
+//        @unknown default:
+//            animationView.animation = Animation.named("loading")
+//            animationView.backgroundColor = .white
+//        }
+//        
+//        animationView.frame = view.bounds
+//        animationView.center = view.center
+//        animationView.contentMode = .scaleAspectFit
+//        
+//        animationView.loopMode = .repeat(3)
+//        animationView.play()
+//        view.addSubview(animationView)
+//    }
     
 }
 
-extension MyItemsViewController: UICollectionViewDelegateFlowLayout {
+extension OtherUsersItemsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 350, height: 135)
     }
 }
-
