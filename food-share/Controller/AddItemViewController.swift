@@ -129,6 +129,15 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
+        print("\n\nownerID: \(userItem!.getOwner()) \t itemID: \(userItem!.getID())\n\n")
+        db.collection("Items").document("\(userItem!.getOwner())").collection("user-items").document("\(userItem!.getID())").delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                CustomAnimation.setUp(view: self.view, animationView: self.animationView, frequency: 2, type: "done")
+                print("Document successfully removed!")
+            }
+        }
     }
     
     func setUpCategoryPicker() {
