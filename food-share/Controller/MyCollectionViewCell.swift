@@ -21,8 +21,7 @@ class MyCollectionViewCell: UICollectionViewCell {
             
             ref.downloadURL { url, error in
                 if (error != nil) {
-                    try? self.imageView.image = UIImage(data: Data(contentsOf: URL(string: "https://www.wfp.org/sites/default/files/styles/impact_image/public/2017-01/SOM_20150614_WFP-Laila_Ali_5556.jpg?itok=Ef1CTnPL")!))
-                    
+                    try? self.imageView.image = UIImage(systemName: "photo.fill")
                     print("image fetching - error")
                 } else {
                     try? self.imageView.image = UIImage(data: Data(contentsOf:url!))

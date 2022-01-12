@@ -47,8 +47,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
                 
                 ref.downloadURL { url, error in
                     if (error != nil) {
-                        try? self.itemPhotoImageView.image = UIImage(data: Data(contentsOf: URL(string: "https://www.wfp.org/sites/default/files/styles/impact_image/public/2017-01/SOM_20150614_WFP-Laila_Ali_5556.jpg?itok=Ef1CTnPL")!))
-                        
+                        try? self.itemPhotoImageView.image = UIImage(systemName: "photo.fill")
                         print("image fetching - error")
                     } else {
                         try? self.itemPhotoImageView.image = UIImage(data: Data(contentsOf:url!))
@@ -73,7 +72,6 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         print("Add item vc loaded with data: \(userItem?.getname())")
     }
     

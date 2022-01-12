@@ -82,6 +82,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         task.resume()
         UserItems.getUserItemsList()
+        OtherItems.getOtherItemsList()
     }
     
     func authenticateUserAndLoadHome() {

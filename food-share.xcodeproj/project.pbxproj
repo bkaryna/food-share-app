@@ -28,6 +28,7 @@
 		82FABC7A27616E8D0096E594 /* MyItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FABC7927616E8D0096E594 /* MyItemsViewController.swift */; };
 		82FABC7D2761807C0096E594 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FABC7B2761807C0096E594 /* MyCollectionViewCell.swift */; };
 		82FABC8027618B270096E594 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FABC7F27618B270096E594 /* UserItem.swift */; };
+		9CD0780A278F79A60098D10A /* OtherItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD07809278F79A60098D10A /* OtherItems.swift */; };
 		A5A9F0FE34DFB2C40F59078B /* Pods_food_share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BBC12AEEC2B6EE425778BF /* Pods_food_share.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		82FABC7927616E8D0096E594 /* MyItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItemsViewController.swift; sourceTree = "<group>"; };
 		82FABC7B2761807C0096E594 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		82FABC7F27618B270096E594 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
+		9CD07809278F79A60098D10A /* OtherItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherItems.swift; sourceTree = "<group>"; };
 		9DD87D06B622A82C06474D9A /* Pods-food-share.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-share.debug.xcconfig"; path = "Target Support Files/Pods-food-share/Pods-food-share.debug.xcconfig"; sourceTree = "<group>"; };
 		C3BBC12AEEC2B6EE425778BF /* Pods_food_share.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_food_share.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5224670AEC24F9A57F95DC7 /* Pods-food-share-food-shareUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-share-food-shareUITests.release.xcconfig"; path = "Target Support Files/Pods-food-share-food-shareUITests/Pods-food-share-food-shareUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				82FABC7F27618B270096E594 /* UserItem.swift */,
 				82B050412771264200EA4E6D /* UserItems.swift */,
+				9CD07809278F79A60098D10A /* OtherItems.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				829E31E72726C15A00CBC0C8 /* SceneDelegate.swift in Sources */,
 				820A67C2272C998D00E9918C /* Validation.swift in Sources */,
 				8288533C2773F91A000492C3 /* CustomAnimation.swift in Sources */,
+				9CD0780A278F79A60098D10A /* OtherItems.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
