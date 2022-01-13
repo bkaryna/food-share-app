@@ -104,6 +104,6 @@ extension OtherUsersItemsViewController: UICollectionViewDataSource {
 
 extension OtherUsersItemsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 350, height: 135)
+        return CGSize(width: 400, height: 130)
     }
 }
