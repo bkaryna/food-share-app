@@ -16,21 +16,23 @@ struct OtherItems {
         let db = Firestore.firestore()
         let userID = Auth.auth().currentUser?.uid
         
-        db.collection("Items").getDocuments { querySnapshot, error in
+        DispatchQueue.global().async
+        {        db.collection("Users").getDocuments { querySnapshot, error in
             if error != nil {
                 print("Failed to fetch user list")
             } else {
+                print("\n\nall-documents: \(querySnapshot?.documents.first)\n\n")
                 for document in querySnapshot!.documents {
-                    print("\n\n document: \(document.documentID)\t\t\tuserI: \(userID)\n\n")
-                    if (document.documentID != userID)
-{                    db.collection("Items").document(document.documentID).collection("user-items")
-                        .addSnapshotListener { querySnapshot, error in
-                            guard let documents = querySnapshot?.documents else {
-                                print("Error fetching documents: \(error!)")
-                                return
-                            }
-                            
-                            DispatchQueue.global().async {
+                    print("\n\ndoc id: \(document.documentID)\n\n") // Get documentID
+                    if (document.documentID != userID) {
+                        db.collection("Items").document(document.documentID).collection("user-items")
+                            .addSnapshotListener { querySnapshot, error in
+                                guard let documents = querySnapshot?.documents else {
+                                    print("Error fetching documents: \(error!)")
+                                    return
+                                }
+                                
+                                //DispatchQueue.global().async {
                                 itemList = documents.map { queryDocumentSnapshot -> UserItem in
                                     let data = queryDocumentSnapshot.data()
                                     let _id = queryDocumentSnapshot.documentID
@@ -50,10 +52,12 @@ struct OtherItems {
                                 for item in itemList {
                                     print("<Name: \(item.getname()) \t Id: \(item.getID()) \t dateFrom: \(item.getValidFromDate()) \t dateUntil: \(item.getValidUntilDate())\n")
                                 }
-                            }
-                        }}
+                                //}
+                            }}
                 }
             }
+        }
+        
         }
     }
 }

@@ -13,7 +13,7 @@ class OtherUsersItemsViewController: UIViewController  {
     private let db = Firestore.firestore()
     let animationView = AnimationView()
 
-    @IBOutlet weak var myItemsCollectionView: UICollectionView!
+    @IBOutlet weak var otherItemsCollectionView: UICollectionView!
     
     override func viewWillAppear(_ animated: Bool) {
     
@@ -27,9 +27,9 @@ class OtherUsersItemsViewController: UIViewController  {
         //setUpAnimation
         CustomAnimation.setUp(view: view, animationView: animationView, frequency: 2, type: "loading")
         
-        myItemsCollectionView.delegate = self
-        myItemsCollectionView.dataSource = self
-        myItemsCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
+        otherItemsCollectionView.delegate = self
+        otherItemsCollectionView.dataSource = self
+        otherItemsCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         
         DispatchQueue.main.asyncAfter(deadline: .now()+3) {
             self.animationView.stop()
@@ -73,7 +73,7 @@ extension OtherUsersItemsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCollectionViewCell", for: indexPath) as! MyCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtherCollectionViewCell", for: indexPath) as! OtherCollectionViewCell
         
         cell.setup(with: OtherItems.itemList[indexPath.row])
         return cell

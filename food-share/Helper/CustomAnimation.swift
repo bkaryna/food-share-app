@@ -11,7 +11,6 @@ import Lottie
 
 class CustomAnimation {
     static func setUp(view: UIView, animationView: AnimationView, frequency: Float, type: String) {
-        //animationView.animation = Animation.named("")
         switch type{
         case "loading":
             animationView.animation = Animation.named("loading")

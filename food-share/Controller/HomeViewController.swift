@@ -34,6 +34,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     let animationView = AnimationView()
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if ((Auth.auth().currentUser) != nil){
             setUpUserLabels()
         }
@@ -42,8 +43,9 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         Styling.buttonStyle(myItemsButton)
         Styling.makeImageCornersRound(userPhotoImageView)
 
-        
-        super.viewWillAppear(animated)
+        OtherItems.getOtherItemsList()
+        UserItems.getUserItemsList()
+        //OtherItems.getOtherItemsList()
     }
     
     override func viewDidLoad() {
