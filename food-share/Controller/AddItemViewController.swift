@@ -6,6 +6,7 @@
 //
 import UIKit
 import Firebase
+import FirebaseStorage
 import FirebaseAuth
 import Photos
 import Lottie
