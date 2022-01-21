@@ -1,0 +1,6 @@
+module LocationPicker {
+  umbrella header "LocationPicker-library-umbrella.h"
+
+  export *
+  module * { export * }
+}

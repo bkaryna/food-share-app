@@ -37,14 +37,14 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         super.viewWillAppear(animated)
         if ((Auth.auth().currentUser) != nil){
             setUpUserLabels()
+            OtherItems.getOtherItemsList()
+            UserItems.getUserItemsList()
         }
         disableEdit()
         Styling.buttonStyle(addItemButton)
         Styling.buttonStyle(myItemsButton)
         Styling.makeImageCornersRound(userPhotoImageView)
 
-        OtherItems.getOtherItemsList()
-        UserItems.getUserItemsList()
         //OtherItems.getOtherItemsList()
     }
     
@@ -57,7 +57,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             }
         }
         // Do any additional setup after loading the view.
-        setUpUserLabels()
+//        setUpUserLabels()
         
         CustomAnimation.setUp(view: view, animationView: animationView, frequency: 3, type: "loading")
         
