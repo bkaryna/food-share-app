@@ -25,6 +25,8 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var publishButton: UIButton!
     @IBOutlet weak var discardButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var editPhotoButton: UIButton!
     
     @IBOutlet weak var itemPhotoImageView: UIImageView!
     
@@ -45,10 +47,13 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     private let units = ["item(s)", "piece(s)", "package(s)", "litre(s)", "kilogram(s)", "gram(s)", "carton(s)", "can(s)", "jar(s)"]
     
     override func viewWillAppear(_ animated: Bool) {
-        if userItem != nil {
-            setUpEditItemView()
-        } else {
+        if userItem == nil {
             setUpAddItemView()
+        } else {
+            setUpEditItemView()
+            if (userItem?.getOwner() != userID) {
+                setUpViewOtherItemsView()
+            }
         }
         
         if (chosenLocation != nil) {
@@ -311,6 +316,22 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         setUpUserItemData()
         deleteButton.isHidden = false
+    }
+    
+    func setUpViewOtherItemsView() {
+        locationButton.isHidden = true
+        publishButton.isHidden = true
+        discardButton.isHidden = true
+        deleteButton.isHidden = true
+        editPhotoButton.isHidden = true
+        
+        nameTextView.isEnabled = false
+        categoryTextView.isEnabled = false
+        validUntilTextView.isEnabled = false
+        quantityTextView.isEnabled = false
+        unitPickerView.isMultipleTouchEnabled = false
+        locationTextView.isEnabled = false
+        descriptionTextView.isEnabled = false
     }
 }
 
