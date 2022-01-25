@@ -9,9 +9,12 @@ import UIKit
 import Firebase
 import Lottie
 
-class MyItemsViewController: UIViewController  {
+class MyItemsViewController: UIViewController, UISearchResultsUpdating  {
+    
     private let db = Firestore.firestore()
     let animationView = AnimationView()
+    
+    private let searchController = UISearchController()
     
     @IBOutlet var myItemsCollectionView: UICollectionView!
     
@@ -24,6 +27,9 @@ class MyItemsViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //setup searchbar
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
         //setUpAnimation
         CustomAnimation.setUp(view: view, animationView: animationView, frequency: 2, type: "loading")
         
@@ -35,8 +41,16 @@ class MyItemsViewController: UIViewController  {
             self.animationView.stop()
             self.animationView.isHidden = true
         }
+        
     }
     
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        
+        print(text)
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
