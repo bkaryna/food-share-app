@@ -6,7 +6,12 @@
 //
 import UIKit
 import Firebase
+import FirebaseStorage
+import FirebaseAuth
 import Photos
+import Lottie
+import LocationPicker
+import MapKit
 
 class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var nameTextView: UITextField!
@@ -19,62 +24,172 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBOutlet weak var publishButton: UIButton!
     @IBOutlet weak var discardButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var editPhotoButton: UIButton!
+    
     @IBOutlet weak var itemPhotoImageView: UIImageView!
     
     private let db = Firestore.firestore()
     private let userID = Auth.auth().currentUser!.uid
     private let storage = Storage.storage().reference()
+    private let animationView = AnimationView()
     
-    @IBAction func publishButtonTapped(_ sender: Any) {
-        let name = nameTextView.text
-        let category = categoryTextView.text
+    private var categoryPickerView = UIPickerView()
+    private var datePicker = UIDatePicker()
+    private var unitPickerView = UIPickerView()
     
-        let validFrom = Styling.formatDate(Date.init(), "MMM dd, yyyy")
-        
-        let validUntil = validUntilTextView.text
-        let quantity = quantityTextView.text! + " " + unitTextView.text!
-        let location = locationTextView.text
-        let description = descriptionTextView.text
-        
-        let itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document()
-        
-        itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Location": location! as String, "Description": description! as String ], merge: true)
-        
-        
-        let storageRef = storage.child("\(userID)/images/items/\(itemDocumentRef.documentID).png")
-        storageRef.putData(imageData, metadata: nil, completion: {_, error in
-            guard error == nil else {
-                return
+    var userItem: UserItem?
+    private var chosenLocation: Location?
+    
+    private let categories = ["Fruit", "Vegetables", "Dairy", "Lactose free", "Grains", "Meat", "Fish", "Nonalcoholic beverages", "Alcohol", "Herbs", "Meals", "Desserts", "Baby food", "Cat food", "Dog food"]
+    
+    private let units = ["item(s)", "piece(s)", "package(s)", "litre(s)", "kilogram(s)", "gram(s)", "carton(s)", "can(s)", "jar(s)"]
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if userItem == nil {
+            setUpAddItemView()
+        } else {
+            setUpEditItemView()
+            if (userItem?.getOwner() != userID) {
+                setUpViewOtherItemsView()
             }
-            
-            storageRef.downloadURL (completion: { url, error in
-                guard let url = url, error == nil else {
-                    return
-                }
-                //for future reference
-                let urlString = url.absoluteString
-                print("Download URL: \(urlString)")
-                
-            })
-        })
-    }
-    
-    var categoryPickerView = UIPickerView()
-    var datePicker = UIDatePicker()
-    var unitPickerView = UIPickerView()
-    
-    let categories = ["Fruit", "Vegetables", "Dairy", "Lactose free", "Grains", "Meat", "Fish", "Nonalcoholic beverages", "Alcohol", "Herbs", "Meals", "Desserts", "Baby food", "Cat food", "Dog food"]
-    
-    let units = ["item(s)", "piece(s)", "package(s)", "litre(s)", "kilogram(s)", "gram(s)", "carton(s)", "can(s)", "jar(s)"]
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        }
+        
+        if (chosenLocation != nil) {
+            locationTextView.isHidden = false
+        } else {
+            locationTextView.isHidden = true
+        }
+        
         setUpCategoryPicker()
         setUpDatePicker()
         setUpUnitPicker()
         
+        locationTextView.isEnabled = false
+        
         Styling.buttonStyle(publishButton)
         Styling.buttonStyle(discardButton)
+        Styling.buttonStyle(deleteButton)
+        Styling.makeImageCornersRound(itemPhotoImageView)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("Add item vc loaded with data: \(userItem?.getname())")
+    }
+    
+    @IBAction func publishButtonTapped(_ sender: Any) {
+        let name = nameTextView.text
+        let category = categoryTextView.text
+        
+        let validFrom = Styling.formatDate(Date.init(), "MMM dd, yyyy")
+        
+        let validUntil = validUntilTextView.text
+        let quantity = quantityTextView.text!
+        let unit = unitTextView.text!
+        let description = descriptionTextView.text
+        
+        var userLocation: [String:Double] = ["latitude": (chosenLocation?.coordinate.latitude ?? 0.0) , "longitude": (chosenLocation?.coordinate.longitude ?? 0.0) ]
+        
+        var itemDocumentRef: DocumentReference
+        
+        if (self.userItem == nil) {
+            itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document()
+            
+            itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Unit": unit as String, "Location": userLocation, "Description": description! as String ], merge: true)
+        } else {
+            itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document((self.userItem?.getID())!)
+            itemDocumentRef.updateData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Unit": unit as String, "Location": userLocation, "Description": description! as String])
+        }
+        
+        if (self.itemPhotoImageView.image != nil && self.itemPhotoImageView.image?.isEqual(UIImage(systemName: "photo.fill")) == false) {
+            
+            let storageRef = storage.child("\(userID)/images/items/\(itemDocumentRef.documentID).png")
+            storageRef.putData(imageData, metadata: nil, completion: {_, error in
+                guard error == nil else {
+                    return
+                }
+                
+                storageRef.downloadURL (completion: { url, error in
+                    guard let url = url, error == nil else {
+                        return
+                    }
+                    //for future reference
+                    let urlString = url.absoluteString
+                    print("Download URL: \(urlString)")
+                    
+                })
+            })
+        }
+        
+        CustomAnimation.setUp(view: view, animationView: animationView, frequency: 2, type: "done")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+            self.animationView.stop()
+            self.animationView.isHidden = true
+            self.userItem = nil
+            _ = self.navigationController?.popToRootViewController(animated: true)
+        }
+    }
+    
+    @IBAction func discardButtonTapped(_ sender: Any) {
+        _ = self.navigationController?.popToRootViewController(animated: true)
+        userItem = nil
+    }
+    
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        print("\n\nownerID: \(userItem!.getOwner()) \t itemID: \(userItem!.getID())\n\n")
+        db.collection("Items").document("\(userItem!.getOwner())").collection("user-items").document("\(userItem!.getID())").delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                CustomAnimation.setUp(view: self.view, animationView: self.animationView, frequency: 2, type: "done")
+                print("Document successfully removed!")
+            }
+        }
+    }
+    
+    @IBAction func chooseLocationButtonTapped(_ sender: Any) {
+        locationTextView.isHidden = false
+        let locationPicker = LocationPickerViewController()
+    
+        // you can optionally set initial location
+        let placemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.331686, longitude: -122.030656), addressDictionary: nil)
+        let location = Location(name: "1 Infinite Loop, Cupertino", location: nil, placemark: placemark)
+        locationPicker.location = location
+
+        // button placed on right bottom corner
+        locationPicker.showCurrentLocationButton = true // default: true
+
+        // default: navigation bar's `barTintColor` or `UIColor.white`
+        locationPicker.currentLocationButtonBackground = .blue
+
+        // ignored if initial location is given, shows that location instead
+        locationPicker.showCurrentLocationInitially = true // default: true
+
+        locationPicker.mapType = .standard // default: .Hybrid
+
+        // for searching, see `MKLocalSearchRequest`'s `region` property
+        locationPicker.useCurrentLocationAsHint = true // default: false
+
+        locationPicker.searchBarPlaceholder = "Search places" // default: "Search or enter an address"
+
+        locationPicker.searchHistoryLabel = "Previously searched" // default: "Search History"
+
+        // optional region distance to be used for creation region when user selects place from search results
+        locationPicker.resultRegionDistance = 500 // default: 600
+
+        locationPicker.completion = { location in
+            // do some awesome stuff with location
+            
+            if (location != nil){
+                self.chosenLocation = location!
+                self.locationTextView.text = location?.title
+            }
+        }
+
+        navigationController?.pushViewController(locationPicker, animated: true)
     }
     
     func setUpCategoryPicker() {
@@ -114,76 +229,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func addPhotoButtonTapped(_ sender: Any) {
-        var readWriteStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
-        let picker = UIImagePickerController()
-        
-        PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
-            switch status {
-            case .notDetermined:
-                PHPhotoLibrary.requestAuthorization(for: .readWrite) {
-                    newStatus in
-                    switch newStatus
-                    {case .restricted:
-                        // The system restricted this app's access.
-                        DispatchQueue.main.async {
-                        picker.sourceType = .photoLibrary
-                        picker.delegate = self
-                        picker.allowsEditing = true
-                        self.present(picker, animated: true)
-                        }
-                    case .denied:
-                        DispatchQueue.main.async {
-                            readWriteStatus = .notDetermined
-                            self.informationAlert(title: "Access denied", message: "Please allow access to photo library.")
-                        }
-                    case .authorized:
-                        DispatchQueue.main.async {
-                        picker.sourceType = .photoLibrary
-                        picker.delegate = self
-                        picker.allowsEditing = true
-                        self.present(picker, animated: true)
-                        }
-                    case .limited:
-                        DispatchQueue.main.async {
-                        picker.sourceType = .photoLibrary
-                        picker.delegate = self
-                        picker.allowsEditing = true
-                        self.present(picker, animated: true)
-                        }
-                    @unknown default:
-                        fatalError()
-                    }}
-            case .restricted:
-                // The system restricted this app's access.
-                DispatchQueue.main.async {
-                picker.sourceType = .photoLibrary
-                picker.delegate = self
-                picker.allowsEditing = true
-                self.present(picker, animated: true)
-                }
-            case .denied:
-                DispatchQueue.main.async {
-                    readWriteStatus = .notDetermined
-                    self.informationAlert(title: "Access denied", message: "Please allow access to photo library.")
-                }
-            case .authorized:
-                DispatchQueue.main.async {
-                picker.sourceType = .photoLibrary
-                picker.delegate = self
-                picker.allowsEditing = true
-                self.present(picker, animated: true)
-                }
-            case .limited:
-                DispatchQueue.main.async {
-                    picker.sourceType = .photoLibrary
-                picker.delegate = self
-                picker.allowsEditing = true
-                self.present(picker, animated: true)
-                }
-            @unknown default:
-                fatalError()
-            }
-        }
+        handlePhotoAccessPermissions()
     }
     
     private var image: UIImage = UIImage()
@@ -198,6 +244,94 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: false, completion: nil)
+    }
+    
+    func setUpUserItemData() {
+        nameTextView.text = userItem?.getname()
+        categoryTextView.text = userItem?.getCategory()
+        validUntilTextView.text = userItem?.getValidUntilDate()
+        quantityTextView.text = userItem?.getQuantity()
+        unitTextView.text = userItem?.getUnit()
+        locationTextView.text = userItem?.getLocation()
+        descriptionTextView.text = userItem?.getDescription()
+    }
+    
+    func handlePhotoAccessPermissions() {
+        var readWriteStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+        let picker = UIImagePickerController()
+        
+        PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+            switch status {
+            case .notDetermined:
+                self.handlePhotoAccessPermissions()
+            case .restricted:
+                // The system restricted this app's access.
+                DispatchQueue.main.async {
+                    picker.sourceType = .photoLibrary
+                    picker.delegate = self
+                    picker.allowsEditing = true
+                    self.present(picker, animated: true)
+                }
+            case .denied:
+                DispatchQueue.main.async {
+                    readWriteStatus = .notDetermined
+                    self.informationAlert(title: "Access denied", message: "Please allow access to photo library.")
+                }
+            case .authorized:
+                DispatchQueue.main.async {
+                    picker.sourceType = .photoLibrary
+                    picker.delegate = self
+                    picker.allowsEditing = true
+                    self.present(picker, animated: true)
+                }
+            case .limited:
+                DispatchQueue.main.async {
+                    picker.sourceType = .photoLibrary
+                    picker.delegate = self
+                    picker.allowsEditing = true
+                    self.present(picker, animated: true)
+                }
+            @unknown default:
+                fatalError()
+            }
+        }
+    }
+    
+    func setUpAddItemView() {
+        deleteButton.isHidden = true
+    }
+    
+    func setUpEditItemView() {
+        DispatchQueue.global().async {
+            let ref = self.storage.child("\(self.userItem!.getOwner())/images/items/\(self.userItem!.getID()).png")
+            
+            ref.downloadURL { url, error in
+                if (error != nil) {
+                    try? self.itemPhotoImageView.image = UIImage(systemName: "photo.fill")
+                    print("image fetching - error")
+                } else {
+                    try? self.itemPhotoImageView.image = UIImage(data: Data(contentsOf:url!))
+                }
+            }
+        }
+        setUpUserItemData()
+        deleteButton.isHidden = false
+    }
+    
+    func setUpViewOtherItemsView() {
+        locationButton.isHidden = true
+        publishButton.isHidden = true
+        discardButton.isHidden = true
+        deleteButton.isHidden = true
+        editPhotoButton.isHidden = true
+        
+        nameTextView.isEnabled = false
+        categoryTextView.isEnabled = false
+        validUntilTextView.isEnabled = false
+        quantityTextView.isEnabled = false
+        unitPickerView.isMultipleTouchEnabled = false
+        locationTextView.isEnabled = false
+        descriptionTextView.isEnabled = false
     }
 }
 

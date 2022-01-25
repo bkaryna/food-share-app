@@ -16,12 +16,16 @@ class MyItemsViewController: UIViewController  {
     @IBOutlet var myItemsCollectionView: UICollectionView!
     
     override func viewWillAppear(_ animated: Bool) {
-        
+    
     }
+    
+    var tappedItem: UserItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpAnimation()
+        
+        //setUpAnimation
+        CustomAnimation.setUp(view: view, animationView: animationView, frequency: 2, type: "loading")
         
         myItemsCollectionView.delegate = self
         myItemsCollectionView.dataSource = self
@@ -38,6 +42,27 @@ class MyItemsViewController: UIViewController  {
         collectionView.deselectItem(at: indexPath, animated: true)
         
         print("You tapped me")
+        tappedItem = UserItems.itemList[indexPath.row]
+        goToItemView()
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "myItem" {
+            let destinationController = segue.destination as! AddItemViewController
+            destinationController.userItem = tappedItem
+        }
+    }
+    
+    func goToItemView() {
+        guard let destinationController = self.storyboard?.instantiateViewController(identifier: "AddItemVC") as? AddItemViewController
+        else {
+            print("Failed to load vc")
+            return
+        }
+        destinationController.userItem = tappedItem
+        
+        navigationController?.pushViewController(destinationController, animated: true)
     }
 }
 
@@ -80,7 +105,7 @@ extension MyItemsViewController: UICollectionViewDataSource {
 
 extension MyItemsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 350, height: 135)
+        return CGSize(width: 400, height: 130)
     }
 }
 

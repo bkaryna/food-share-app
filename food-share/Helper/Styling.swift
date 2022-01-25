@@ -15,7 +15,7 @@ class Styling {
     }
     
     static func makeImageCornersRound(_ image: UIImageView) {
-        image.layer.cornerRadius = 125
+        image.layer.cornerRadius = image.frame.height/2
         image.clipsToBounds = true
     }
     

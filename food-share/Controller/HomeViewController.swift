@@ -11,6 +11,7 @@ import GoogleSignIn
 import Firebase
 import FirebaseStorage
 import Photos
+import Lottie
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var userPhotoImageView: UIImageView!
@@ -30,17 +31,21 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     private var image: UIImage = UIImage()
     private var imageData: Data = Data()
     
+    let animationView = AnimationView()
+    
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if ((Auth.auth().currentUser) != nil){
             setUpUserLabels()
+            OtherItems.getOtherItemsList()
+            UserItems.getUserItemsList()
         }
         disableEdit()
         Styling.buttonStyle(addItemButton)
         Styling.buttonStyle(myItemsButton)
         Styling.makeImageCornersRound(userPhotoImageView)
 
-        
-        super.viewWillAppear(animated)
+        //OtherItems.getOtherItemsList()
     }
     
     override func viewDidLoad() {
@@ -52,7 +57,14 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             }
         }
         // Do any additional setup after loading the view.
-        setUpUserLabels()
+//        setUpUserLabels()
+        
+        CustomAnimation.setUp(view: view, animationView: animationView, frequency: 3, type: "loading")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
+            self.animationView.stop()
+            self.animationView.isHidden = true
+        }
         
         //set up navigation bar
         setUpHomeNavigation()
@@ -72,6 +84,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         task.resume()
         UserItems.getUserItemsList()
+        OtherItems.getOtherItemsList()
     }
     
     func authenticateUserAndLoadHome() {
@@ -130,7 +143,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             } else {
                 // Get the download URL for 'images/stars.jpg'
                 try? self.userPhotoImageView.image = UIImage(data: Data(contentsOf: url!))
-                print("\(url?.absoluteString)")
+                print("\(String(describing: url?.absoluteString))")
             }
         }
         

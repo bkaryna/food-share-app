@@ -8,7 +8,7 @@ pod 'Firebase/Firestore'
 pod 'GoogleSignIn'
 pod 'Firebase/Storage'
 pod 'lottie-ios'
-
+pod 'LocationPicker'
 
 target 'food-share' do
   # Comment the next line if you don't want to use dynamic frameworks
