@@ -10,6 +10,8 @@ import FirebaseStorage
 import FirebaseAuth
 import Photos
 import Lottie
+import LocationPicker
+import MapKit
 
 class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var nameTextView: UITextField!
@@ -31,39 +33,35 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     private let storage = Storage.storage().reference()
     private let animationView = AnimationView()
     
-    var categoryPickerView = UIPickerView()
-    var datePicker = UIDatePicker()
-    var unitPickerView = UIPickerView()
+    private var categoryPickerView = UIPickerView()
+    private var datePicker = UIDatePicker()
+    private var unitPickerView = UIPickerView()
     
     var userItem: UserItem?
+    private var chosenLocation: Location?
     
-    let categories = ["Fruit", "Vegetables", "Dairy", "Lactose free", "Grains", "Meat", "Fish", "Nonalcoholic beverages", "Alcohol", "Herbs", "Meals", "Desserts", "Baby food", "Cat food", "Dog food"]
+    private let categories = ["Fruit", "Vegetables", "Dairy", "Lactose free", "Grains", "Meat", "Fish", "Nonalcoholic beverages", "Alcohol", "Herbs", "Meals", "Desserts", "Baby food", "Cat food", "Dog food"]
     
-    let units = ["item(s)", "piece(s)", "package(s)", "litre(s)", "kilogram(s)", "gram(s)", "carton(s)", "can(s)", "jar(s)"]
+    private let units = ["item(s)", "piece(s)", "package(s)", "litre(s)", "kilogram(s)", "gram(s)", "carton(s)", "can(s)", "jar(s)"]
     
     override func viewWillAppear(_ animated: Bool) {
         if userItem != nil {
-            DispatchQueue.global().async {
-                let ref = self.storage.child("\(self.userItem!.getOwner())/images/items/\(self.userItem!.getID()).png")
-                
-                ref.downloadURL { url, error in
-                    if (error != nil) {
-                        try? self.itemPhotoImageView.image = UIImage(systemName: "photo.fill")
-                        print("image fetching - error")
-                    } else {
-                        try? self.itemPhotoImageView.image = UIImage(data: Data(contentsOf:url!))
-                    }
-                }
-            }
-            setUpUserItemData()
-            deleteButton.isHidden = false
+            setUpEditItemView()
         } else {
-            deleteButton.isHidden = true
+            setUpAddItemView()
+        }
+        
+        if (chosenLocation != nil) {
+            locationTextView.isHidden = false
+        } else {
+            locationTextView.isHidden = true
         }
         
         setUpCategoryPicker()
         setUpDatePicker()
         setUpUnitPicker()
+        
+        locationTextView.isEnabled = false
         
         Styling.buttonStyle(publishButton)
         Styling.buttonStyle(discardButton)
@@ -85,18 +83,19 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         let validUntil = validUntilTextView.text
         let quantity = quantityTextView.text!
         let unit = unitTextView.text!
-        let location = locationTextView.text
         let description = descriptionTextView.text
+        
+        var userLocation: [String:Double] = ["latitude": (chosenLocation?.coordinate.latitude ?? 0.0) , "longitude": (chosenLocation?.coordinate.longitude ?? 0.0) ]
         
         var itemDocumentRef: DocumentReference
         
         if (self.userItem == nil) {
             itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document()
             
-            itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Unit": unit as String, "Location": location! as String, "Description": description! as String ], merge: true)
+            itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Unit": unit as String, "Location": userLocation, "Description": description! as String ], merge: true)
         } else {
             itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document((self.userItem?.getID())!)
-            itemDocumentRef.updateData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Unit": unit as String, "Location": location! as String, "Description": description! as String])
+            itemDocumentRef.updateData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Unit": unit as String, "Location": userLocation, "Description": description! as String])
         }
         
         if (self.itemPhotoImageView.image != nil && self.itemPhotoImageView.image?.isEqual(UIImage(systemName: "photo.fill")) == false) {
@@ -146,6 +145,48 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
     
+    @IBAction func chooseLocationButtonTapped(_ sender: Any) {
+        locationTextView.isHidden = false
+        let locationPicker = LocationPickerViewController()
+    
+        // you can optionally set initial location
+        let placemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.331686, longitude: -122.030656), addressDictionary: nil)
+        let location = Location(name: "1 Infinite Loop, Cupertino", location: nil, placemark: placemark)
+        locationPicker.location = location
+
+        // button placed on right bottom corner
+        locationPicker.showCurrentLocationButton = true // default: true
+
+        // default: navigation bar's `barTintColor` or `UIColor.white`
+        locationPicker.currentLocationButtonBackground = .blue
+
+        // ignored if initial location is given, shows that location instead
+        locationPicker.showCurrentLocationInitially = true // default: true
+
+        locationPicker.mapType = .standard // default: .Hybrid
+
+        // for searching, see `MKLocalSearchRequest`'s `region` property
+        locationPicker.useCurrentLocationAsHint = true // default: false
+
+        locationPicker.searchBarPlaceholder = "Search places" // default: "Search or enter an address"
+
+        locationPicker.searchHistoryLabel = "Previously searched" // default: "Search History"
+
+        // optional region distance to be used for creation region when user selects place from search results
+        locationPicker.resultRegionDistance = 500 // default: 600
+
+        locationPicker.completion = { location in
+            // do some awesome stuff with location
+            
+            if (location != nil){
+                self.chosenLocation = location!
+                self.locationTextView.text = location?.title
+            }
+        }
+
+        navigationController?.pushViewController(locationPicker, animated: true)
+    }
+    
     func setUpCategoryPicker() {
         categoryPickerView.delegate = self
         categoryPickerView.dataSource = self
@@ -183,45 +224,41 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func addPhotoButtonTapped(_ sender: Any) {
+        handlePhotoAccessPermissions()
+    }
+    
+    private var image: UIImage = UIImage()
+    private var imageData: Data = Data()
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        image = (info[UIImagePickerController.InfoKey.editedImage] as? UIImage)!
+        imageData = image.pngData()!
+        itemPhotoImageView.image = UIImage(data: imageData)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: false, completion: nil)
+    }
+    
+    func setUpUserItemData() {
+        nameTextView.text = userItem?.getname()
+        categoryTextView.text = userItem?.getCategory()
+        validUntilTextView.text = userItem?.getValidUntilDate()
+        quantityTextView.text = userItem?.getQuantity()
+        unitTextView.text = userItem?.getUnit()
+        locationTextView.text = userItem?.getLocation()
+        descriptionTextView.text = userItem?.getDescription()
+    }
+    
+    func handlePhotoAccessPermissions() {
         var readWriteStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
         let picker = UIImagePickerController()
         
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
             switch status {
             case .notDetermined:
-                PHPhotoLibrary.requestAuthorization(for: .readWrite) {
-                    newStatus in
-                    switch newStatus
-                    {case .restricted:
-                        // The system restricted this app's access.
-                        DispatchQueue.main.async {
-                            picker.sourceType = .photoLibrary
-                            picker.delegate = self
-                            picker.allowsEditing = true
-                            self.present(picker, animated: true)
-                        }
-                    case .denied:
-                        DispatchQueue.main.async {
-                            readWriteStatus = .notDetermined
-                            self.informationAlert(title: "Access denied", message: "Please allow access to photo library.")
-                        }
-                    case .authorized:
-                        DispatchQueue.main.async {
-                            picker.sourceType = .photoLibrary
-                            picker.delegate = self
-                            picker.allowsEditing = true
-                            self.present(picker, animated: true)
-                        }
-                    case .limited:
-                        DispatchQueue.main.async {
-                            picker.sourceType = .photoLibrary
-                            picker.delegate = self
-                            picker.allowsEditing = true
-                            self.present(picker, animated: true)
-                        }
-                    @unknown default:
-                        fatalError()
-                    }}
+                self.handlePhotoAccessPermissions()
             case .restricted:
                 // The system restricted this app's access.
                 DispatchQueue.main.async {
@@ -255,28 +292,25 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
     
-    private var image: UIImage = UIImage()
-    private var imageData: Data = Data()
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        image = (info[UIImagePickerController.InfoKey.editedImage] as? UIImage)!
-        imageData = image.pngData()!
-        itemPhotoImageView.image = UIImage(data: imageData)
+    func setUpAddItemView() {
+        deleteButton.isHidden = true
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: false, completion: nil)
-    }
-    
-    func setUpUserItemData() {
-        nameTextView.text = userItem?.getname()
-        categoryTextView.text = userItem?.getCategory()
-        validUntilTextView.text = userItem?.getValidUntilDate()
-        quantityTextView.text = userItem?.getQuantity()
-        unitTextView.text = userItem?.getUnit()
-        locationTextView.text = userItem?.getLocation()
-        descriptionTextView.text = userItem?.getDescription()
+    func setUpEditItemView() {
+        DispatchQueue.global().async {
+            let ref = self.storage.child("\(self.userItem!.getOwner())/images/items/\(self.userItem!.getID()).png")
+            
+            ref.downloadURL { url, error in
+                if (error != nil) {
+                    try? self.itemPhotoImageView.image = UIImage(systemName: "photo.fill")
+                    print("image fetching - error")
+                } else {
+                    try? self.itemPhotoImageView.image = UIImage(data: Data(contentsOf:url!))
+                }
+            }
+        }
+        setUpUserItemData()
+        deleteButton.isHidden = false
     }
 }
 
