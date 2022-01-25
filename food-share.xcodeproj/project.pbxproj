@@ -29,7 +29,7 @@
 		82FABC7D2761807C0096E594 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FABC7B2761807C0096E594 /* MyCollectionViewCell.swift */; };
 		82FABC8027618B270096E594 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FABC7F27618B270096E594 /* UserItem.swift */; };
 		9C3F8D44278FABC50078CF91 /* OtherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3F8D43278FABC50078CF91 /* OtherCollectionViewCell.swift */; };
-		9C6B2FB3279B82D2006BA521 /* LocationPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 9C6B2FB2279B82D2006BA521 /* LocationPicker */; };
+		9C7CAA3827A06E0F00FF34AB /* LocationPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 9C7CAA3727A06E0F00FF34AB /* LocationPicker */; };
 		9CD0780A278F79A60098D10A /* OtherItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD07809278F79A60098D10A /* OtherItems.swift */; };
 		9CD0780C278F849C0098D10A /* OtherUsersItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD0780B278F849C0098D10A /* OtherUsersItemsViewController.swift */; };
 		A5A9F0FE34DFB2C40F59078B /* Pods_food_share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BBC12AEEC2B6EE425778BF /* Pods_food_share.framework */; };
@@ -75,7 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5A9F0FE34DFB2C40F59078B /* Pods_food_share.framework in Frameworks */,
-				9C6B2FB3279B82D2006BA521 /* LocationPicker in Frameworks */,
+				9C7CAA3827A06E0F00FF34AB /* LocationPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +202,7 @@
 			);
 			name = "food-share";
 			packageProductDependencies = (
-				9C6B2FB2279B82D2006BA521 /* LocationPicker */,
+				9C7CAA3727A06E0F00FF34AB /* LocationPicker */,
 			);
 			productName = "food-share";
 			productReference = 829E31E12726C15A00CBC0C8 /* food-share.app */;
@@ -232,7 +232,7 @@
 			);
 			mainGroup = 829E31D82726C15900CBC0C8;
 			packageReferences = (
-				9C6B2FB1279B82D2006BA521 /* XCRemoteSwiftPackageReference "LocationPicker" */,
+				9C7CAA3627A06E0F00FF34AB /* XCRemoteSwiftPackageReference "LocationPicker" */,
 			);
 			productRefGroup = 829E31E22726C15A00CBC0C8 /* Products */;
 			projectDirPath = "";
@@ -529,7 +529,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9C6B2FB1279B82D2006BA521 /* XCRemoteSwiftPackageReference "LocationPicker" */ = {
+		9C7CAA3627A06E0F00FF34AB /* XCRemoteSwiftPackageReference "LocationPicker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/almassapargali/LocationPicker.git";
 			requirement = {
@@ -540,9 +540,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9C6B2FB2279B82D2006BA521 /* LocationPicker */ = {
+		9C7CAA3727A06E0F00FF34AB /* LocationPicker */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9C6B2FB1279B82D2006BA521 /* XCRemoteSwiftPackageReference "LocationPicker" */;
+			package = 9C7CAA3627A06E0F00FF34AB /* XCRemoteSwiftPackageReference "LocationPicker" */;
 			productName = LocationPicker;
 		};
 /* End XCSwiftPackageProductDependency section */
