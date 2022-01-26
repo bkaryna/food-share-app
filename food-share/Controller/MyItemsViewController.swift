@@ -18,18 +18,20 @@ class MyItemsViewController: UIViewController, UISearchResultsUpdating  {
     
     @IBOutlet var myItemsCollectionView: UICollectionView!
     
-    override func viewWillAppear(_ animated: Bool) {
+    private var userItemsList: Array<UserItem> = UserItems.itemList
+    private var filterCondition: NSRegularExpression = NSRegularExpression(".*")
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("view will appear func")
+        //setup searchbar
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
     }
     
     var tappedItem: UserItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //setup searchbar
-        searchController.searchResultsUpdater = self
-        navigationItem.searchController = searchController
         //setUpAnimation
         CustomAnimation.setUp(view: view, animationView: animationView, frequency: 2, type: "loading")
         
@@ -45,10 +47,17 @@ class MyItemsViewController: UIViewController, UISearchResultsUpdating  {
     }
     
     func updateSearchResults(for searchController: UISearchController) {
+        //self.myItemsCollectionView.reloadData()
         guard let text = searchController.searchBar.text else {
             return
         }
+        self.filterCondition = NSRegularExpression("^\(text).*")
         
+        self.userItemsList = UserItems.itemList.filter({ item in
+            filterCondition.matches("\(item.getname())")
+        })
+        //let vc = searchController.searchResultsController as? MyItemsViewController
+        self.myItemsCollectionView.reloadData()
         print(text)
     }
     
@@ -56,7 +65,7 @@ class MyItemsViewController: UIViewController, UISearchResultsUpdating  {
         collectionView.deselectItem(at: indexPath, animated: true)
         
         print("You tapped me")
-        tappedItem = UserItems.itemList[indexPath.row]
+        tappedItem = userItemsList[indexPath.row]
         goToItemView()
         
     }
@@ -82,16 +91,17 @@ class MyItemsViewController: UIViewController, UISearchResultsUpdating  {
 
 extension MyItemsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return UserItems.itemList.count
+        return userItemsList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCollectionViewCell", for: indexPath) as! MyCollectionViewCell
         
-        cell.setup(with: UserItems.itemList[indexPath.row])
+        cell.setup(with: userItemsList[indexPath.row])
         return cell
     }
+    
     //set up animation
     private func setUpAnimation() {
         //animationView.animation = Animation.named("")
@@ -120,6 +130,23 @@ extension MyItemsViewController: UICollectionViewDataSource {
 extension MyItemsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 400, height: 130)
+    }
+}
+
+extension NSRegularExpression {
+    convenience init(_ pattern: String) {
+        do {
+            try self.init(pattern: pattern)
+        } catch {
+            preconditionFailure("Illegal regular expression: \(pattern).")
+        }
+    }
+}
+
+extension NSRegularExpression {
+    func matches(_ string: String) -> Bool {
+        let range = NSRange(location: 0, length: string.utf16.count)
+        return firstMatch(in: string, options: [], range: range) != nil
     }
 }
 
