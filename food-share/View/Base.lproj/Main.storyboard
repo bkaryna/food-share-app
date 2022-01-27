@@ -507,13 +507,13 @@
         <!--Add Item View Controller-->
         <scene sceneID="DyL-MO-k0g">
             <objects>
-                <viewController storyboardIdentifier="AddItemVC" id="7Hb-cW-dSz" customClass="AddItemViewController" customModule="food_share" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddItemVC" hidesBottomBarWhenPushed="YES" id="7Hb-cW-dSz" customClass="AddItemViewController" customModule="food_share" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CPo-uo-rCf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9D-Cz-rts">
-                                <rect key="frame" x="0.0" y="88" width="414" height="705"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="754"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0WZ-Wj-Hiq">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1168"/>
