@@ -56,7 +56,7 @@ class MyItemsViewController: UIViewController, UISearchResultsUpdating  {
         self.userItemsList = UserItems.itemList.filter({ item in
             filterCondition.matches("\(item.getname())")
         })
-        //let vc = searchController.searchResultsController as? MyItemsViewController
+
         self.myItemsCollectionView.reloadData()
         print(text)
     }

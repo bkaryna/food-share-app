@@ -122,7 +122,12 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             if let document = document, document.exists {
                 name = document.get("Name") as! String
                 email = document.get("Email") as! String
-                phone = document.get("Phone") as! String
+                
+                if (document.get("Phone") != nil){
+                    phone = document.get("Phone") as! String
+                } else {
+                    phone = ""
+                }
                 
                 self.nameTextField.text = name
                 self.emailTextField.text = email
