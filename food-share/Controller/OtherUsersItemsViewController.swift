@@ -23,12 +23,11 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating  
     override func viewWillAppear(_ animated: Bool) {
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
-        self.otherItemsCollectionView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        searchController.searchBar.becomeFirstResponder()
         //setUpAnimation
         CustomAnimation.setUp(view: view, animationView: animationView, frequency: 2, type: "loading")
         
@@ -40,6 +39,7 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating  
             self.animationView.stop()
             self.animationView.isHidden = true
         }
+        self.otherItemsCollectionView.reloadData()
     }
     
     func updateSearchResults(for searchController: UISearchController) {
