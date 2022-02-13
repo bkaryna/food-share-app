@@ -178,6 +178,7 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AppAuth-framework/AppAuth.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC-framework/openssl_grpc.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DropDown-framework/DropDown.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseAuth-framework/FirebaseAuth.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore-framework/FirebaseCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics-framework/FirebaseCoreDiagnostics.framework"
@@ -200,6 +201,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AppAuth-framework/AppAuth.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC-framework/openssl_grpc.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DropDown-framework/DropDown.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseAuth-framework/FirebaseAuth.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore-framework/FirebaseCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics-framework/FirebaseCoreDiagnostics.framework"

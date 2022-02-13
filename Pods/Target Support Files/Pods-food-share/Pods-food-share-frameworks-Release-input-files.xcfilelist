@@ -1,6 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-food-share/Pods-food-share-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AppAuth-framework/AppAuth.framework
 ${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC-framework/openssl_grpc.framework
+${BUILT_PRODUCTS_DIR}/DropDown-framework/DropDown.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseAuth-framework/FirebaseAuth.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCore-framework/FirebaseCore.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics-framework/FirebaseCoreDiagnostics.framework
