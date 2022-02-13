@@ -798,7 +798,7 @@
             </objects>
             <point key="canvasLocation" x="2560.8695652173915" y="2288.8392857142858"/>
         </scene>
-        <!--Other Users Items View Controller-->
+        <!--Sort-->
         <scene sceneID="p3G-91-gbw">
             <objects>
                 <viewController id="FLJ-nh-niN" customClass="OtherUsersItemsViewController" customModule="food_share" customModuleProvider="target" sceneMemberID="viewController">
@@ -869,7 +869,9 @@
                         <viewLayoutGuide key="safeArea" id="QAM-82-xAs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="BCr-We-ZvQ"/>
+                    <navigationItem key="navigationItem" title="Sort" id="BCr-We-ZvQ">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="bkt-10-gR0"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="otherItemsCollectionView" destination="rSG-VL-vm5" id="njb-PS-uS9"/>
                     </connections>
@@ -951,6 +953,7 @@
             <point key="canvasLocation" x="4338" y="828"/>
         </scene>
     </scenes>
+    <color key="tintColor" name="AccentColor"/>
     <resources>
         <image name="google-logo-transparent" width="40" height="41"/>
         <image name="location.fill" catalog="system" width="128" height="121"/>
