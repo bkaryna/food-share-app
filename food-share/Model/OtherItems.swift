@@ -16,8 +16,8 @@ struct OtherItems {
         let db = Firestore.firestore()
         let userID = Auth.auth().currentUser?.uid
         
-        DispatchQueue.global().async
-        {        db.collection("Users").getDocuments { querySnapshot, error in
+        DispatchQueue.global().async {
+            db.collection("Users").getDocuments { querySnapshot, error in
             if error != nil {
                 print("Failed to fetch user list")
             } else {
@@ -45,8 +45,9 @@ struct OtherItems {
                                     let _unit = data["Unit"] as? String ?? ""
                                     let _location = data["Location"] as? String ?? ""
                                     let _description = data["Description"] as? String ?? ""
+                                    let _price = data["Price"] as? String ?? "0"
                                     
-                                    return UserItem(id: _id, owner: document.documentID, name: _name, dateFrom: _dateFrom, dateUntil: _dateUntil, category: _category, quantity: _quantity, unit: _unit, location: _location, description: _description)
+                                    return UserItem(id: _id, owner: document.documentID, name: _name, dateFrom: _dateFrom, dateUntil: _dateUntil, category: _category, price: _price, quantity: _quantity, unit: _unit, location: _location, description: _description)
                                 }
                                 
                                 for item in itemList {

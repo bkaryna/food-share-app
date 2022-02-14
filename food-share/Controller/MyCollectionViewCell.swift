@@ -11,7 +11,9 @@ import FirebaseStorage
 class MyCollectionViewCell: UICollectionViewCell {    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var validFromLabel: UILabel!
     @IBOutlet weak var validUntilLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     
     public func setup(with item: UserItem) {
         let storage = Storage.storage().reference()
@@ -30,7 +32,10 @@ class MyCollectionViewCell: UICollectionViewCell {
         }
 
         nameLabel.text = item.getname()
+        validFromLabel.text = item.getValidFromDate()
         validUntilLabel.text = item.getValidUntilDate()
+        priceLabel.text = item.getPrice()
+        
         Styling.makeImageCornersRound(self.imageView)
     }
 }

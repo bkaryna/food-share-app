@@ -21,6 +21,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var unitTextView: UITextField!
     @IBOutlet weak var locationTextView: UITextField!
     @IBOutlet weak var descriptionTextView: UITextField!
+    @IBOutlet weak var priceTextView: UITextField!
     
     @IBOutlet weak var publishButton: UIButton!
     @IBOutlet weak var discardButton: UIButton!
@@ -29,6 +30,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var editPhotoButton: UIButton!
     
     @IBOutlet weak var itemPhotoImageView: UIImageView!
+    @IBOutlet weak var currencySwitch: UISwitch!
     
     private let db = Firestore.firestore()
     private let userID = Auth.auth().currentUser!.uid
@@ -38,6 +40,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     private var categoryPickerView = UIPickerView()
     private var datePicker = UIDatePicker()
     private var unitPickerView = UIPickerView()
+    private var currencyPickerView = UIPickerView()
     
     var userItem: UserItem?
     private var chosenLocation: Location?
@@ -90,6 +93,14 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         let unit = unitTextView.text!
         let description = descriptionTextView.text
         
+        var price: String = ""
+        if (currencySwitch.isOn || priceTextView.text == "") {
+            price = "0"
+        } else {
+            price = priceTextView.text!
+        }
+        
+        
         var userLocation: [String:Double] = ["latitude": (chosenLocation?.coordinate.latitude ?? 0.0) , "longitude": (chosenLocation?.coordinate.longitude ?? 0.0) ]
         
         var itemDocumentRef: DocumentReference
@@ -97,10 +108,10 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         if (self.userItem == nil) {
             itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document()
             
-            itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Unit": unit as String, "Location": userLocation, "Description": description! as String ], merge: true)
+            itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Price": price, "Quantity": quantity, "Unit": unit as String, "Location": userLocation, "Description": description! as String ], merge: true)
         } else {
             itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document((self.userItem?.getID())!)
-            itemDocumentRef.updateData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Quantity": quantity, "Unit": unit as String, "Location": userLocation, "Description": description! as String])
+            itemDocumentRef.updateData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Price": price, "Quantity": quantity, "Unit": unit as String, "Location": userLocation, "Description": description! as String])
         }
         
         if (self.itemPhotoImageView.image != nil && self.itemPhotoImageView.image?.isEqual(UIImage(systemName: "photo.fill")) == false) {
@@ -132,6 +143,16 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
             _ = self.navigationController?.popToRootViewController(animated: true)
         }
     }
+    
+    @IBAction func freeSwitchTapped(_ sender: UISwitch) {
+        if (sender.isOn == true) {
+            priceTextView.isHidden = true
+        } else {
+            priceTextView.isHidden = false
+        }
+    }
+    
+    
     
     @IBAction func discardButtonTapped(_ sender: Any) {
         _ = self.navigationController?.popToRootViewController(animated: true)
@@ -300,6 +321,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func setUpAddItemView() {
         deleteButton.isHidden = true
+        priceTextView.isHidden = true
     }
     
     func setUpEditItemView() {

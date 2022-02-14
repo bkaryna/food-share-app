@@ -20,8 +20,9 @@ class UserItem {
     private var unit: String
     private var location: String
     private var description: String
+    private var price: String
     
-    init (id: String, owner: String, name: String, dateFrom: String, dateUntil: String, category: String, quantity: String, unit: String, location: String, description: String) {
+    init (id: String, owner: String, name: String, dateFrom: String, dateUntil: String, category: String, price: String, quantity: String, unit: String, location: String, description: String) {
         self.id = id
         self.owner = owner
         self.name = name
@@ -30,6 +31,7 @@ class UserItem {
         
         self.category = category
         self.quantity = quantity
+        self.price = price
         self.unit = unit
         self.location = location
         self.description = description
@@ -73,5 +75,9 @@ class UserItem {
     
     func getDescription() -> String {
         return self.description
+    }
+    
+    func getPrice() -> String {
+        return self.price
     }
 }
