@@ -34,7 +34,18 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating  
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchController.searchBar.becomeFirstResponder()
+        
+        //setUpAnimation
+        CustomAnimation.setUp(view: view, animationView: animationView, frequency: 2, type: "loading")
+        
+        otherItemsCollectionView.delegate = self
+        otherItemsCollectionView.dataSource = self
+        otherItemsCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
+            self.animationView.stop()
+            self.animationView.isHidden = true
+        }
         
         let menuView = UIView(frame: navigationController?.navigationBar.frame ?? .zero)
         navigationController?.navigationBar.topItem?.titleView = menuView
@@ -59,18 +70,6 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating  
                 self.otherItemsCollectionView.reloadData()
             }
         }
-        //setUpAnimation
-        CustomAnimation.setUp(view: view, animationView: animationView, frequency: 2, type: "loading")
-        
-        otherItemsCollectionView.delegate = self
-        otherItemsCollectionView.dataSource = self
-        otherItemsCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
-            self.animationView.stop()
-            self.animationView.isHidden = true
-        }
-        self.otherItemsCollectionView.reloadData()
     }
     
     @objc func topMenuBarTapped(){
@@ -137,6 +136,6 @@ extension OtherUsersItemsViewController: UICollectionViewDataSource {
 
 extension OtherUsersItemsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 400, height: 130)
+        return CGSize(width: 400, height: 145)
     }
 }

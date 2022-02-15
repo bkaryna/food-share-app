@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import Lottie
 
-class MyItemsViewController: UIViewController, UISearchResultsUpdating  {
+class MyItemsViewController: UIViewController, UISearchResultsUpdating {
     
     private let db = Firestore.firestore()
     let animationView = AnimationView()
@@ -101,30 +101,6 @@ extension MyItemsViewController: UICollectionViewDataSource {
         cell.setup(with: userItemsList[indexPath.row])
         return cell
     }
-    
-    //set up animation
-    private func setUpAnimation() {
-        //animationView.animation = Animation.named("")
-        animationView.animation = Animation.named("loading")
-        switch traitCollection.userInterfaceStyle {
-                case .light, .unspecified:
-                    animationView.backgroundColor = .white
-                case .dark:
-                    animationView.backgroundColor = .black
-        @unknown default:
-            animationView.animation = Animation.named("loading")
-            animationView.backgroundColor = .white
-        }
-        
-        animationView.frame = view.bounds
-        animationView.center = view.center
-        animationView.contentMode = .scaleAspectFit
-        
-        animationView.loopMode = .repeat(3)
-        animationView.play()
-        view.addSubview(animationView)
-    }
-    
 }
 
 extension MyItemsViewController: UICollectionViewDelegateFlowLayout {
