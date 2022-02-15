@@ -30,9 +30,9 @@
 		82FABC8027618B270096E594 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FABC7F27618B270096E594 /* UserItem.swift */; };
 		9C3F8D44278FABC50078CF91 /* OtherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3F8D43278FABC50078CF91 /* OtherCollectionViewCell.swift */; };
 		9C7CAA3827A06E0F00FF34AB /* LocationPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 9C7CAA3727A06E0F00FF34AB /* LocationPicker */; };
+		9C9EA2D527BC0C8600C5CE0D /* Pods_food_share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BBC12AEEC2B6EE425778BF /* Pods_food_share.framework */; };
 		9CD0780A278F79A60098D10A /* OtherItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD07809278F79A60098D10A /* OtherItems.swift */; };
 		9CD0780C278F849C0098D10A /* OtherUsersItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD0780B278F849C0098D10A /* OtherUsersItemsViewController.swift */; };
-		A5A9F0FE34DFB2C40F59078B /* Pods_food_share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BBC12AEEC2B6EE425778BF /* Pods_food_share.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5A9F0FE34DFB2C40F59078B /* Pods_food_share.framework in Frameworks */,
+				9C9EA2D527BC0C8600C5CE0D /* Pods_food_share.framework in Frameworks */,
 				9C7CAA3827A06E0F00FF34AB /* LocationPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
