@@ -9,8 +9,9 @@ import UIKit
 import Firebase
 import Lottie
 import DropDown
+import CoreLocation
 
-class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating  {
+class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating, CLLocationManagerDelegate {
     private let db = Firestore.firestore()
     let animationView = AnimationView()
 
@@ -20,6 +21,10 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating  
     private var otherUsersItemsList: Array<UserItem> = OtherItems.itemList
     private var filterCondition: NSRegularExpression = NSRegularExpression(".*")
     private var tappedItem: UserItem!
+    
+    private var usersLocationlatitude: Double = 0.0
+    private var usersLocationlongitude: Double = 0.0
+    
     
     let menu: DropDown = {
         let menu = DropDown()
@@ -62,13 +67,27 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating  
         gesture.numberOfTouchesRequired = 1
         topMenuView.addGestureRecognizer(gesture)
         
-        menu.selectionAction = { index, title in
-            if (index == 2) {
-                self.otherUsersItemsList.sorted{
+        menu.selectionAction = { [self] index, title in
+            if (index == 0) { //price low to high
+                self.otherUsersItemsList = self.otherUsersItemsList.sorted{
+                    $0.getPrice()<$1.getPrice()
+                }
+            } else if (index == 1) { //price high to low
+                self.otherUsersItemsList = self.otherUsersItemsList.sorted{
+                    $0.getPrice()>$1.getPrice()
+                }
+            } else if (index == 2) { //newest first
+                self.otherUsersItemsList = self.otherUsersItemsList.sorted{
                     $0.getValidFromDate()<$1.getValidFromDate()
                 }
-                self.otherItemsCollectionView.reloadData()
+            } else if (index == 3) { //closest to me
+//                handleLocationPermissions()
+                self.otherUsersItemsList = OtherItems.itemList.filter({ item in
+                    item.getLocationName() != "" && (self.calculateDistanceInKilometers(latitude1: item.getLocationLatitude(), longitude1: item.getLocationLongitude(), latitude2: self.usersLocationlatitude, longitude2: self.usersLocationlongitude) < 50)
+                })
             }
+            
+            self.otherItemsCollectionView.reloadData()
         }
     }
     
@@ -117,6 +136,66 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating  
         
         navigationController?.pushViewController(destinationController, animated: true)
     }
+    
+//    func handleLocationPermissions() {
+//        // Get the current location permissions
+//         let status = CLLocationManager.requestLocation()
+//
+//        // Handle each case of location permissions
+//        switch status {
+//            case .authorizedAlways:
+//                getUsersCurrentLocation()
+//            case .authorizedWhenInUse:
+//                getUsersCurrentLocation()
+//            case .denied:
+//                showAlert(title: "Access denied", message: "Please allow access to location in phone Settings.")
+//                return
+//            case .notDetermined:
+//                handleLocationPermissions()
+//            case .restricted:
+//                handleLocationPermissions()
+//        }
+//
+//    }
+    
+    func getUsersCurrentLocation() {
+        // Create a CLLocationManager and assign a delegate
+        let locationManager = CLLocationManager()
+        locationManager.delegate = self
+
+        // Request a user’s location once
+        locationManager.requestLocation()
+    }
+    
+    func locationManager(
+        _ manager: CLLocationManager,
+        didUpdateLocations locations: [CLLocation]
+    ) {
+        if let location = locations.first {
+            usersLocationlatitude = location.coordinate.latitude
+            usersLocationlongitude = location.coordinate.longitude
+        }
+    }
+    
+    func showAlert(title: String, message: String) {
+        var dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        
+        dialogMessage.addAction(okButton)
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
+    
+    func calculateDistanceInKilometers(latitude1: Double, longitude1: Double, latitude2: Double, longitude2: Double) -> Double {
+        //Haversine formula https://www.movable-type.co.uk/scripts/latlong.html
+        //https://www.geeksforgeeks.org/program-distance-two-points-earth/
+        
+        let coordinate1 = CLLocation(latitude: latitude1, longitude: longitude1)
+        let coordinate2 = CLLocation(latitude: latitude2, longitude: longitude2)
+        
+        let distanceKm = coordinate1.distance(from: coordinate2)/1000.0
+        return distanceKm
+    }
+
 }
 
 extension OtherUsersItemsViewController: UICollectionViewDataSource {

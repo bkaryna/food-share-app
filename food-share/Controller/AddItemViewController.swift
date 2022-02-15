@@ -102,16 +102,17 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         
         var userLocation: [String:Double] = ["latitude": (chosenLocation?.coordinate.latitude ?? 0.0) , "longitude": (chosenLocation?.coordinate.longitude ?? 0.0) ]
+        var locationName: String = chosenLocation?.name ?? ""
         
         var itemDocumentRef: DocumentReference
         
         if (self.userItem == nil) {
             itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document()
             
-            itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Price": price, "Quantity": quantity, "Unit": unit as String, "Location": userLocation, "Description": description! as String ], merge: true)
+            itemDocumentRef.setData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Price": price, "Quantity": quantity, "Unit": unit as String, "Location": userLocation, "LocationName": locationName, "Description": description! as String ], merge: true)
         } else {
             itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document((self.userItem?.getID())!)
-            itemDocumentRef.updateData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Price": price, "Quantity": quantity, "Unit": unit as String, "Location": userLocation, "Description": description! as String])
+            itemDocumentRef.updateData([ "Name": name! as String, "Category": category! as String, "Valid from": validFrom as String, "Valid until": validUntil! as String, "Price": price, "Quantity": quantity, "Unit": unit as String, "Location": userLocation, "LocationName": locationName,  "Description": description! as String])
         }
         
         if (self.itemPhotoImageView.image != nil && self.itemPhotoImageView.image?.isEqual(UIImage(systemName: "photo.fill")) == false) {
@@ -151,8 +152,6 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
             priceTextView.isHidden = false
         }
     }
-    
-    
     
     @IBAction func discardButtonTapped(_ sender: Any) {
         _ = self.navigationController?.popToRootViewController(animated: true)
@@ -274,7 +273,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         validUntilTextView.text = userItem?.getValidUntilDate()
         quantityTextView.text = userItem?.getQuantity()
         unitTextView.text = userItem?.getUnit()
-        locationTextView.text = userItem?.getLocation()
+        locationTextView.text = userItem?.getLocationName()
         descriptionTextView.text = userItem?.getDescription()
     }
     

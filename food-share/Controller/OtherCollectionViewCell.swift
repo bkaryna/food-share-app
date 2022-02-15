@@ -35,8 +35,14 @@ class OtherCollectionViewCell: UICollectionViewCell {
         nameLabel.text = item.getname()
         validFromLabel.text = item.getValidFromDate()
         validUntilLabel.text = item.getValidUntilDate()
-        priceLabel.text = "Price: " + item.getPrice()
-        locationLabel.text = "Location: " + item.getLocation()
+        
+        if (item.getPrice() == 0){
+            priceLabel.text = "Free"
+        } else {
+            priceLabel.text = String(item.getPrice())
+        }
+        
+        locationLabel.text = "Location: " + item.getLocationName()
         Styling.makeImageCornersRound(self.imageView)
     }
 }
