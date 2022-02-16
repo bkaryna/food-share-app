@@ -70,7 +70,22 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating, 
         }
         
         //menu.width = view.frame.width*0.5
-        menu.anchorView = topMenuView
+        menu.anchorView = otherItemsCollectionView
+        
+        switch view.traitCollection.userInterfaceStyle {
+                case .light, .unspecified:
+                    menu.backgroundColor = .white
+                    menu.textColor = .black
+                case .dark:
+                    menu.backgroundColor = .black
+                    menu.textColor = .white
+        @unknown default:
+            menu.backgroundColor = .white
+            menu.textColor = .black
+        }
+        
+        menu.selectionBackgroundColor = UIColor(named: "AccentColor")!
+        menu.selectedTextColor = .black
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(topMenuBarTapped))
         gesture.numberOfTapsRequired = 1
