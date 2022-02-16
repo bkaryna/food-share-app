@@ -28,7 +28,7 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating, 
     
     let menu: DropDown = {
         let menu = DropDown()
-        menu.dataSource = ["Price low to high", "Price high to low", "Newest first", "Close to me"]
+        menu.dataSource = ["Price low to high", "Price high to low", "Newest first", "Closest to me"]
         return menu
     }()
     
@@ -106,14 +106,13 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating, 
                     $0.getValidFromDate()>$1.getValidFromDate()
                 }
             } else if (index == 3) { //closest to me
-                //alternative way --> compare complexity
-//                handleLocationPermissions()
-//                self.otherUsersItemsList = otherUsersItemsList.filter({ item in
-//                    item.getLocationName().isEmpty == false && (self.calculateDistanceInKilometers(latitude1: item.getLocationLatitude(), longitude1: item.getLocationLongitude(), latitude2: self.usersLocationlatitude, longitude2: self.usersLocationlongitude) < 50)
-//                })
-                self.otherUsersItemsList.removeAll(where: {$0.getLocationName().isEmpty || (self.calculateDistanceInKilometers(latitude1: $0.getLocationLatitude(), longitude1: $0.getLocationLongitude(), latitude2: self.usersLocationlatitude, longitude2: self.usersLocationlongitude)) > 50.0})
+                //filter --> to consider
+//                self.otherUsersItemsList.removeAll(where: {$0.getLocationName().isEmpty || (self.calculateDistanceInKilometers(latitude1: $0.getLocationLatitude(), longitude1: $0.getLocationLongitude(), latitude2: self.usersLocationlatitude, longitude2: self.usersLocationlongitude)) > 50.0})
+                //sorting
+                self.otherUsersItemsList = OtherItems.itemList.sorted{
+                    calculateDistanceInKilometers(latitude1: $0.getLocationLatitude(), longitude1: $0.getLocationLongitude(), latitude2: usersLocationlatitude, longitude2: usersLocationlongitude) < calculateDistanceInKilometers(latitude1: $1.getLocationLatitude(), longitude1: $1.getLocationLongitude(), latitude2: usersLocationlatitude, longitude2: usersLocationlongitude)
+                }
             }
-            
             self.otherItemsCollectionView.reloadData()
         }
     }
