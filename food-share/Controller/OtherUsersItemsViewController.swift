@@ -40,6 +40,7 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating, 
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsersCurrentLocation()
+        updateSearchResults(for: searchController)
         //setUpAnimation
         CustomAnimation.setUp(view: view, animationView: animationView, frequency: 2, type: "loading")
         
@@ -53,6 +54,15 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating, 
         }
         
         let menuView = UIView(frame: navigationController?.navigationBar.frame ?? .zero)
+        
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
+        label.textAlignment = .center
+        label.text = "Sort"
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = UIColor(named: "AccentColor")
+        
+
+        menuView.addSubview(label)
         navigationController?.navigationBar.topItem?.titleView = menuView
         
         guard let topMenuView = navigationController?.navigationBar.topItem?.titleView else {
