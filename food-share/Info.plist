@@ -81,5 +81,7 @@
 	</array>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>This app uses your location to find offers close to you</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app uses your location to find offers close to you</string>
 </dict>
 </plist>

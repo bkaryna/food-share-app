@@ -53,7 +53,7 @@ struct OtherItems {
                                     }
                                     
                                     for item in itemList {
-                                        print("<Name: \(item.getname()) \t Id: \(item.getID()) \t dateFrom: \(item.getValidFromDate()) \t dateUntil: \(item.getValidUntilDate())\n")
+                                        print("<Name: \(item.getname()) \t Id: \(item.getID()) \t dateFrom: \(item.getValidFromDate()) \t dateUntil: \(item.getValidUntilDate()) \t lat: \(item.getLocationLatitude()) \t long: \(item.getLocationLongitude()) \n")
                                     }
                                     //}
                                 }}

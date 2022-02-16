@@ -39,7 +39,7 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getUsersCurrentLocation()
         //setUpAnimation
         CustomAnimation.setUp(view: view, animationView: animationView, frequency: 2, type: "loading")
         
@@ -69,22 +69,24 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating, 
         
         menu.selectionAction = { [self] index, title in
             if (index == 0) { //price low to high
-                self.otherUsersItemsList = self.otherUsersItemsList.sorted{
+                self.otherUsersItemsList = OtherItems.itemList.sorted{
                     $0.getPrice()<$1.getPrice()
                 }
             } else if (index == 1) { //price high to low
-                self.otherUsersItemsList = self.otherUsersItemsList.sorted{
+                self.otherUsersItemsList = OtherItems.itemList.sorted{
                     $0.getPrice()>$1.getPrice()
                 }
             } else if (index == 2) { //newest first
-                self.otherUsersItemsList = self.otherUsersItemsList.sorted{
-                    $0.getValidFromDate()<$1.getValidFromDate()
+                self.otherUsersItemsList = OtherItems.itemList.sorted{
+                    $0.getValidFromDate()>$1.getValidFromDate()
                 }
             } else if (index == 3) { //closest to me
+                //alternative way --> compare complexity
 //                handleLocationPermissions()
-                self.otherUsersItemsList = OtherItems.itemList.filter({ item in
-                    item.getLocationName() != "" && (self.calculateDistanceInKilometers(latitude1: item.getLocationLatitude(), longitude1: item.getLocationLongitude(), latitude2: self.usersLocationlatitude, longitude2: self.usersLocationlongitude) < 50)
-                })
+//                self.otherUsersItemsList = otherUsersItemsList.filter({ item in
+//                    item.getLocationName().isEmpty == false && (self.calculateDistanceInKilometers(latitude1: item.getLocationLatitude(), longitude1: item.getLocationLongitude(), latitude2: self.usersLocationlatitude, longitude2: self.usersLocationlongitude) < 50)
+//                })
+                self.otherUsersItemsList.removeAll(where: {$0.getLocationName().isEmpty || (self.calculateDistanceInKilometers(latitude1: $0.getLocationLatitude(), longitude1: $0.getLocationLongitude(), latitude2: self.usersLocationlatitude, longitude2: self.usersLocationlongitude)) > 50.0})
             }
             
             self.otherItemsCollectionView.reloadData()
@@ -137,32 +139,11 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating, 
         navigationController?.pushViewController(destinationController, animated: true)
     }
     
-//    func handleLocationPermissions() {
-//        // Get the current location permissions
-//         let status = CLLocationManager.requestLocation()
-//
-//        // Handle each case of location permissions
-//        switch status {
-//            case .authorizedAlways:
-//                getUsersCurrentLocation()
-//            case .authorizedWhenInUse:
-//                getUsersCurrentLocation()
-//            case .denied:
-//                showAlert(title: "Access denied", message: "Please allow access to location in phone Settings.")
-//                return
-//            case .notDetermined:
-//                handleLocationPermissions()
-//            case .restricted:
-//                handleLocationPermissions()
-//        }
-//
-//    }
-    
     func getUsersCurrentLocation() {
         // Create a CLLocationManager and assign a delegate
         let locationManager = CLLocationManager()
         locationManager.delegate = self
-
+        locationManager.requestAlwaysAuthorization()
         // Request a user’s location once
         locationManager.requestLocation()
     }
@@ -174,8 +155,18 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating, 
         if let location = locations.first {
             usersLocationlatitude = location.coordinate.latitude
             usersLocationlongitude = location.coordinate.longitude
+            
+            print("-----my location-----\nlat: \(usersLocationlatitude)\nlong: \(usersLocationlongitude)")
         }
     }
+    
+    func locationManager(
+        _ manager: CLLocationManager,
+        didFailWithError error: Error
+    ) {
+        return
+    }
+
     
     func showAlert(title: String, message: String) {
         var dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -193,6 +184,7 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating, 
         let coordinate2 = CLLocation(latitude: latitude2, longitude: longitude2)
         
         let distanceKm = coordinate1.distance(from: coordinate2)/1000.0
+        print("\n\tDistance: \(distanceKm)")
         return distanceKm
     }
 
