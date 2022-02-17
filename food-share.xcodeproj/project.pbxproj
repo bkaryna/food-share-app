@@ -35,6 +35,9 @@
 		9CD0780A278F79A60098D10A /* OtherItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD07809278F79A60098D10A /* OtherItems.swift */; };
 		9CD0780C278F849C0098D10A /* OtherUsersItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD0780B278F849C0098D10A /* OtherUsersItemsViewController.swift */; };
 		9CDE4D0627BDC3D30067EA02 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE4D0527BDC3D30067EA02 /* MessageViewController.swift */; };
+		9CDE4D0827BDE1490067EA02 /* UserConversations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE4D0727BDE1490067EA02 /* UserConversations.swift */; };
+		9CDE4D0A27BDE7560067EA02 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE4D0927BDE7560067EA02 /* Sender.swift */; };
+		9CDE4D0C27BDE7840067EA02 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE4D0B27BDE7840067EA02 /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +70,9 @@
 		9CD07809278F79A60098D10A /* OtherItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherItems.swift; sourceTree = "<group>"; };
 		9CD0780B278F849C0098D10A /* OtherUsersItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUsersItemsViewController.swift; sourceTree = "<group>"; };
 		9CDE4D0527BDC3D30067EA02 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		9CDE4D0727BDE1490067EA02 /* UserConversations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConversations.swift; sourceTree = "<group>"; };
+		9CDE4D0927BDE7560067EA02 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		9CDE4D0B27BDE7840067EA02 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		9DD87D06B622A82C06474D9A /* Pods-food-share.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-share.debug.xcconfig"; path = "Target Support Files/Pods-food-share/Pods-food-share.debug.xcconfig"; sourceTree = "<group>"; };
 		C3BBC12AEEC2B6EE425778BF /* Pods_food_share.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_food_share.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5224670AEC24F9A57F95DC7 /* Pods-food-share-food-shareUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-share-food-shareUITests.release.xcconfig"; path = "Target Support Files/Pods-food-share-food-shareUITests/Pods-food-share-food-shareUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -116,9 +122,12 @@
 		820A67BE272C901100E9918C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9CDE4D0727BDE1490067EA02 /* UserConversations.swift */,
 				82FABC7F27618B270096E594 /* UserItem.swift */,
 				82B050412771264200EA4E6D /* UserItems.swift */,
 				9CD07809278F79A60098D10A /* OtherItems.swift */,
+				9CDE4D0927BDE7560067EA02 /* Sender.swift */,
+				9CDE4D0B27BDE7840067EA02 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -321,12 +330,15 @@
 				829E31E92726C15A00CBC0C8 /* ViewController.swift in Sources */,
 				829E31E52726C15A00CBC0C8 /* AppDelegate.swift in Sources */,
 				820A67B2272C861700E9918C /* SignUpViewController.swift in Sources */,
+				9CDE4D0827BDE1490067EA02 /* UserConversations.swift in Sources */,
 				82FABC8027618B270096E594 /* UserItem.swift in Sources */,
 				8273D3D7274DB1460070056F /* AddItemViewController.swift in Sources */,
 				820A67B6272C863100E9918C /* LogInViewController.swift in Sources */,
 				82B050422771264200EA4E6D /* UserItems.swift in Sources */,
 				82FABC7A27616E8D0096E594 /* MyItemsViewController.swift in Sources */,
 				9CDE4D0627BDC3D30067EA02 /* MessageViewController.swift in Sources */,
+				9CDE4D0A27BDE7560067EA02 /* Sender.swift in Sources */,
+				9CDE4D0C27BDE7840067EA02 /* Message.swift in Sources */,
 				82A393A6273DF8F300C16A74 /* HomeViewController.swift in Sources */,
 				829E31E72726C15A00CBC0C8 /* SceneDelegate.swift in Sources */,
 				820A67C2272C998D00E9918C /* Validation.swift in Sources */,
@@ -489,7 +501,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "bkaryna.food-share";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -509,7 +521,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "bkaryna.food-share";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

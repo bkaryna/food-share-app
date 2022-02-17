@@ -11,6 +11,7 @@ import UIKit
 class MessageListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var messageListTable: UITableView!
+    var userConversations = UserConversations()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,7 @@ class MessageListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
