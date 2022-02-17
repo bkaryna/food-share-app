@@ -57,13 +57,15 @@ class UserConversations {
     public func fetchMessagesForConversation(withUser: String) {
         let db = Firestore.firestore()
         
-        DispatchQueue.global().async{               db.collection("Messages").document(self.conversationsList[withUser]!).collection("ConversationHistory")
-            .addSnapshotListener { querySnapshot, error in
-                guard let documents = querySnapshot?.documents else {
-                    print("Error fetching documents: \(error!)")
-                    return
-                }
-                self.messages = documents.map { queryDocumentSnapshot -> Message in
+        DispatchQueue.global().async{
+            if (self.conversationsList[withUser] != nil) {
+                db.collection("Messages").document(self.conversationsList[withUser]!).collection("ConversationHistory").order(by: "SentDate", descending: false)
+                .addSnapshotListener { querySnapshot, error in
+                    guard let documents = querySnapshot?.documents else {
+                        print("Error fetching documents: \(error!)")
+                        return
+                    }
+                    self.messages = documents.map { queryDocumentSnapshot -> Message in
                         let data = queryDocumentSnapshot.data()
                         let _content = data["Content"] as? String ?? ""
                         let _senderDisplayName = data["SenderDisplayName"] as? String ?? "Unknown User"
@@ -74,10 +76,8 @@ class UserConversations {
                         
                         return Message(sender: Sender(senderId: _senderID, displayName: _senderDisplayName), messageID: _messageID, sentDate: _sentDate, content: _content)
                     }
-            }}
-    
-        self.messages = self.messages.sorted {
-            $0.sentDate<$1.sentDate
+                }}
+            
         }
     }
     

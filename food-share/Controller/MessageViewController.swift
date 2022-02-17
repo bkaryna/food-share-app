@@ -34,12 +34,14 @@ class MessageViewController: MessagesViewController, InputBarAccessoryViewDelega
         
         maintainPositionOnKeyboardFrameChanged = true
         scrollsToLastItemOnKeyboardBeginsEditing = true
+        
         messageInputBar.inputTextView.tintColor = UIColor(named: "AccentColor")
         messageInputBar.sendButton.setTitleColor(.systemTeal, for: .normal)
         
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
+        messageInputBar.delegate = self
         
         print("MA ID: \(userID)")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -91,14 +93,10 @@ class MessageViewController: MessagesViewController, InputBarAccessoryViewDelega
             self.messagesCollectionView.scrollToLastItem(at: .bottom, animated: true)
     }
     
-    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {//When use press send button this method is called.
+    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        //When use press send button this method is called.
         print("----Send button--")
-        //clearing input field
-//        inputBar.inputTextView.text = ""
-//        messagesCollectionView.reloadData()
-//        messagesCollectionView.scrollToLastItem(at: .bottom, animated: true)
-        // messagesCollectionView.scrollToBottom(animated: true)
- 
+
         
         let message = Message(sender: currentUser, messageID: UUID().uuidString, sentDate: Date(), content: text)
     //calling function to insert and save message
@@ -111,17 +109,17 @@ class MessageViewController: MessagesViewController, InputBarAccessoryViewDelega
         // Send button activity animation
         messageInputBar.sendButton.startAnimating()
         messageInputBar.inputTextView.placeholder = "Sending..."
-        DispatchQueue.global(qos: .default).async {
+//        DispatchQueue.global().async {
             // fake send request task
             self.insertNewMessage(message)
             self.save(message)
             
-            DispatchQueue.main.async { [weak self] in
-                self?.messageInputBar.sendButton.stopAnimating()
-                self?.messageInputBar.inputTextView.placeholder = "Aa"
+            
+            self.messageInputBar.sendButton.stopAnimating()
+            self.messageInputBar.inputTextView.placeholder = "Aa"
   
-                self?.messagesCollectionView.scrollToBottom(animated: true)
-            }
-        }
+            //self.messagesCollectionView.scrollToBottom(animated: true)
+            self.messagesCollectionView.reloadData()
+//        }
     }
 }
