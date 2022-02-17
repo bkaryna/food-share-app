@@ -107,7 +107,7 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating, 
                 }
             } else if (index == 3) { //closest to me
                 //filter --> to consider
-//                self.otherUsersItemsList.removeAll(where: {$0.getLocationName().isEmpty || (self.calculateDistanceInKilometers(latitude1: $0.getLocationLatitude(), longitude1: $0.getLocationLongitude(), latitude2: self.usersLocationlatitude, longitude2: self.usersLocationlongitude)) > 50.0})
+//                self.otherUsersItemsList.removeAll(where: {$0.getLo cationName().isEmpty || (self.calculateDistanceInKilometers(latitude1: $0.getLocationLatitude(), longitude1: $0.getLocationLongitude(), latitude2: self.usersLocationlatitude, longitude2: self.usersLocationlongitude)) > 50.0})
                 //sorting
                 self.otherUsersItemsList = OtherItems.itemList.sorted{
                     calculateDistanceInKilometers(latitude1: $0.getLocationLatitude(), longitude1: $0.getLocationLongitude(), latitude2: usersLocationlatitude, longitude2: usersLocationlongitude) < calculateDistanceInKilometers(latitude1: $1.getLocationLatitude(), longitude1: $1.getLocationLongitude(), latitude2: usersLocationlatitude, longitude2: usersLocationlongitude)

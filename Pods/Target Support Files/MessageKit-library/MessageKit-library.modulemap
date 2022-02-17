@@ -1,0 +1,6 @@
+module MessageKit {
+  umbrella header "MessageKit-library-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -10,6 +10,8 @@ pod 'Firebase/Storage'
 pod 'lottie-ios'
 pod 'LocationPicker'
 pod 'DropDown'
+pod 'MessageKit'
+pod 'SDWebImage'
 
 target 'food-share' do
   # Comment the next line if you don't want to use dynamic frameworks
