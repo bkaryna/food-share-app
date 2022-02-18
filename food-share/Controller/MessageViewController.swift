@@ -16,7 +16,7 @@ class MessageViewController: MessagesViewController, InputBarAccessoryViewDelega
     
     let userID = Auth.auth().currentUser!.uid
     let currentUser = Sender(senderId: Auth.auth().currentUser!.uid, displayName: Auth.auth().currentUser!.displayName ?? "Me")
-    let otherUser = Sender(senderId: "oCtxU80PjVM4BFA8bh9guXDeubz2", displayName: "Tony")
+    var otherUser: Sender = Sender(senderId: "", displayName: "")
     let db = Firestore.firestore()
     
     var userConversations = UserConversations()
@@ -24,9 +24,11 @@ class MessageViewController: MessagesViewController, InputBarAccessoryViewDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        userConversations = UserConversations(withUser: self.otherUser.senderId)
-        
+//        userConversations = UserConversations(withUser: self.otherUser.senderId)
         userConversations.conversationsList["oCtxU80PjVM4BFA8bh9guXDeubz2"] = "V8LpJWRnhj6VJHiJYHEl"
+        
+        userConversations.fetchCurrentUsersConversationsList()
+        userConversations.fetchMessagesForConversation(withUser: self.otherUser.senderId)
     }
     
     override func viewDidLoad() {
@@ -34,6 +36,8 @@ class MessageViewController: MessagesViewController, InputBarAccessoryViewDelega
         
         maintainPositionOnKeyboardFrameChanged = true
         scrollsToLastItemOnKeyboardBeginsEditing = true
+        
+        userConversations.fetchCurrentUsersConversationsList()
         
         messageInputBar.inputTextView.tintColor = UIColor(named: "AccentColor")
         messageInputBar.sendButton.setTitleColor(.systemTeal, for: .normal)
@@ -43,11 +47,10 @@ class MessageViewController: MessagesViewController, InputBarAccessoryViewDelega
         messagesCollectionView.messagesDisplayDelegate = self
         messageInputBar.delegate = self
         
-        print("MA ID: \(userID)")
+        print("view loaded with sender: \(otherUser)")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.messagesCollectionView.reloadData()
         }
-        
         
     }
     
@@ -64,7 +67,7 @@ class MessageViewController: MessagesViewController, InputBarAccessoryViewDelega
     }
     
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? .blue: .lightGray
+        return isFromCurrentSender(message: message) ? (UIColor(named: "AccentColor")as! UIColor) : .gray
     }
     
     private func insertNewMessage(_ message: Message) {//add the message to the messages array and reload it

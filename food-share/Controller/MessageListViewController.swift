@@ -38,6 +38,11 @@ class MessageListViewController: UIViewController, UITableViewDelegate, UITableV
         //Show chat messages
         let vc = MessageViewController()
         vc.title = "Tony"
+    
+        var test = Array(userConversations.conversationsList)[indexPath.row].key
+        print("-----test-----\n\(test)")
+        vc.otherUser = Sender(senderId: test, displayName: "GenericName")
+        print("-----test-----\n\(vc.otherUser)")
         navigationController?.pushViewController(vc, animated: true)
     }
     
