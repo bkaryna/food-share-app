@@ -229,7 +229,7 @@ extension OtherUsersItemsViewController: UICollectionViewDataSource {
         let item = otherUsersItemsList[indexPath.row]
         
         if(item.stateActive() == false) {
-            cell.backgroundColor = .lightGray
+            cell.backgroundColor = .darkGray
         } else {
             cell.backgroundColor = .clear
         }

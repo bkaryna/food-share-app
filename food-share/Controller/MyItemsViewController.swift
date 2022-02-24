@@ -101,7 +101,7 @@ extension MyItemsViewController: UICollectionViewDataSource {
         let item = userItemsList[indexPath.row]
         
         if(item.stateActive() == false) {
-            cell.backgroundColor = .lightGray
+            cell.backgroundColor = .darkGray
         } else {
             cell.backgroundColor = .clear
         }

@@ -28,9 +28,10 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var editPhotoButton: UIButton!
+    @IBOutlet weak var deactivateButton: UIButton!
     
     @IBOutlet weak var itemPhotoImageView: UIImageView!
-    @IBOutlet weak var currencySwitch: UISwitch!
+    @IBOutlet weak var priceSwitch: UISwitch!
     
     private let db = Firestore.firestore()
     private let userID = Auth.auth().currentUser!.uid
@@ -41,6 +42,8 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     private var datePicker = UIDatePicker()
     private var unitPickerView = UIPickerView()
     private var currencyPickerView = UIPickerView()
+    
+    @IBOutlet weak var freeSwitchStackView: UIStackView!
     
     var userItem: UserItem?
     private var chosenLocation: Location?
@@ -59,21 +62,22 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
         }
         
-        if (chosenLocation != nil) {
-            locationTextView.isHidden = false
-        } else {
-            locationTextView.isHidden = true
-        }
-        
-        setUpCategoryPicker()
-        setUpDatePicker()
-        setUpUnitPicker()
-        
-        locationTextView.isEnabled = false
+//        if (chosenLocation != nil) {
+//            locationTextView.isHidden = false
+//        } else {
+//            locationTextView.isHidden = true
+//        }
+//
+//        setUpCategoryPicker()
+//        setUpDatePicker()
+//        setUpUnitPicker()
+//
+//        locationTextView.isEnabled = false
         
         Styling.buttonStyle(publishButton)
         Styling.buttonStyle(discardButton)
         Styling.buttonStyle(deleteButton)
+        Styling.buttonStyle(deactivateButton)
         Styling.makeImageCornersRound(itemPhotoImageView)
     }
     
@@ -94,9 +98,10 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         let description = descriptionTextView.text
         
         var price: String = ""
-        if (currencySwitch.isOn || priceTextView.text == "") {
+        if (priceSwitch.isOn || priceTextView.text == "") {
             price = "0"
         } else {
+            let priceFormatted = priceTextView.text!.replacingOccurrences(of: ",", with: ".")
             price = priceTextView.text!
         }
         
@@ -168,6 +173,20 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
                 print("Document successfully removed!")
             }
         }
+    }
+    
+    @IBAction func deactivateButtonTapped(_ sender: Any) {
+        
+        let date = Date().dayBefore
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        
+        let newFormattedDate = dateFormatter.string(from: date)
+        
+        let itemDocumentRef = db.collection("Items").document(userID).collection("user-items").document((self.userItem?.getID())!)
+        
+        itemDocumentRef.updateData([ "Valid until": newFormattedDate as String])
+        _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func chooseLocationButtonTapped(_ sender: Any) {
@@ -275,6 +294,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         unitTextView.text = userItem?.getUnit()
         locationTextView.text = userItem?.getLocationName()
         descriptionTextView.text = userItem?.getDescription()
+        priceTextView.text = "\(userItem?.getPrice() ?? 0.0)"
     }
     
     func handlePhotoAccessPermissions() {
@@ -321,6 +341,19 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     func setUpAddItemView() {
         deleteButton.isHidden = true
         priceTextView.isHidden = true
+        
+        if (chosenLocation != nil) {
+            locationTextView.isHidden = false
+        } else {
+            locationTextView.isHidden = true
+        }
+        
+        setUpCategoryPicker()
+        setUpDatePicker()
+        setUpUnitPicker()
+        deactivateButton.isHidden = true
+        
+        locationTextView.isEnabled = false
     }
     
     func setUpEditItemView() {
@@ -337,7 +370,28 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
         }
         setUpUserItemData()
+        deactivateButton.isHidden = false
         deleteButton.isHidden = false
+        
+        if (chosenLocation != nil) {
+            locationTextView.isHidden = false
+        } else {
+            locationTextView.isHidden = true
+        }
+        
+        if (userItem?.getPrice() == 0.0 || userItem?.getPrice() == nil) {
+            priceSwitch.isOn = true
+            priceTextView.isHidden = true
+        } else {
+            priceSwitch.isOn = false
+        }
+        
+        setUpCategoryPicker()
+        setUpDatePicker()
+        setUpUnitPicker()
+        
+        
+        locationTextView.isEnabled = false
     }
     
     func setUpViewOtherItemsView() {
@@ -351,9 +405,17 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         categoryTextView.isEnabled = false
         validUntilTextView.isEnabled = false
         quantityTextView.isEnabled = false
+        unitTextView.isEnabled = false
         unitPickerView.isMultipleTouchEnabled = false
-        locationTextView.isEnabled = false
         descriptionTextView.isEnabled = false
+        locationTextView.isHidden = false
+        validUntilTextView.text = "Valid until: \(userItem?.getValidUntilDate() ?? "")"
+        priceTextView.text = "Price: \(userItem?.getPrice() ?? 0.0)"
+        priceTextView.isEnabled = false
+        locationTextView.text = userItem?.getLocationName()
+        
+        freeSwitchStackView.isHidden = true
+        deactivateButton.isHidden = true
     }
 }
 

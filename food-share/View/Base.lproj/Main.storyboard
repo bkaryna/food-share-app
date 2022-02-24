@@ -652,11 +652,24 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="xE7-s5-z8V"/>
                                                         </constraints>
-                                                        <state key="normal" title="Discard">
+                                                        <state key="normal" title="Discard changes">
                                                             <color key="titleColor" name="ButtonInactiveText"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="discardButtonTapped:" destination="7Hb-cW-dSz" eventType="touchUpInside" id="4J6-ix-4kP"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3XK-Ed-0bB">
+                                                        <rect key="frame" x="0.0" y="165" width="310" height="60"/>
+                                                        <color key="backgroundColor" name="ButtonInactive"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="RW4-iK-5yo"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Deactivate">
+                                                            <color key="titleColor" name="ButtonInactiveText"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="deactivateButtonTapped:" destination="7Hb-cW-dSz" eventType="touchUpInside" id="WUl-oV-eWP"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1J-b7-abI">
@@ -721,15 +734,17 @@
                     <navigationItem key="navigationItem" id="hff-ul-e23"/>
                     <connections>
                         <outlet property="categoryTextView" destination="Tkg-Fw-cff" id="sya-lz-FT1"/>
-                        <outlet property="currencySwitch" destination="w3W-Tf-1cW" id="XGL-t8-QNF"/>
+                        <outlet property="deactivateButton" destination="3XK-Ed-0bB" id="IDA-gf-uWx"/>
                         <outlet property="deleteButton" destination="h1J-b7-abI" id="G01-v6-oYx"/>
                         <outlet property="descriptionTextView" destination="d0q-p3-Mvp" id="Z8D-e8-TUU"/>
                         <outlet property="discardButton" destination="F8W-2l-yk7" id="dQy-a7-bLB"/>
                         <outlet property="editPhotoButton" destination="5Sy-kw-2K9" id="6xo-8H-PMu"/>
+                        <outlet property="freeSwitchStackView" destination="SeW-p6-yEN" id="gmO-hF-L0U"/>
                         <outlet property="itemPhotoImageView" destination="WPM-wH-qT7" id="hvz-PY-S5J"/>
                         <outlet property="locationButton" destination="koD-vi-IFs" id="aYQ-Mg-SLM"/>
                         <outlet property="locationTextView" destination="BB8-8t-3vx" id="OtJ-Fz-9b3"/>
                         <outlet property="nameTextView" destination="tnH-aI-VQa" id="xZi-QU-Rz3"/>
+                        <outlet property="priceSwitch" destination="w3W-Tf-1cW" id="XGL-t8-QNF"/>
                         <outlet property="priceTextView" destination="dNs-t6-CMH" id="5Hr-3O-VaH"/>
                         <outlet property="publishButton" destination="YvH-vg-5nB" id="hwg-L2-EXv"/>
                         <outlet property="quantityTextView" destination="T0h-wk-qwD" id="L2E-ye-lo1"/>

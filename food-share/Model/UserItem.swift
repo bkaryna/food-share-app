@@ -104,4 +104,22 @@ class UserItem {
     func stateActive() -> Bool {
         return self.active
     }
+    
+    func deactivate() {
+        let date = Date().dayBefore
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        
+        self.validFrom = dateFormatter.string(from: date)
+    }
+}
+
+extension Date {
+    var dayAfter: Date {
+        return Calendar.current.date(byAdding: .day, value: 1, to: self)!
+    }
+
+    var dayBefore: Date {
+        return Calendar.current.date(byAdding: .day, value: -1, to: self)!
+    }
 }
