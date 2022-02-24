@@ -102,8 +102,11 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating, 
                     $0.getPrice()>$1.getPrice()
                 }
             } else if (index == 2) { //newest first
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd MMM yyyy"
+                
                 self.otherUsersItemsList = OtherItems.itemList.sorted{
-                    $0.getValidFromDate()>$1.getValidFromDate()
+                    dateFormatter.date(from: $0.getValidFromDate())!>dateFormatter.date(from: $1.getValidFromDate())!
                 }
             } else if (index == 3) { //closest to me
                 //filter --> to consider
@@ -223,7 +226,15 @@ extension OtherUsersItemsViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtherCollectionViewCell", for: indexPath) as! OtherCollectionViewCell
         
-        cell.setup(with: otherUsersItemsList[indexPath.row])
+        let item = otherUsersItemsList[indexPath.row]
+        
+        if(item.stateActive() == false) {
+            cell.backgroundColor = .lightGray
+        } else {
+            cell.backgroundColor = .clear
+        }
+        
+        cell.setup(with: item)
         return cell
     }
     
