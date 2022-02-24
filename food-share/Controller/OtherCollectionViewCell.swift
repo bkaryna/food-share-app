@@ -33,13 +33,13 @@ class OtherCollectionViewCell: UICollectionViewCell {
         }
 
         nameLabel.text = item.getname()
-        validFromLabel.text = item.getValidFromDate()
-        validUntilLabel.text = item.getValidUntilDate()
+        validFromLabel.text = "Valid from: " + item.getValidFromDate()
+        validUntilLabel.text = "Valid until: " + item.getValidUntilDate()
         
         if (item.getPrice() == 0){
             priceLabel.text = "Price: free"
         } else {
-            priceLabel.text = "Price: " + String(item.getPrice())
+            priceLabel.text = "Price: " + String(item.getPrice()) + " zl"
         }
         
         locationLabel.text = "Location: " + item.getLocationName()

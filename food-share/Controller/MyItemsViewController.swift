@@ -98,7 +98,16 @@ extension MyItemsViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCollectionViewCell", for: indexPath) as! MyCollectionViewCell
         
-        cell.setup(with: userItemsList[indexPath.row])
+        let item = userItemsList[indexPath.row]
+        
+        if(item.stateActive() == false) {
+            cell.backgroundColor = .lightGray
+        } else {
+            cell.backgroundColor = .clear
+        }
+        
+        cell.setup(with: item)
+        
         return cell
     }
 }

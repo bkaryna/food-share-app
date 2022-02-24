@@ -22,6 +22,7 @@ class UserItem {
     private var locationName: String
     private var description: String
     private var price: Double
+    private var active: Bool
     
     init (id: String, owner: String, name: String, dateFrom: String, dateUntil: String, category: String, price: Double, quantity: String, unit: String, location: [String:Double], locationName: String, description: String) {
         self.id = id
@@ -37,6 +38,15 @@ class UserItem {
         self.location = location
         self.locationName = locationName
         self.description = description
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        
+        if Date() < dateFormatter.date(from: validUntil) ?? Date() {
+            self.active = true
+        } else {
+            self.active = false
+        }
     }
     
     func getID() -> String {
@@ -89,5 +99,9 @@ class UserItem {
     
     func getPrice() -> Double {
         return self.price
+    }
+    
+    func stateActive() -> Bool {
+        return self.active
     }
 }

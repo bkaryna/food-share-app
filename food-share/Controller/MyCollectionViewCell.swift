@@ -32,13 +32,13 @@ class MyCollectionViewCell: UICollectionViewCell {
         }
 
         nameLabel.text = item.getname()
-        validFromLabel.text = item.getValidFromDate()
-        validUntilLabel.text = item.getValidUntilDate()
+        validFromLabel.text = "Valid from: " + item.getValidFromDate()
+        validUntilLabel.text = "Valid until: " + item.getValidUntilDate()
         
         if (item.getPrice() == 0){
             priceLabel.text = "Free"
         } else {
-            priceLabel.text = String(item.getPrice())
+            priceLabel.text = "Price: " + String(item.getPrice()) + " zl"
         }
         
         Styling.makeImageCornersRound(self.imageView)

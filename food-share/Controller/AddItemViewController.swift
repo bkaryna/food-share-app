@@ -86,7 +86,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         let name = nameTextView.text
         let category = categoryTextView.text
         
-        let validFrom = Styling.formatDate(Date.init(), "MMM dd, yyyy")
+        let validFrom = Styling.formatDate(Date.init(), "dd MMM yyyy")
         
         let validUntil = validUntilTextView.text
         let quantity = quantityTextView.text!
