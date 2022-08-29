@@ -29,7 +29,7 @@ class UserConversations {
     
     public func fetchCurrentUsersConversationsList() {
         let db = Firestore.firestore()
-        let userID: String = Auth.auth().currentUser!.uid
+        let userID: String = Auth.auth().currentUser?.uid ?? ""
         
         DispatchQueue.global().async {
             db.collection("Messages").whereField("Users", arrayContains: userID).addSnapshotListener { querySnapshot, error in

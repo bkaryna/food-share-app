@@ -137,6 +137,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
                     print("Download URL: \(urlString)")
                     
                 })
+                
             })
         }
         
