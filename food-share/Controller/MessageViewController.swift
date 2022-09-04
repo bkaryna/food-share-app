@@ -24,11 +24,15 @@ class MessageViewController: MessagesViewController, InputBarAccessoryViewDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        userConversations = UserConversations(withUser: self.otherUser.senderId)
-        userConversations.conversationsList["oCtxU80PjVM4BFA8bh9guXDeubz2"] = "V8LpJWRnhj6VJHiJYHEl"
+//        userConversations = UserConversations(withUser: self.currentUser.senderId)
+//        userConversations.conversationsList["oCtxU80PjVM4BFA8bh9guXDeubz2"] = "V8LpJWRnhj6VJHiJYHEl"
         
-        userConversations.fetchCurrentUsersConversationsList()
-        userConversations.fetchMessagesForConversation(withUser: self.otherUser.senderId)
+        DispatchQueue.main.async {
+            self.userConversations.fetchCurrentUsersConversationsList()
+            print("Printing user conversations: \(self.userConversations.conversationsList)")
+            self.userConversations.fetchMessagesForConversation(withUser: self.otherUser.senderId)
+        }
+        print("Printing user messages: \(userConversations.messages)")
     }
     
     override func viewDidLoad() {
@@ -37,7 +41,7 @@ class MessageViewController: MessagesViewController, InputBarAccessoryViewDelega
         maintainPositionOnKeyboardFrameChanged = true
         scrollsToLastItemOnKeyboardBeginsEditing = true
         
-        userConversations.fetchCurrentUsersConversationsList()
+//        userConversations.fetchCurrentUsersConversationsList()
         
         messageInputBar.inputTextView.tintColor = UIColor(named: "AccentColor")
         messageInputBar.sendButton.setTitleColor(.systemTeal, for: .normal)
@@ -78,7 +82,7 @@ class MessageViewController: MessagesViewController, InputBarAccessoryViewDelega
     }
     
     private func save(_ message: Message) {//Preparing the data as per our firestore collection
-            let data: [String: Any] = ["Content": message.content,"SentDate": message.sentDate, "SenderID": message.sender.senderId, "DenderDisplayName": message.sender.displayName]
+            let data: [String: Any] = ["Content": message.content,"SentDate": message.sentDate, "SenderID": message.sender.senderId, "SenderDisplayName": message.sender.displayName]
             
             //Writing it to the thread using the saved document reference we saved in load chat function
             

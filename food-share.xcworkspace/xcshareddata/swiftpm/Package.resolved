@@ -1,16 +1,14 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "LocationPicker",
-        "repositoryURL": "https://github.com/almassapargali/LocationPicker.git",
-        "state": {
-          "branch": null,
-          "revision": "b9c4bbe995e52125ce723b823876ad87c76adc5d",
-          "version": "1.4.3"
-        }
+  "pins" : [
+    {
+      "identity" : "locationpicker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/almassapargali/LocationPicker.git",
+      "state" : {
+        "revision" : "b9c4bbe995e52125ce723b823876ad87c76adc5d",
+        "version" : "1.4.3"
       }
-    ]
-  },
-  "version": 1
+    }
+  ],
+  "version" : 2
 }

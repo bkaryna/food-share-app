@@ -37,6 +37,11 @@ class UserConversations {
                     print("Error fetching documents: \(error!)")
                     return
                 }
+                
+                print("Printing all fetched documents for user \(userID):")
+                print(querySnapshot!.documents)
+                
+                
                 for document in querySnapshot!.documents {
                     let users = document.get("Users") as! [String]
                     if (users.contains(userID)){

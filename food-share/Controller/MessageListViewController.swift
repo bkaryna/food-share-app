@@ -22,7 +22,7 @@ class MessageListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        return userConversations.conversationsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,7 +41,7 @@ class MessageListViewController: UIViewController, UITableViewDelegate, UITableV
     
         var test = Array(userConversations.conversationsList)[indexPath.row].key
         print("-----test-----\n\(test)")
-        vc.otherUser = Sender(senderId: test, displayName: "GenericName")
+        vc.otherUser = Sender(senderId: test, displayName: "Crap")
         print("-----test-----\n\(vc.otherUser)")
         navigationController?.pushViewController(vc, animated: true)
     }
