@@ -29,6 +29,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var editPhotoButton: UIButton!
     @IBOutlet weak var deactivateButton: UIButton!
+    @IBOutlet weak var messageSellerButton: UIButton!
     
     @IBOutlet weak var itemPhotoImageView: UIImageView!
     @IBOutlet weak var priceSwitch: UISwitch!
@@ -61,18 +62,6 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
                 setUpViewOtherItemsView()
             }
         }
-        
-//        if (chosenLocation != nil) {
-//            locationTextView.isHidden = false
-//        } else {
-//            locationTextView.isHidden = true
-//        }
-//
-//        setUpCategoryPicker()
-//        setUpDatePicker()
-//        setUpUnitPicker()
-//
-//        locationTextView.isEnabled = false
         
         Styling.buttonStyle(publishButton)
         Styling.buttonStyle(discardButton)
@@ -148,6 +137,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.animationView.isHidden = true
             self.userItem = nil
             _ = self.navigationController?.popToRootViewController(animated: true)
+//            self.navigationController?.pushViewController(MyItemsViewController(), animated: true)
         }
     }
     
@@ -263,8 +253,8 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @objc func doneButtonTapped() {
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
+        formatter.dateFormat = "dd MMM yyyy"
+        
         validUntilTextView.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }
@@ -295,7 +285,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         unitTextView.text = userItem?.getUnit()
         locationTextView.text = userItem?.getLocationName()
         descriptionTextView.text = userItem?.getDescription()
-        priceTextView.text = "\(userItem?.getPrice() ?? 0.0)"
+        priceTextView.text = "\(userItem?.getPrice() ?? "0.0")"
     }
     
     func handlePhotoAccessPermissions() {
@@ -342,6 +332,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     func setUpAddItemView() {
         deleteButton.isHidden = true
         priceTextView.isHidden = true
+        messageSellerButton.isHidden = true
         
         if (chosenLocation != nil) {
             locationTextView.isHidden = false
@@ -373,14 +364,16 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         setUpUserItemData()
         deactivateButton.isHidden = false
         deleteButton.isHidden = false
+        messageSellerButton.isHidden = true
         
-        if (chosenLocation != nil) {
+        if (userItem?.getLocationName() != nil || userItem?.getLocationName() != "") {
             locationTextView.isHidden = false
+            locationTextView.text = userItem?.getLocationName()
         } else {
             locationTextView.isHidden = true
         }
         
-        if (userItem?.getPrice() == 0.0 || userItem?.getPrice() == nil) {
+        if (userItem?.getPrice() == "0" || userItem?.getPrice() == "0.0" || userItem?.getPrice() == nil) {
             priceSwitch.isOn = true
             priceTextView.isHidden = true
         } else {
@@ -401,6 +394,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         discardButton.isHidden = true
         deleteButton.isHidden = true
         editPhotoButton.isHidden = true
+        messageSellerButton.isHidden = false
         
         nameTextView.isEnabled = false
         categoryTextView.isEnabled = false
@@ -411,7 +405,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         descriptionTextView.isEnabled = false
         locationTextView.isHidden = false
         validUntilTextView.text = "Valid until: \(userItem?.getValidUntilDate() ?? "")"
-        priceTextView.text = "Price: \(userItem?.getPrice() ?? 0.0)"
+        priceTextView.text = "Price: \(userItem?.getPrice() ?? "0.0")"
         priceTextView.isEnabled = false
         locationTextView.text = userItem?.getLocationName()
         

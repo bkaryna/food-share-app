@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class MessageListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -37,11 +39,15 @@ class MessageListViewController: UIViewController, UITableViewDelegate, UITableV
         
         //Show chat messages
         let vc = MessageViewController()
-        vc.title = "Tony"
     
-        var test = Array(userConversations.conversationsList)[indexPath.row].key
+        let test = Array(userConversations.conversationsList)[indexPath.row].key
+      
         print("-----test-----\n\(test)")
-        vc.otherUser = Sender(senderId: test, displayName: "Crap")
+        vc.otherUser = Sender(senderId: test, displayName: getUserDisplayName(userID: test))
+//        vc.title = getUserDisplayName(userID: test)
+        vc.title = "real test"
+        
+       
         print("-----test-----\n\(vc.otherUser)")
         navigationController?.pushViewController(vc, animated: true)
     }

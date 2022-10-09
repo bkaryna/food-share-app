@@ -36,7 +36,7 @@ class OtherCollectionViewCell: UICollectionViewCell {
         validFromLabel.text = "Valid from: " + item.getValidFromDate()
         validUntilLabel.text = "Valid until: " + item.getValidUntilDate()
         
-        if (item.getPrice() == 0){
+        if (item.getPrice() == "0.0"){
             priceLabel.text = "Price: free"
         } else {
             priceLabel.text = "Price: " + String(item.getPrice()) + " zl"

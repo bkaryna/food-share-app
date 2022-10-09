@@ -38,7 +38,7 @@ struct UserItems {
                         
                         let _locationName = data["LocationName"] as? String ?? ""
                         let _description = data["Description"] as? String ?? ""
-                        let _price = data["Price"] as? Double ?? 0.0
+                        let _price = data["Price"] as? String ?? "0.0"
                         
                         return UserItem(id: _id, owner: userID!, name: _name, dateFrom: _dateFrom, dateUntil: _dateUntil, category: _category, price: _price, quantity: _quantity, unit: _unit, location: _location, locationName: _locationName, description: _description)
                     }

@@ -21,10 +21,10 @@ class UserItem {
     private var location: [String:Double]
     private var locationName: String
     private var description: String
-    private var price: Double
+    private var price: String
     private var active: Bool
     
-    init (id: String, owner: String, name: String, dateFrom: String, dateUntil: String, category: String, price: Double, quantity: String, unit: String, location: [String:Double], locationName: String, description: String) {
+    init (id: String, owner: String, name: String, dateFrom: String, dateUntil: String, category: String, price: String, quantity: String, unit: String, location: [String:Double], locationName: String, description: String) {
         self.id = id
         self.owner = owner
         self.name = name
@@ -97,7 +97,7 @@ class UserItem {
         return self.description
     }
     
-    func getPrice() -> Double {
+    func getPrice() -> String {
         return self.price
     }
     
