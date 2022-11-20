@@ -22,7 +22,6 @@ class MyItemsViewController: UIViewController, UISearchResultsUpdating {
     private var filterCondition: NSRegularExpression = NSRegularExpression(".*")
     
     override func viewWillAppear(_ animated: Bool) {
-        print("view will appear func")
         //setup searchbar
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController

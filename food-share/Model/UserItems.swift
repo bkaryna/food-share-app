@@ -42,10 +42,6 @@ struct UserItems {
                         
                         return UserItem(id: _id, owner: userID!, name: _name, dateFrom: _dateFrom, dateUntil: _dateUntil, category: _category, price: _price, quantity: _quantity, unit: _unit, location: _location, locationName: _locationName, description: _description)
                     }
-                    
-                    for item in itemList {
-                        print("<Name: \(item.getname()) \t Id: \(item.getID()) \t dateFrom: \(item.getValidFromDate()) \t dateUntil: \(item.getValidUntilDate())\n")
-                    }
                 }
             }
     }

@@ -29,6 +29,8 @@ class MessageListViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "chatListCell", for: indexPath)
+        let test = Array(userConversations.conversationsList)[indexPath.row].key
+        
         cell.textLabel?.text = "Tony" //name of the conversation
         cell.accessoryType = .disclosureIndicator //indicates that the element is tappable
         return cell
@@ -45,7 +47,7 @@ class MessageListViewController: UIViewController, UITableViewDelegate, UITableV
         print("-----test-----\n\(test)")
         vc.otherUser = Sender(senderId: test, displayName: getUserDisplayName(userID: test))
 //        vc.title = getUserDisplayName(userID: test)
-        vc.title = "real test"
+        vc.title = "Tony"
         
        
         print("-----test-----\n\(vc.otherUser)")

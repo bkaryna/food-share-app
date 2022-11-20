@@ -95,11 +95,11 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating, 
         menu.selectionAction = { [self] index, title in
             if (index == 0) { //price low to high
                 self.otherUsersItemsList = OtherItems.itemList.sorted{
-                    $0.getPrice()<$1.getPrice()
+                    Double($0.getPrice()) ?? 0.0 < Double($1.getPrice()) ?? 0.0
                 }
             } else if (index == 1) { //price high to low
                 self.otherUsersItemsList = OtherItems.itemList.sorted{
-                    $0.getPrice()>$1.getPrice()
+                    Double($0.getPrice()) ?? 0.0 > Double($1.getPrice()) ?? 0.0
                 }
             } else if (index == 2) { //newest first
                 let dateFormatter = DateFormatter()
@@ -109,8 +109,6 @@ class OtherUsersItemsViewController: UIViewController, UISearchResultsUpdating, 
                     dateFormatter.date(from: $0.getValidFromDate())!>dateFormatter.date(from: $1.getValidFromDate())!
                 }
             } else if (index == 3) { //closest to me
-                //filter --> to consider
-//                self.otherUsersItemsList.removeAll(where: {$0.getLo cationName().isEmpty || (self.calculateDistanceInKilometers(latitude1: $0.getLocationLatitude(), longitude1: $0.getLocationLongitude(), latitude2: self.usersLocationlatitude, longitude2: self.usersLocationlongitude)) > 50.0})
                 //sorting
                 self.otherUsersItemsList = OtherItems.itemList.sorted{
                     calculateDistanceInKilometers(latitude1: $0.getLocationLatitude(), longitude1: $0.getLocationLongitude(), latitude2: usersLocationlatitude, longitude2: usersLocationlongitude) < calculateDistanceInKilometers(latitude1: $1.getLocationLatitude(), longitude1: $1.getLocationLongitude(), latitude2: usersLocationlatitude, longitude2: usersLocationlongitude)

@@ -71,7 +71,7 @@ class LogInViewController: UIViewController {
                     let email = Auth.auth().currentUser?.email
                     db.collection("Users").document(userID).setData([ "Name": name! as String, "Email": email! as String ], merge: true)
                     
-                    transitionToHome()
+                    self.transitionToHome()
                 }
             }
         }

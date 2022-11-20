@@ -121,7 +121,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
                     guard let url = url, error == nil else {
                         return
                     }
-                    //for future reference
+                    //console output
                     let urlString = url.absoluteString
                     print("Download URL: \(urlString)")
                     
@@ -405,8 +405,14 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         descriptionTextView.isEnabled = false
         locationTextView.isHidden = false
         validUntilTextView.text = "Valid until: \(userItem?.getValidUntilDate() ?? "")"
-        priceTextView.text = "Price: \(userItem?.getPrice() ?? "0.0")"
+        
+        if (userItem?.getPrice() == "0" || userItem?.getPrice() == "0.0") {
+            priceTextView.text = "Price: free"
+        } else {
+            priceTextView.text = "Price: \(userItem?.getPrice()) zl"
+        }
         priceTextView.isEnabled = false
+        priceTextView.isHidden = false
         locationTextView.text = userItem?.getLocationName()
         
         freeSwitchStackView.isHidden = true
